@@ -1,5 +1,6 @@
 ---
 dependencies:
+    - hostname
     - sudo
     - udev
     - pacman
@@ -18,3 +19,4 @@ dependencies:
     - xdm
     - libvirt
     - mlocate
+    - nginx

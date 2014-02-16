@@ -1,0 +1,11 @@
+---
+- name: Copy /etc/hostname
+  copy:
+    content={{ hostname }}
+    dest=/etc/hostname
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  notify:
+    - Set hostname

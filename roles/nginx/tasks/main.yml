@@ -1,0 +1,28 @@
+---
+- name: Install nginx
+  pacman:
+    name=nginx
+    state=installed
+
+
+- name:  Create root }}
+  file:
+    dest={{ root_directory }}
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
+
+- name: Configure nginx
+  template:
+    src={{ item }}.j2
+    dest=/etc/{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - nginx.conf
+  notify:
+    - Restart nginx
