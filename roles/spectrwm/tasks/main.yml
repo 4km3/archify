@@ -1,0 +1,14 @@
+---
+- name: Install spectrwm
+  pacman:
+    name=spectrwm
+    state=installed
+
+- name: Configure spectrwm
+  template:
+    src=spectrwm.conf.j2
+    dest=/etc/spectrwm.conf
+    backup=yes
+    owner=root
+    group=root
+    mode=0644

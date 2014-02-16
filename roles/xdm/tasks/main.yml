@@ -1,0 +1,8 @@
+---
+- name: Install xorg
+  pacman:
+    name={{ item }}
+    state=installed
+  with_items:
+    - xorg-xdm
+    - xdm-archlinux

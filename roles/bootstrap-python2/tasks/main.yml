@@ -1,0 +1,4 @@
+---
+- name: Install python2 interpreter
+  raw:
+    pacman --noconfirm -Sy python2

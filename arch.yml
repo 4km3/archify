@@ -1,0 +1,16 @@
+---
+- name: Bootstrap Archlinux
+  hosts: mba
+  gather_facts: no
+
+  roles:
+    - bootstrap-python2
+  tags:
+    - bootstrap
+
+
+- name: Setup Archlinux
+  hosts: mba
+
+  roles:
+    - base
