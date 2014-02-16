@@ -1,8 +1,47 @@
 ---
-- name: Install xorg
+- name: Install XDM
   pacman:
     name={{ item }}
     state=installed
   with_items:
     - xorg-xdm
     - xdm-archlinux
+
+
+- name: Symlink /opt/solarized/xresources/solarized to /etc/X11/xdm/Xresources.solarized
+  file:
+    src=/opt/solarized/xresources/solarized
+    dest=/etc/X11/xdm/Xresources.solarized
+    state=link
+
+
+- name: Copy Xresources to /etc/X11/xdm
+  template:
+    src={{ item }}.j2
+    dest=/etc/X11/xdm/{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - Xresources
+
+- name: Secure Xservers
+  lineinfile:
+    dest=/etc/X11/xdm/Xservers
+    backup=yes
+    backrefs=yes
+    regexp='^(:0 local /usr/bin/X) (:0)'
+    line='\1 -nolisten tcp \2'
+
+- name: Start and enable XDM-archlinux
+  service:
+    name=xdm-archlinux
+    state=started
+    #enable=yes  # Feature not yet implemented
+
+- name: Enable XDM-archlinux
+  command:
+    systemctl enable xdm-archlinux
+  register: systemctl_result
+  changed_when: "systemctl_result.stderr != ''"

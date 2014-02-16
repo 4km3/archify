@@ -4,7 +4,7 @@
   gather_facts: no
 
   roles:
-    - bootstrap-python2
+    - python2
   tags:
     - bootstrap
 

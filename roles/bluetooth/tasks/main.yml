@@ -1,0 +1,20 @@
+---
+- name: Install bluez and bluez-utils
+  pacman:
+    name={{ item }}
+    state=installed
+  with_items:
+    - bluez
+    - bluez-utils
+
+
+- name: Enable bluetooth controller on startup
+  template:
+    src={{ item }}.j2
+    dest=/etc/udev/rules.d/{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - 10-local.rules

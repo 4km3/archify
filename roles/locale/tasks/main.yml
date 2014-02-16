@@ -5,20 +5,17 @@
     backup=yes
     backrefs=yes
     state=present
-    regexp="^#?(en_US.UTF-8 UTF-8.*)"
-    line="\1"
+    regexp='^#?(en_US.UTF-8 UTF-8.*)'
+    line='\1'
   notify:
     - Regenerate locales    
 
 
 - name: Set en_US.UTF-8 locale as default
-  lineinfile:
+  copy:
+    content='LANG=en_US.UTF-8'
     dest=/etc/locale.conf
     backup=yes
-    create=yes
     owner=root
     group=root
     mode=0644
-    state=present
-    regexp="^LANG="
-    line="LANG=en_US.UTF-8"

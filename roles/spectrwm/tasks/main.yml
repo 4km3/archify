@@ -1,8 +1,12 @@
 ---
-- name: Install spectrwm
+- name: Install spectrwm and slock
   pacman:
-    name=spectrwm
+    name={{ item }}
     state=installed
+  with_items:
+    - spectrwm
+    - slock
+
 
 - name: Configure spectrwm
   template:
@@ -12,3 +16,12 @@
     owner=root
     group=root
     mode=0644
+
+
+- name: Enable spectrwm
+  copy:
+    content='exec spectrwm'
+    dest=/etc/X11/xinit/xinitrc.d/99-spectrwm.sh
+    owner=root
+    group=root
+    mode=0755

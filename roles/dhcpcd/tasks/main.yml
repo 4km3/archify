@@ -1,0 +1,11 @@
+---
+- name: Configure dhcpcd
+  template:
+    src={{ item }}.j2
+    dest=/etc/{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - dhcpcd.conf

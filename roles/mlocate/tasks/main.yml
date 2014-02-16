@@ -1,0 +1,5 @@
+---
+- name: Install mlocate
+  pacman:
+    name=mlocate
+    state=installed

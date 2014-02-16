@@ -1,0 +1,40 @@
+---
+- name: Install wpa_supplicant and wpa_actiond
+  pacman:
+    name={{ item }}
+    state=installed
+  with_items:
+    - wpa_supplicant
+    - wpa_actiond
+
+
+- name: Install wireless netctl profiles
+  copy:
+    src={{ item }}
+    dest=/etc/netctl/{{ item | basename }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0640
+  with_fileglob: "wireless-profiles/*"
+
+
+- name: Enable netctl-auto@wlan0 service
+  command:
+    systemctl enable netctl-auto@wlan0
+  register: systemctl_result
+  changed_when: "systemctl_result.stderr != ''"
+
+
+- name: Start netctl-auto@wlan0 service
+  command:
+    systemctl start netctl-auto@wlan0
+  register: systemctl_result
+  changed_when: "systemctl_result.stderr != ''"
+
+
+# FIXME: wlan0 suffix gets lost
+#- name: Start netctl-auto@wlan0 service
+#  service:
+#    name=netctl-auto@wlan0
+#    state=started

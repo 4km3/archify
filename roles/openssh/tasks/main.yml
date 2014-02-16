@@ -1,0 +1,29 @@
+---
+- name: Install OpenSSH
+  pacman:
+    name=openssh
+    state=installed
+
+
+- name: Configure OpenSSH
+  lineinfile:
+    dest=/etc/ssh/sshd_config
+    backup=yes
+    insertafter='^#PasswordAuthentication yes'
+    regexp='^PasswordAuthentication'
+    line='PasswordAuthentication no'
+  notify:
+    - Restart OpenSSH
+
+
+- name: Enable OpenSSH
+  command:
+    systemctl enable sshd
+  register: systemctl_result
+  failed_when: "systemctl_result.stderr != ''"
+
+
+- name: Start OpenSSH
+  service:
+    name=sshd
+    state=started

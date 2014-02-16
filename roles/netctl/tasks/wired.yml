@@ -1,0 +1,26 @@
+---
+- name: Install ifplugd
+  pacman:
+    name=ifplugd
+    state=installed
+
+
+- name: Enable netctl-ifplugd@eth0 service
+  command:
+    systemctl enable netctl-ifplugd@eth0 
+  register: systemctl_result
+  changed_when: "systemctl_result.stderr != ''"
+
+
+- name: Start netctl-ifplugd@eth0 service
+  command:
+    systemctl start netctl-ifplugd@eth0 
+  register: systemctl_result
+  changed_when: "systemctl_result.stderr != ''"
+
+
+# FIXME: eth0 suffix gets lost
+#- name: Start netctl-ifplugd@eth0 service
+#  service:
+#    name=netctl-ifplugd@eth0
+#    state=started

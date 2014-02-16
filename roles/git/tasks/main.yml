@@ -1,0 +1,8 @@
+---
+- name: Install git and tig
+  pacman:
+    name={{ item }}
+    state=installed
+  with_items:
+    - git
+    - tig

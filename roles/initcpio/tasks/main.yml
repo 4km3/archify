@@ -3,8 +3,8 @@
   lineinfile:
     dest=/etc/mkinitcpio.conf
     backup=yes
-    state=present
     backrefs=yes 
+    state=present
     regexp='^#?(COMPRESSION="xz")'
     line='\1'
   notify:

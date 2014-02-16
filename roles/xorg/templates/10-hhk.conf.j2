@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+
+Section "InputClass"
+	Identifier	"Happy Hacking Pro Keyboard"
+	MatchIsKeyboard "on"
+	MatchDevicePath "/dev/input/event*"
+	MatchProduct	"HHKB Professional"
+	#MatchVendor	"Topre Corporation"		# for some reason, this Match does not work here
+	Driver		"evdev"
+	Option		"XkbModel"	"hhk"
+	Option		"XkbLayout"	"us,us"
+	Option		"XkbVariant"	"altgr-intl,dvorak"
+	Option		"XkbOptions"	"grp:shifts_toggle"
+EndSection

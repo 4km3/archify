@@ -1,0 +1,18 @@
+---
+- name: Install sudo
+  pacman:
+    name=sudo
+    state=installed
+
+
+- name: Enable password-less sudo for wheel
+  template:
+    src={{ item }}.j2
+    dest=/etc/sudoers.d/{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0220
+    validate='visudo -cf %s'
+  with_items:
+    - wheel-nopasswd

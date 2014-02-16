@@ -1,5 +1,20 @@
 ---
 dependencies:
+    - sudo
+    - udev
+    - pacman
+    - dhcpcd
+    - dnsmasq
+    - netctl
+    - ntp
+    - openssh
+    - bluetooth
     - initcpio
     - locale
+    - localtime
     - readline
+    - vconsole
+    - xorg
+    - xdm
+    - libvirt
+    - mlocate

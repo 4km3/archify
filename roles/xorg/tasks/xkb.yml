@@ -1,0 +1,11 @@
+---
+- name: Configure xorg xkb
+  template:
+    src={{ item }}.j2
+    dest=/etc/X11/xorg.conf.d/{{ item }}
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - 10-keyboard.conf
+    - 10-hhk.conf

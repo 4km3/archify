@@ -1,0 +1,33 @@
+---
+- name: Install libvirt, virt-manager, bridge-utils, openbsd-netcat, qemu, ebtables
+  pacman:
+    name={{ item }}
+    state=installed
+  with_items:
+    - libvirt
+    - virt-manager
+    - bridge-utils
+    - openbsd-netcat
+    - qemu
+    - ebtables
+
+
+- name: Config qemu
+  lineinfile:
+    dest=/etc/libvirt/qemu.conf
+    backup=yes
+    backrefs=yes
+    state=present
+    regexp='^#?(user = "root")'
+    line='\1'
+
+- name: Install polkit rules file
+  template:
+    src={{ item }}.j2
+    dest=/etc/polkit-1/rules.d/{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - 50-org.libvirt.unix.manage.rules

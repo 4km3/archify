@@ -1,0 +1,3 @@
+---
+- include: wired.yml
+- include: wireless.yml

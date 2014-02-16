@@ -4,6 +4,6 @@
     dest=/etc/inputrc
     backup=yes
     state=present
-    regexp="^set bell-style"
-    insertafter="^#set bell-style"
-    line="set bell-style visible"
+    regexp='^set bell-style'
+    insertafter='^#set bell-style'
+    line='set bell-style visible'

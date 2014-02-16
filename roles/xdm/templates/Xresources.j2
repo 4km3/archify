@@ -1,0 +1,72 @@
+# {{ ansible_managed }}
+
+Xcursor.theme: whiteglass
+
+#include "Xresources.solarized"
+
+#define terminus	-xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso8859-1
+#define terminusface	Terminus:style=Regular:pixelsize=20
+
+xlogin*login.translations: #override \
+	Ctrl<Key>R: abort-display()\n\
+	<Key>F1: set-session-argument(failsafe) finish-field()\n\
+	<Key>Delete: delete-character()\n\
+	<Key>Left: move-backward-character()\n\
+	<Key>Right: move-forward-character()\n\
+	<Key>Home: move-to-begining()\n\
+	<Key>End: move-to-end()\n\
+	Ctrl<Key>KP_Enter: set-session-argument(failsafe) finish-field()\n\
+	<Key>KP_Enter: set-session-argument() finish-field()\n\
+	Ctrl<Key>Return: set-session-argument(failsafe) finish-field()\n\
+	<Key>Return: set-session-argument() finish-field()
+
+xlogin*greeting: Welcome to CLIENTHOST
+!xlogin*namePrompt: \040\040\040\040\040\040\040Login:
+xlogin*namePrompt: \040\040\040Login:
+xlogin*fail:		login incorrect or forbidden by policy
+xlogin*passwdPrompt:	set via PAM
+!xlogin*echoPasswd:	true
+xlogin*sepWidth:	0
+
+xlogin*greetFont:	terminus
+xlogin*font:		terminus
+xlogin*promptFont:	terminus
+xlogin*failFont:	terminus
+xlogin*greetFace:	terminusface
+xlogin*face: 		terminusface
+xlogin*promptFace: 	terminusface
+xlogin*failFace: 	terminusface
+
+#ifdef COLOR
+xlogin*borderWidth:	0
+xlogin*frameWidth:	0
+xlogin*innerFramesWidth: 0
+xlogin*shdColor:	S_base0
+xlogin*hiColor:		S_base0
+xlogin*background:	S_base03
+xlogin*foreground:	S_base0
+xlogin*greetColor:	S_base0
+xlogin*promptColor:	S_base0
+xlogin*failColor:	S_red
+*Foreground:		S_base0
+*Background:		S_base03
+#else
+xlogin*borderWidth: 3
+xlogin*frameWidth: 0
+xlogin*innerFramesWidth: 1
+xlogin*shdColor: black
+xlogin*hiColor: black
+#endif
+
+XConsole.text.geometry:	480x130
+XConsole.verbose:	true
+XConsole*iconic:	true
+XConsole*font:		terminus
+
+Chooser*geometry:		700x500+300+200
+Chooser*allowShellResize:	false
+Chooser*viewport.forceBars:	true
+Chooser*label.font:		terminus
+Chooser*label.label:		XDMCP Host Menu from CLIENTHOST
+Chooser*list.font:		terminus
+Chooser*Command.font:		terminus

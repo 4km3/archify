@@ -6,10 +6,4 @@
   with_items:
     - alsa-utils
     - ttf-dejavu
-    - xf86-video-intel
-    - terminus-font
-    - xorg-xinit
-    - spectrwm
     - rxvt-unicode
-    - xorg-xdm
-    - xdm-archlinux

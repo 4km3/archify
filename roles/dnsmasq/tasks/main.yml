@@ -1,0 +1,31 @@
+---
+- name: Install dnsmasq
+  pacman:
+    name=dnsmasq
+    state=installed
+
+
+- name: Configure dnsmasq
+  template:
+    src={{ item }}.j2
+    dest=/etc/dnsmasq.conf
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - dnsmasq.conf
+  notify:
+    - Restart dnsmasq
+
+- name: Configure resolver
+  template:
+    src={{ item }}.j2
+    dest=/etc/{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - resolv.conf.head
+    - resolv.conf.tail
