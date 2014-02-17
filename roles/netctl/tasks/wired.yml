@@ -20,18 +20,32 @@
   with_fileglob: "wired-profiles/*"
 
 
-- name: Enable netctl-ifplugd@eth0 service
+- name: Start dhcpcd@eth0 service
   command:
-    systemctl enable netctl-ifplugd@eth0 
+    systemctl start dhcpcd@eth0
   register: systemctl_result
   changed_when: "systemctl_result.stderr != ''"
 
 
-- name: Start netctl-ifplugd@eth0 service
+- name: Enable dhcpcd@eth0 service
   command:
-    systemctl start netctl-ifplugd@eth0 
+    systemctl enable dhcpcd@eth0
   register: systemctl_result
   changed_when: "systemctl_result.stderr != ''"
+
+
+#- name: Enable netctl-ifplugd@eth0 service
+#  command:
+#    systemctl enable netctl-ifplugd@eth0
+#  register: systemctl_result
+#  changed_when: "systemctl_result.stderr != ''"
+
+
+#- name: Start netctl-ifplugd@eth0 service
+#  command:
+#    systemctl start netctl-ifplugd@eth0
+#  register: systemctl_result
+#  changed_when: "systemctl_result.stderr != ''"
 
 
 # FIXME: eth0 suffix gets lost
