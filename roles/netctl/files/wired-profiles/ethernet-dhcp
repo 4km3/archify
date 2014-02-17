@@ -1,0 +1,10 @@
+Connection=ethernet
+Description='A basic dhcp ethernet connection using iproute'
+Interface='eth0'
+IP='dhcp'
+DhcpcdOptions='-4A'
+## for DHCPv6
+#IP6='dhcp'
+## for IPv6 autoconfiguration
+#IP6='stateless'
+

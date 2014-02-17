@@ -1,8 +1,23 @@
 ---
+# TODO: according to arch wiki, ifplugd functionality is now provided by dhcpcd out of the box
+# See how can we get rid of ifplugd, then
+
+
 - name: Install ifplugd
   pacman:
     name=ifplugd
     state=installed
+
+
+- name: Install wired netctl profiles
+  copy:
+    src={{ item }}
+    dest=/etc/netctl/{{ item | basename }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0640
+  with_fileglob: "wired-profiles/*"
 
 
 - name: Enable netctl-ifplugd@eth0 service
