@@ -12,7 +12,7 @@
     backup=yes
     owner=root
     group=root
-    mode=0220
+    mode=0640
     validate='visudo -cf %s'
   with_items:
     - wheel-nopasswd
