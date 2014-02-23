@@ -7,5 +7,7 @@
     group=root
     mode=0644
   with_items:
-    - 10-keyboard.conf
-    - 10-hhk.conf
+    - 10-keyboard-defaults.conf
+    - 11-keyboard-apple-internal.conf
+    - 12-keyboard-apple-wireless.conf
+    - 13-keyboard-hhk.conf

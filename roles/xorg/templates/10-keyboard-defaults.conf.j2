@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+
+# FIXME: This section should not be needed, but Apple Wireless Keyboard fails to config properly if left out
+Section "InputClass"
+	Identifier	"Keyboard Defaults"
+	MatchIsKeyboard	"yes"
+	Option		"XkbLayout"		"us,us"
+	Option		"XkbVariant"		"altgr-intl,dvorak"
+	Option		"XkbOptions"		"ctrl:swapcaps,compose:lctrl,grp:shifts_toggle"
+EndSection
