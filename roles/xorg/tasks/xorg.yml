@@ -8,6 +8,8 @@
     - xf86-video-intel
     - xorg
     - xorg-apps
+    - mesa
+    - mesa-demos
     - rxvt-unicode
 
 
