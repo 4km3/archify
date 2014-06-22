@@ -9,7 +9,7 @@
 - name: Enable pam_ssh for XDM
   template:
     src={{ item }}.j2
-    dest={{ item }}
+    dest=/etc/pam.d/{{ item }}
     backup=yes
     owner=root
     group=root
