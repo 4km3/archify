@@ -1,2 +1,2 @@
 ---
-hostname: spacedock
+hostname: "{{ inventory_hostname }}"
