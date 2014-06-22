@@ -17,7 +17,7 @@
 - name: Configure nginx
   template:
     src={{ item }}.j2
-    dest=/etc/{{ item }}
+    dest=/etc/nginx/{{ item }}
     backup=yes
     owner=root
     group=root
