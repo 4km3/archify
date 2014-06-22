@@ -1,7 +1,0 @@
----
-- name: Install some basic stuff
-  pacman:
-    name={{ item }}
-    state=installed
-  with_items:
-    - alsa-utils
