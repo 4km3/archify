@@ -1,7 +1,7 @@
 ---
 - name: Copy /etc/hostname
   copy:
-    content="{{ hostname }}\n"
+    content='{{ hostname }}\n'
     dest=/etc/hostname
     backup=yes
     owner=root
