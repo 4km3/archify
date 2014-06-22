@@ -17,6 +17,7 @@ dependencies:
     - vconsole
     - xorg
     - xdm
+    - spectrwm
     - libvirt
     - mlocate
     - nginx
