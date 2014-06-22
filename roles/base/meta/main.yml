@@ -18,6 +18,7 @@ dependencies:
     - xorg
     - xdm
     - spectrwm
+    - pam_ssh
     - libvirt
     - mlocate
     - nginx
