@@ -1,6 +1,6 @@
 ---
 - name: Bootstrap Archlinux
-  hosts: mba
+  hosts: arch
   gather_facts: no
 
   roles:
@@ -10,7 +10,7 @@
 
 
 - name: Setup Archlinux
-  hosts: mba
+  hosts: arch
 
   roles:
     - base
