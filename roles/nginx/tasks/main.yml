@@ -7,7 +7,7 @@
 
 - name:  Create root directory
   file:
-    dest={{ root_directory }}
+    dest={{ nginx_root_directory }}
     state=directory
     owner=root
     group=root

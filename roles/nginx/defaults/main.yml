@@ -1,2 +1,2 @@
 ---
-root_directory: /srv/http
+nginx_root_directory: /srv/http
