@@ -13,7 +13,7 @@
     - rxvt-unicode
 
 
-- name: Remove unneeded xorg
+- name: Remove unneeded xorg packages
   pacman:
     name={{ item }}
     state=absent
