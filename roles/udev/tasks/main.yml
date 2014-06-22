@@ -2,7 +2,7 @@
 - name: Create empty file /etc/udev/rules.d/80-net-name-slot.rules
   copy:
     content=''
-    dest=/etc/udev/rules.d/80-net-name-slot.rules
+    dest=/etc/udev/rules.d/80-net-setup-link.rules
     owner=root
     group=root
     mode=0644
