@@ -21,7 +21,7 @@
 
 - name: Enable spectrwm
   copy:
-    content='exec spectrwm'
+    content='exec spectrwm\n'
     dest=/etc/X11/xinit/xinitrc.d/99-spectrwm.sh
     owner=root
     group=root
