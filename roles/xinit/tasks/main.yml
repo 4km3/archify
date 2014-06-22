@@ -3,3 +3,14 @@
   pacman:
     name=xorg-xinit
     state=installed
+
+- name: Install global .Xresources
+  template:
+    src={{ item }}.j2
+    dest=/etc/X11/xinit/{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - .Xresources
