@@ -1,10 +1,11 @@
 ---
-- name: Install spectrwm and slock
+- name: Install spectrwm, scrot and slock
   pacman:
     name={{ item }}
     state=installed
   with_items:
     - spectrwm
+    - scrot
     - slock
 
 
