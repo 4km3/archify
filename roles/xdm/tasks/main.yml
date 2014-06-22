@@ -19,6 +19,7 @@
   with_items:
     - Xresources
 
+
 - name: Secure Xservers
   lineinfile:
     dest=/etc/X11/xdm/Xservers
@@ -26,6 +27,7 @@
     backrefs=yes
     regexp='^(:0 local /usr/bin/X) (:0)'
     line='\1 -nolisten tcp \2'
+
 
 - name: Start and enable XDM-archlinux
   service:

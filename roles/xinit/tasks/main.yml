@@ -4,6 +4,7 @@
     name=xorg-xinit
     state=installed
 
+
 - name: Install global .Xresources
   template:
     src={{ item }}.j2

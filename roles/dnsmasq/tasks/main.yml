@@ -18,6 +18,7 @@
   notify:
     - Restart dnsmasq
 
+
 - name: Configure resolver
   template:
     src={{ item }}.j2

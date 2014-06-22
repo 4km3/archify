@@ -21,6 +21,7 @@
     regexp='^#?(user = "root")'
     line='\1'
 
+
 - name: Install polkit rules file
   template:
     src={{ item }}.j2

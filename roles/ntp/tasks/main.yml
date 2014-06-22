@@ -15,6 +15,7 @@
   notify:
     - Restart ntpd
 
+
 - name: Stop ntpd
   service:
     name=ntpd
