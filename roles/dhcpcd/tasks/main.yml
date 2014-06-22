@@ -9,3 +9,4 @@
     mode=0644
   with_items:
     - dhcpcd.conf
+  notify: Restart dhcpcd
