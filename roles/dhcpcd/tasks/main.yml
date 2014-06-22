@@ -10,3 +10,10 @@
   with_items:
     - dhcpcd.conf
   notify: Restart dhcpcd
+
+
+- name: Enable and start dhcpcd service
+  service:
+    name=dhcpcd
+    enabled=yes
+    state=started
