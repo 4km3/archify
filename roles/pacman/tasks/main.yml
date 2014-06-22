@@ -1,10 +1,2 @@
 ---
-- name: Enable preferred pacman mirror
-  lineinfile:
-    dest=/etc/pacman.d/mirrorlist
-    backup=yes
-    backrefs=yes
-    regexp='^#?(.*{{ pacman_mirror }}.*)'
-    line='\1'
-  tags:
-    - WIP
+- include: mirror.yml
