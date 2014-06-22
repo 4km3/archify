@@ -6,3 +6,13 @@
   with_items:
     - git
     - tig
+
+
+- name: Install gitflow-avh
+  command:
+    yaourt --noconfirm -S {{ item }}
+  register: yaourt_result
+  changed_when: "yaourt_result.stderr != ''"
+  with_items:
+    - gitflow-avh
+    - bash-completion-gitflow-avh
