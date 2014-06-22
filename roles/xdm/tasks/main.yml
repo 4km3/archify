@@ -38,10 +38,4 @@
   service:
     name=xdm-archlinux
     state=started
-    #enable=yes  # Feature not yet implemented
-
-- name: Enable XDM-archlinux
-  command:
-    systemctl enable xdm-archlinux
-  register: systemctl_result
-  changed_when: "systemctl_result.stderr != ''"
+    enable=yes
