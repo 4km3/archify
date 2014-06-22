@@ -5,7 +5,7 @@
     state=installed
 
 
-- name:  Create root }}
+- name:  Create root directory
   file:
     dest={{ root_directory }}
     state=directory
