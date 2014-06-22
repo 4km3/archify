@@ -19,22 +19,8 @@
   with_fileglob: "wireless-profiles/*"
 
 
-- name: Enable netctl-auto@wlan0 service
-  command:
-    systemctl enable netctl-auto@wlan0
-  register: systemctl_result
-  changed_when: "systemctl_result.stderr != ''"
-
-
 - name: Start netctl-auto@wlan0 service
-  command:
-    systemctl start netctl-auto@wlan0
-  register: systemctl_result
-  changed_when: "systemctl_result.stderr != ''"
-
-
-# FIXME: wlan0 suffix gets lost
-#- name: Start netctl-auto@wlan0 service
-#  service:
-#    name=netctl-auto@wlan0
-#    state=started
+  service:
+    name=netctl-auto@wlan0
+    enabled=yes
+    state=started
