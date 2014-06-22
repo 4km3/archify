@@ -8,13 +8,6 @@
     - xdm-archlinux
 
 
-- name: Symlink /opt/solarized/xresources/solarized to /etc/X11/xdm/Xresources.solarized
-  file:
-    src=/opt/solarized/xresources/solarized
-    dest=/etc/X11/xdm/Xresources.solarized
-    state=link
-
-
 - name: Copy Xresources to /etc/X11/xdm
   template:
     src={{ item }}.j2
