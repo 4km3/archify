@@ -1,0 +1,11 @@
+---
+- name: Enable aditional repos in /etc/pacman.conf
+  template:
+    backup=yes
+    src={{ item }}.j2
+    dest=/etc/{{ item }}
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - pacman.conf
