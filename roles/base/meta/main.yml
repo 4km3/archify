@@ -6,7 +6,6 @@ dependencies:
     - pacman
     - dhcpcd
     - dnsmasq
-    - netctl
     - ntp
     - openssh
     - bluetooth
