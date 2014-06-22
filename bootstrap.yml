@@ -1,0 +1,9 @@
+---
+- name: Bootstrap Archlinux
+  hosts: arch
+  gather_facts: no
+
+  roles:
+    - python2
+  tags:
+    - bootstrap
