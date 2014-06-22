@@ -1,0 +1,7 @@
+---
+- name: Install yaourt
+  pacman:
+    name={{ item }}
+    state=installed
+  with_items:
+    - yaourt 
