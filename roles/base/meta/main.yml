@@ -5,6 +5,7 @@ dependencies:
     - udev
     - pacman
     - dhcpcd
+    - netctl
     - dnsmasq
     - ntp
     - openssh
