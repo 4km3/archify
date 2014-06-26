@@ -1,6 +1,7 @@
 ---
 - name: Setup Archlinux
   hosts: arch
+  sudo: yes
 
   roles:
     - base
