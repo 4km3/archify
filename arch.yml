@@ -1,5 +1,5 @@
 ---
-- name: Setup Archlinux
+- name: Setup Arch Linux
   hosts: arch
   sudo: yes
 
