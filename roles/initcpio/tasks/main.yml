@@ -1,16 +1,12 @@
 ---
-- name: Enable xz compression for mkinitcpio
-  lineinfile:
-    dest=/etc/mkinitcpio.conf
+- name: Update /etc/mkinitcpio.conf
+  template:
+    dest=/etc/{{ item }}
+    src={{ item }}.j2
     backup=yes
-    backrefs=yes 
-    state=present
-    regexp='^#?(COMPRESSION="xz")'
-    line='\1'
+  with_items:
+    - mkinitcpio.conf
   notify:
     - Regenerate initcpio
-
-# Alternate way, more verbose;  Thanks Virgy for giving me feedback on the two alts!
-#    regexp='^#?(?P<compression_method>COMPRESSION="xz")'
-#    line='\g<compression_method>'
-
+  tags:
+    - initcpio
