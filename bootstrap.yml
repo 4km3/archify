@@ -1,6 +1,6 @@
 ---
-  hosts: arch
 - name: Bootstrap Arch Linux
+  hosts: bootstrap
   gather_facts: no
 
   roles:
