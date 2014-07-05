@@ -3,3 +3,12 @@
   git:
     repo={{ solarized_repo }}
     dest=/opt/solarized/xresources
+    force=yes
+
+- name: Reduce fading
+  lineinfile:
+    dest=/opt/solarized/xresources/solarized
+    backrefs=yes
+    state=present
+    regexp='^\*fading:'
+    line='*fading:			15'
