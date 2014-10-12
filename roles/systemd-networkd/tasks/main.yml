@@ -1,0 +1,15 @@
+---
+- name: Configure wlan0
+  template:
+    src={{ item }}.j2
+    dest=/etc/systemd/network/{{ item }}
+  with_items:
+    - 10-dhcp.network
+  notify:
+    - Reload systemd-networkd
+
+- name: Enable and start systemd-networkd
+  service:
+    name=systemd-networkd
+    enabled=yes
+    state=started

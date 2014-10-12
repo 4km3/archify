@@ -1,0 +1,24 @@
+---
+- name: Install wpa_supplicant
+  pacman:
+    name=wpa_supplicant
+    state=present
+
+- name: Install wpa_supplicant-wlan0.conf
+  template:
+    src={{ item }}.j2
+    dest=/etc/wpa_supplicant/{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0600
+  with_items:
+    - wpa_supplicant-wlan0.conf
+  notify:
+    - Restart wpa_supplicant@wlan0.service
+
+- name: Enable wpa_supplicant@wlan0.service
+  service:
+    name=wpa_supplicant@wlan0.service
+    enabled=yes
+    state=started

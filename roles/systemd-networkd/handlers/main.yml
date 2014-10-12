@@ -1,0 +1,5 @@
+---
+- name: Reload systemd-networkd
+  service:
+    name=systemd-networkd
+    state=reloaded

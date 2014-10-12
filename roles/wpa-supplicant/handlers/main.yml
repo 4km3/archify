@@ -1,0 +1,5 @@
+---
+- name: Restart wpa_supplicant@wlan0.service
+  service: 
+    name=wpa_supplicant@wlan0.service
+    state=restarted

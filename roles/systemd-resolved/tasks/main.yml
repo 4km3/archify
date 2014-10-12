@@ -1,0 +1,13 @@
+---
+- name: Create /etc/resolv.conf symlink to /run/systemd/resolve/resolv.conf
+  file:
+    state=link
+    force=yes
+    src=/run/systemd/resolve/resolv.conf
+    path=/etc/resolv.conf
+
+- name: Enable and start systemd-resolved
+  service:
+    name=systemd-resolved
+    enabled=yes
+    state=started

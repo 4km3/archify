@@ -4,6 +4,9 @@ dependencies:
     - sudo
     - udev
     - pacman
+    - systemd-networkd
+    - systemd-resolved
+    - systemd-timesyncd
     - openssh
     - bluetooth
     - initcpio
