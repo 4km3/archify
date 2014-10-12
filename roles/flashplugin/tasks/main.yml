@@ -1,0 +1,5 @@
+---
+- name: Install Adobe Flash plugin
+  pacman:
+    name=flashplugin
+    state=present

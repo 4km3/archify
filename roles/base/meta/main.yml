@@ -19,6 +19,8 @@ dependencies:
     - xdm
     - spectrwm
     - pam_ssh
+    - vimperator
+    - flashplugin
     - libvirt
     - mlocate
     - nginx

@@ -1,0 +1,20 @@
+---
+- name: Install vimperator
+  sudo: no
+  command:
+    yaourt --noconfirm -S vimperator
+  register: yaourt_result
+  changed_when: "yaourt_result.stderr != ''"
+  tags:
+    - vimperator
+
+- name: Install vimperator configuration files
+  sudo: no
+  template:
+    src={{ item }}.j2
+    dest=/home/{{ vimperator_user }}/{{ item }}
+  with_items:
+    - .vimperatorrc
+    - .vimperatorrc.local
+  tags:
+    - vimperator
