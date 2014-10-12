@@ -14,6 +14,8 @@
     - libva-intel-driver
     - libva
     - mpv
+    - mkvtoolnix-cli
+    - mkvtoolnix-gtk
 
 
 - name: Remove unneeded xorg packages
