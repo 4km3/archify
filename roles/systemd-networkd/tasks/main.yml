@@ -5,6 +5,7 @@
     dest=/etc/systemd/network/{{ item }}
   with_items:
     - 10-dhcp.network
+    - 10-eth.network
   notify:
     - Reload systemd-networkd
 
