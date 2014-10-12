@@ -16,6 +16,8 @@
     - mpv
     - mkvtoolnix-cli
     - mkvtoolnix-gtk
+    - firefox
+    - flashplugin
 
 
 - name: Remove unneeded xorg packages
