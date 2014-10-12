@@ -22,7 +22,6 @@ dependencies:
     - spectrwm
     - pam_ssh
     - vimperator
-    - flashplugin
     - libvirt
     - mlocate
     - nginx
