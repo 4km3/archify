@@ -1,0 +1,8 @@
+---
+- name: Install intel-ucode and mcelog
+  pacman:
+    name={{ item }}
+    state=present
+  with_items:
+    - intel-ucode
+    - mcelog
