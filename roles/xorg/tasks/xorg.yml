@@ -11,6 +11,9 @@
     - mesa
     - mesa-demos
     - rxvt-unicode
+    - libva-intel-driver
+    - libva
+    - mpv
 
 
 - name: Remove unneeded xorg packages
