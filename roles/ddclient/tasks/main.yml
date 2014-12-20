@@ -1,0 +1,22 @@
+- name: Install ddclient
+  pacman:
+    name=ddclient
+    state=present
+
+- name: Config ddclient
+  template:
+    src={{ item }}.j2
+    dest=/etc/ddclient/{{ item }}
+    mode=600
+    owner=root
+    group=root
+  with_items:
+    - ddclient.conf
+  notify:
+    - Restart ddclient
+
+- name: Enable and start ddclient service
+  service:
+    name=ddclient
+    enabled=yes
+    state=started
