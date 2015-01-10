@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+HOMEBIN=~/bin
+if [ -d "$HOMEBIN" ]; then
+    PATH="$HOMEBIN:$PATH"
+fi
