@@ -25,3 +25,4 @@ dependencies:
     - libvirt
     - mlocate
     - nginx
+    - bash
