@@ -16,3 +16,12 @@
   with_items:
     - gitflow-avh
     - bash-completion-gitflow-avh
+
+
+- name: Configure git
+  sudo: no
+  template:
+    src={{ item }}.j2
+    dest={{ item }}
+  with_items:
+    - .gitconfig
