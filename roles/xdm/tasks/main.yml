@@ -20,6 +20,18 @@
     - Xresources
 
 
+- name: Copy arch.xpm to /etc/X11/xdm/archlinux
+  template:
+    src={{ item }}.j2
+    dest=/etc/X11/xdm/archlinux{{ item }}
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - arch.xpm
+
+
 - name: Secure Xservers
   lineinfile:
     dest=/etc/X11/xdm/Xservers
