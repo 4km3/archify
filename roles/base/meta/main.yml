@@ -20,6 +20,7 @@ dependencies:
     - xorg
     - xdm
     - spectrwm
+    - mpv
     - pam_ssh
     - vimperator
     - libvirt
