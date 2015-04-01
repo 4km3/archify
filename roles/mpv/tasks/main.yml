@@ -1,0 +1,14 @@
+---
+- name: Install mpv
+  sudo: yes
+  pacman:
+    name=mpv
+    state=present
+
+- name: Configure mpv
+  sudo: no
+  template:
+    src={{ item }}.j2
+    dest=.config/mpv/{{ item }}
+  with_items:
+    - config
