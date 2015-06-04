@@ -18,11 +18,14 @@
     - bash-completion-gitflow-avh
   sudo: no
 
+- name: Gather facts to refreash ansible_env
+  sudo: no
+  setup:
 
 - name: Configure git
   sudo: no
   template:
     src={{ item }}.j2
-    dest={{ item }}
+    dest={{ ansible_env.HOME }}/{{ item }}
   with_items:
     - .gitconfig
