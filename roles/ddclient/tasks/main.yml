@@ -2,6 +2,8 @@
   pacman:
     name=ddclient
     state=present
+  tags:
+    - ddclient
 
 - name: Config ddclient
   template:
@@ -14,9 +16,13 @@
     - ddclient.conf
   notify:
     - Restart ddclient
+  tags:
+    - ddclient
 
 - name: Enable and start ddclient service
   service:
     name=ddclient
     enabled=yes
     state=started
+  tags:
+    - ddclient
