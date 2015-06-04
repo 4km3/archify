@@ -4,6 +4,7 @@
     yaourt --noconfirm -S pam_ssh
   register: yaourt_result
   changed_when: "yaourt_result.stderr != ''"
+  sudo: no
 
 
 - name: Enable pam_ssh for XDM
