@@ -21,9 +21,9 @@
 
 
 - name: Copy arch.xpm to /etc/X11/xdm/archlinux
-  template:
-    src={{ item }}.j2
-    dest=/etc/X11/xdm/archlinux{{ item }}
+  copy:
+    src={{ item }}
+    dest=/etc/X11/xdm/archlinux/{{ item }}
     backup=yes
     owner=root
     group=root
