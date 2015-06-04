@@ -17,10 +17,15 @@
     - gitflow-avh
     - bash-completion-gitflow-avh
   sudo: no
+  tags:
+    - git
+    - gitflow
 
 - name: Gather facts to refreash ansible_env
   sudo: no
   setup:
+  tags:
+   - git
 
 - name: Configure git
   sudo: no
@@ -29,3 +34,5 @@
     dest={{ ansible_env.HOME }}/{{ item }}
   with_items:
     - .gitconfig
+  tags:
+    - git
