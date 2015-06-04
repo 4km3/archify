@@ -1,0 +1,28 @@
+---
+- name: Install pentadactyl
+  sudo: no
+  command:
+    yaourt --noconfirm -S pentadactyl-git
+  register: yaourt_result
+  changed_when: "yaourt_result.stderr != ''"
+  tags:
+    - pentadactyl
+    - pentadactyl-pkg
+
+- name: Gather facts to refresh ansible_env
+  sudo: no
+  setup:
+  tags:
+    - pentadactyl
+    - pentadactyl-cfg
+
+- name: Install pentadactyl configuration files
+  sudo: no
+  template:
+    src={{ item }}.j2
+    dest={{ ansible_env.HOME }}/{{ item }}
+  with_items:
+    - .pentadactylrc
+  tags:
+    - pentadactyl
+    - pentadactyl-cfg
