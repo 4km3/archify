@@ -5,6 +5,8 @@
   register: yaourt_result
   changed_when: "yaourt_result.stderr != ''"
   sudo: no
+  tags:
+    - pamssh
 
 
 - name: Enable pam_ssh for XDM

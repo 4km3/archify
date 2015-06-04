@@ -3,6 +3,8 @@
   pacman:
     state=installed
     name=unclutter
+  tags:
+    - unclutter
 
 
 - name: Enable unclutter in xinitrc.d
@@ -14,3 +16,5 @@
     mode=0755
   with_items:
     - 90-unclutter.sh
+  tags:
+    - unclutter

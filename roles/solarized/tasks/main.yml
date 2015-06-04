@@ -4,6 +4,8 @@
     repo={{ solarized_repo }}
     dest=/opt/solarized/xresources
     force=yes
+  tags:
+    - solarized
 
 - name: Reduce fading
   lineinfile:

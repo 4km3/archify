@@ -30,6 +30,8 @@
     mode=0644
   with_items:
     - arch.xpm
+  tags:
+    - archxpm
 
 
 - name: Secure Xservers

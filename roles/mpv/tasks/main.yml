@@ -4,10 +4,12 @@
   pacman:
     name=mpv
     state=present
+  tags: mpv
 
 - name: Gather facts to refresh ansible_env
   sudo: no
   setup:
+  tags: mpv
 
 - name: Configure mpv
   sudo: no
@@ -16,3 +18,4 @@
     dest={{ ansible_env.HOME }}/.config/mpv/{{ item }}
   with_items:
     - config
+  tags: mpv
