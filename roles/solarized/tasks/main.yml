@@ -7,7 +7,7 @@
 
 - name: Reduce fading
   lineinfile:
-    "dest=/opt/solarized/xresources/solarized
+    "dest=/opt/solarized/xresources/Xresources.dark
     backrefs=yes
     state=present
     regexp='^\\*fading:'
