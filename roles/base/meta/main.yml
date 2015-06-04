@@ -22,7 +22,7 @@ dependencies:
     - spectrwm
     - mpv
     - pam_ssh
-    - vimperator
+    - pentadactyl
     - libvirt
     - mlocate
     - nginx
