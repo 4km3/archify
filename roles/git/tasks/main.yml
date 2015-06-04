@@ -16,6 +16,7 @@
   with_items:
     - gitflow-avh
     - bash-completion-gitflow-avh
+  sudo: no
 
 
 - name: Configure git
