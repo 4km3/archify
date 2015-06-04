@@ -5,17 +5,23 @@
     force=yes
     src=/run/systemd/resolve/resolv.conf
     path=/etc/resolv.conf
+  tags:
+    - systemd-resolved
 
 - name: Enable and start systemd-resolved
   service:
     name=systemd-resolved
     enabled=yes
     state=started
+  tags:
+    - systemd-resolved
 
 - name: Create /etc/systemd/resolved.conf.d
   file:
     dest=/etc/systemd/resolved.conf.d
     state=directory
+  tags:
+    - systemd-resolved
 
 - name: Install resolved.conf.d/noipv6.conf
   template:
@@ -24,3 +30,5 @@
   with_items:
     - noipv6.conf
   notify: Restart systemd-resolved
+  tags:
+    - systemd-resolved
