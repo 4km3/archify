@@ -5,10 +5,14 @@
     name=mpv
     state=present
 
+- name: Gather facts to refresh ansible_env
+  sudo: no
+  setup:
+
 - name: Configure mpv
   sudo: no
   template:
     src={{ item }}.j2
-    dest=.config/mpv/{{ item }}
+    dest={{ ansible_env.HOME }}/.config/mpv/{{ item }}
   with_items:
     - config
