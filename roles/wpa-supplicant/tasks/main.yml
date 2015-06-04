@@ -6,6 +6,8 @@
   with_items:
     - wpa_supplicant
     - wpa_supplicant_gui
+  tags:
+    - wpa_supplicant
 
 - name: Install wpa_supplicant-wlan0.conf
   template:
@@ -19,9 +21,13 @@
     - wpa_supplicant-wlan0.conf
   notify:
     - Restart wpa_supplicant@wlan0.service
+  tags:
+    - wpa_supplicant
 
 - name: Enable wpa_supplicant@wlan0.service
   service:
     name=wpa_supplicant@wlan0.service
     enabled=yes
     state=started
+  tags:
+    - wpa_supplicant
