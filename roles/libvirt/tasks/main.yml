@@ -33,6 +33,7 @@
   with_items:
     - 50-org.libvirt.unix.manage.rules
 
+
 - name: Enable libvirtd and libvirt-guests
   service:
     name: '{{ item }}'
