@@ -53,7 +53,8 @@ FILES=""
 ##   NOTE: If you have /usr on a separate partition, you MUST include the
 #    usr, fsck and shutdown hooks.
 #HOOKS="base udev autodetect modconf block filesystems keyboard fsck"
-HOOKS="systemd sd-vconsole autodetect modconf block"
+#HOOKS="systemd sd-vconsole autodetect modconf block"
+HOOKS="autodetect systemd keyboard sd-vconsole modconf block"
 
 # COMPRESSION
 # Use this to compress the initramfs image. By default, gzip compression
@@ -69,3 +70,4 @@ COMPRESSION="xz"
 # COMPRESSION_OPTIONS
 # Additional options for the compressor
 #COMPRESSION_OPTIONS=""
+COMPRESSION_OPTIONS="-9"
