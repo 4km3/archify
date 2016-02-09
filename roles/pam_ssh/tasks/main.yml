@@ -1,4 +1,14 @@
 ---
+- name: Install Wolfgang Rosenauer GPG key
+  sudo: no
+  action:
+    module: command
+      gpg --recv-keys 180F6A5B3EDE742E
+  register: gpg_output
+  until: gpg_output | success
+  retries: 5
+
+
 - name: Install pam_ssh
   command:
     yaourt --noconfirm -S pam_ssh
