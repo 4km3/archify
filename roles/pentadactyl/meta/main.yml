@@ -1,4 +1,5 @@
 ---
 dependencies:
+  - infozip
   - xorg
   - yaourt

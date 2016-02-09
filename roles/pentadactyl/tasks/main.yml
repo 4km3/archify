@@ -2,7 +2,7 @@
 - name: Install pentadactyl
   sudo: no
   command:
-    yaourt --noconfirm -S pentadactyl-git
+    yaourt --noconfirm -S firefox-pentadactyl
   register: yaourt_result
   changed_when: "yaourt_result.stderr != ''"
   tags:
