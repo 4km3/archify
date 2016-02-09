@@ -1,5 +1,5 @@
 ---
-- name: Install libvirt, virt-manager, bridge-utils, openbsd-netcat, qemu, ebtables
+- name: Install libvirt, virt-manager, bridge-utils, openbsd-netcat, qemu, ebtables and dmidecode
   pacman:
     name={{ item }}
     state=installed
@@ -10,6 +10,7 @@
     - openbsd-netcat
     - qemu
     - ebtables
+    - dmidecode
 
 
 - name: Config qemu
