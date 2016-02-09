@@ -3,8 +3,13 @@
 #include "/opt/solarized/xresources/Xresources.dark"
 
 XTerm*eightBitInput:	false
+#if (WIDTH > 2880)
+Rxvt*font:              -*-terminus-medium-*-*-*-24-*-*-*-*-*-*-*
+XTerm*font:		-*-terminus-medium-*-*-*-24-*-*-*-*-*-*-*
+#else
 XTerm*font:		-*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*
 Rxvt*font:		-*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*
+#endif
 Rxvt*scrollBar:		false
 Rxvt*transparent:	false
 !Rxvt*loginShell:	true
