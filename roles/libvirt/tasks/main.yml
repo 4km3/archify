@@ -32,3 +32,12 @@
     mode=0644
   with_items:
     - 50-org.libvirt.unix.manage.rules
+
+- name: Enable libvirtd and libvirt-guests
+  service:
+    name: '{{ item }}'
+    enabled: yes
+    state: started
+  with_items:
+    - libvirtd
+    - libvirt-guests
