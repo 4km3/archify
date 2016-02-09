@@ -10,7 +10,7 @@
 
 
 - name: Install pam_ssh
-  command:
+  command: >
     yaourt --noconfirm -S pam_ssh
   register: yaourt_result
   changed_when: "yaourt_result.stderr != ''"
