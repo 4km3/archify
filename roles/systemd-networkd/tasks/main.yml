@@ -1,4 +1,12 @@
 ---
+- name: Install iw and remove wireless_tools
+  pacman:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { name: iw, state: present }
+    - { name: wireless_tools, state: absent }
+
 - name: Configure wlan0
   template:
     src={{ item }}.j2
