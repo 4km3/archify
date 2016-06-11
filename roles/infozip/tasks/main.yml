@@ -1,0 +1,8 @@
+---
+- name: Install Info-ZIP
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - zip
+    - unzip
