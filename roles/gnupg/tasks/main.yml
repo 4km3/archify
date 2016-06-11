@@ -1,0 +1,5 @@
+---
+- name: Install GnuPG
+  pacman:
+    name: gnupg
+    state: latest
