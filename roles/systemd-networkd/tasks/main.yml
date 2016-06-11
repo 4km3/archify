@@ -7,7 +7,7 @@
     - { name: iw, state: present }
     - { name: wireless_tools, state: absent }
 
-- name: Configure wlan0
+- name: Configure wlan0 and eth0
   template:
     src={{ item }}.j2
     dest=/etc/systemd/network/{{ item }}
