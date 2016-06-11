@@ -1,9 +1,8 @@
 ---
 - name: Install Wolfgang Rosenauer GPG key
   sudo: no
-  action:
-    module: command
-      gpg --recv-keys 180F6A5B3EDE742E
+  command: >
+    gpg --recv-keys 180F6A5B3EDE742E
   register: gpg_output
   until: gpg_output | success
   retries: 5
