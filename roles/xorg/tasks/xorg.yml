@@ -15,7 +15,7 @@
     - libva
     - mpv
     - mkvtoolnix-cli
-    - mkvtoolnix-gtk
+    - mkvtoolnix-gui
     - firefox
     - firefox-firebug
     - flashplugin
