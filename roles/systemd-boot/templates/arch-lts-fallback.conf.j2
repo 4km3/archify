@@ -1,0 +1,5 @@
+title   Arch Linux LTS - fallback
+linux   /vmlinuz-linux-lts
+initrd  /intel-ucode.img
+initrd  /initramfs-linux-lts-fallback.img
+options root=PARTUUID="{{ root_guid.stdout | lower }}" rootflags=subvol=@ rw add_efi_memmap elevator=noop systemd.restore_state=0 usbhid.quirks=0x0409:0x042f:0x20000000 quiet

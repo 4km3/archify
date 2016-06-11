@@ -1,0 +1,31 @@
+---
+- name: systemd-boot | Obtain ID of root part
+  shell:
+    "sgdisk -i 3 {{ systemd_boot_main_block_device }} | grep unique | awk -F': *' '{ print $2 }'"
+  register: root_guid
+  changed_when: false
+
+- name: systemd-boot | Debug show root_guid
+  debug:
+    msg={{ root_guid.stdout }}
+
+- name: systemd-boot | Create /boot/loader/entries directory
+  file:
+    state=directory
+    dest=/mnt/boot/loader/entries
+
+- name: systemd-boot | Create /boot/loader/loader.conf
+  copy:
+    content="default arch\n"
+    dest=/mnt/boot/loader/loader.conf
+    backup=no
+    
+- name: systemd-boot | Create /boot/loader/entries/*.conf
+  template:
+    src={{ item }}.conf.j2
+    dest=/mnt//boot/loader/entries/{{ item }}.conf
+  with_items:
+    - arch
+    - arch-fallback
+    - arch-lts
+    - arch-lts-fallback
