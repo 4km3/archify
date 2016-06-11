@@ -1,15 +1,8 @@
 ---
 - name: Enable en_US.UTF-8 locale
-  lineinfile:
-    dest=/etc/locale.gen
-    backup=yes
-    backrefs=yes
-    state=present
-    regexp='^#?(en_US.UTF-8 UTF-8.*)'
-    line='\1'
-  notify:
-    - Regenerate locales    
-
+  locale_gen:
+    name: "{{ locale_lang }}"
+    state: present
 
 - name: Set en_US.UTF-8 locale as default
   template:

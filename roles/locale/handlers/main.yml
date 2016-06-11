@@ -1,4 +1,0 @@
----
-- name: Regenerate locales
-  command:
-    locale-gen
