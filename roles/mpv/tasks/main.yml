@@ -11,6 +11,13 @@
   setup:
   tags: mpv
 
+- name: Create mpv config dir
+  become: no
+  file:
+    state=directory
+    dest={{ ansible_env.HOME }}/.config/mpv/
+  tags: mpv
+
 - name: Configure mpv
   sudo: no
   template:
