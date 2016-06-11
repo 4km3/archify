@@ -15,8 +15,8 @@
   changed_when: "yaourt_result.stderr != ''"
   with_items:
     - gitflow-avh
-    - bash-completion-gitflow-avh
   sudo: no
+    - gitflow-fishcompletion-avh
   tags:
     - git
     - gitflow
