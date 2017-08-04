@@ -1,7 +1,0 @@
----
-- name: Set FontPath to /usr/share/fonts/local
-  template:
-    src: "{{ item }}.j2"
-    dest: /etc/X11/xorg.conf.d/{{ item }}
-  with_items:
-    - 20-fonts.conf
