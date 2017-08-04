@@ -11,6 +11,12 @@
   tags:
     - spacemacs
 
+- name: Gather facts to refresh ansible_env
+  become: no
+  setup:
+  tags:
+    - spacemacs
+
 - name: Clone Spacemacs
   become: no
   git:
