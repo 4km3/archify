@@ -1,0 +1,15 @@
+---
+- name: Gather facts to refresh ansible_env
+  tags: xdg
+  become: no
+  setup:
+
+- name: Configure user xdg
+  tags: xdg
+  become: no
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
+  with_items:
+    - user-dirs.dirs
+    - user-dirs.locale
