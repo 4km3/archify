@@ -23,6 +23,7 @@ dependencies:
     - spectrwm
     - unclutter
     - mpv
+    - xbindkeys
     - pam_ssh
     - pentadactyl
     - libvirt

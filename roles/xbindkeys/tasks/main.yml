@@ -1,0 +1,35 @@
+---
+- name: Install xbindkeys
+  pacman:
+    state: installed
+    name: xbindkeys
+  tags:
+    - xbindkeys
+
+- name: Enable xbindkeys in xinitrc.d
+  template:
+    src: "{{ item }}.j2"
+    dest: /etc/X11/xinit/xinitrc.d/{{ item }}
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - 80-xbindkeys.sh
+  tags:
+    - xbindkeys
+
+- name: Gather facts to refresh ansible_env
+  become: no
+  setup:
+  tags:
+    - xbindkeys
+
+- name: Configure xbindkeys
+  become: no
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+  with_items:
+    - .xbindkeysrc
+  tags:
+    - xbindkeys

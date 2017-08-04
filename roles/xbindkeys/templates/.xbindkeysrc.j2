@@ -1,0 +1,34 @@
+#
+# {{ ansible_managed }}
+#
+# See https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Keyboard_volume_control
+# and https://wiki.archlinux.org/index.php/Xbindkeys
+#
+
+# Increase volume
+"amixer set PCM 1%+"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+"amixer set PCM 1%-"
+   XF86AudioLowerVolume
+
+# Toggle volume
+"amixer set PCM toggle"
+   XF86AudioMute
+
+# Play/Pause mpd
+"mpc toggle"
+   XF86AudioPlay
+
+# Next song
+"mpc next"
+   XF86AudioNext
+
+# Previous song
+"mpc prev"
+   XF86AudioPrev
+
+# Next song
+"mpc next"
+   XF86AudioMicMute
