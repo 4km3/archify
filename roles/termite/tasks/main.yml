@@ -1,0 +1,12 @@
+---
+- name: Install termite terminal emulator
+  pacman:
+    name: termite
+    state: latest
+
+- name: Configure termite 
+  template:
+    src: '{{ item }}.j2'
+    dest: '/etc/xdg/termite/{{ item }}'
+  with_items:
+    - config

@@ -7,23 +7,23 @@
 
 - name: systemd-boot | Debug show root_guid
   debug:
-    msg={{ root_guid.stdout }}
+    msg: "{{ root_guid.stdout }}"
 
 - name: systemd-boot | Create /boot/loader/entries directory
   file:
-    state=directory
-    dest=/mnt/boot/loader/entries
+    state: directory
+    dest: /mnt/boot/loader/entries
 
 - name: systemd-boot | Create /boot/loader/loader.conf
   copy:
-    content="default arch\n"
-    dest=/mnt/boot/loader/loader.conf
-    backup=no
+    content: "default arch\n"
+    dest: /mnt/boot/loader/loader.conf
+    backup: no
     
 - name: systemd-boot | Create /boot/loader/entries/*.conf
   template:
-    src={{ item }}.conf.j2
-    dest=/mnt//boot/loader/entries/{{ item }}.conf
+    src: "{{ item }}.conf.j2"
+    dest: /mnt//boot/loader/entries/{{ item }}.conf
   with_items:
     - arch
     - arch-fallback

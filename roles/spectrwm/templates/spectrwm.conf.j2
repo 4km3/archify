@@ -5,19 +5,22 @@
 # NOTE: all rgb color values in this file are in hex! see XQueryColor for examples
 
 # workspace_limit	= 22
+# focus_mode		= default
 focus_mode		= manual
 # focus_close		= previous
 # focus_close_wrap	= 1
 # focus_default		= last
 # spawn_position		= next
-workspace_clamp		= 1
-warp_focus		= 1
+# workspace_clamp	= 1
+# warp_focus		= 1
 warp_pointer		= 1
 
 # Window Decoration
 # border_width		= 1
+# color_focus		= red
 color_focus		= rgb:93/a1/a1
 # color_focus_maximized	= yellow
+# color_unfocus		= rgb:88/88/88
 color_unfocus		= rgb:07/36/42
 # color_unfocus_maximized	= rgb:88/88/00
 # region_padding	= 0
@@ -29,17 +32,25 @@ color_unfocus		= rgb:07/36/42
 # boundary_width 		= 50
 
 # Remove window border when bar is disabled and there is only one window in workspace
+# disable_border		= 1
 disable_border		= 1
 
 # Bar Settings
+# bar_enabled		= 1
 bar_enabled		= 0
+# bar_border_width	= 1
 bar_border_width	= 0
 # bar_border[1]		= rgb:00/80/80
 # bar_border_unfocus[1]	= rgb:00/40/40
+# bar_color[1]		= black
 bar_color[1]		= rgb:00/2B/36
+# bar_font_color[1]	= rgb:a0/a0/a0
 bar_font_color[1]	= rgb:65/7B/83
-bar_font		= -*-terminus-medium-*-*-*-20-*-*-*-*-*-*-*
-bar_action		= baraction
+# bar_font		= -*-terminus-medium-*-*-*-*-*-*-*-*-*-*-*
+##bar_font		= -*-terminus-medium-*-*-*-24-*-*-*-*-*-*-*
+bar_font		= Terminus:foundry=xos4:pixelsize=24
+# bar_action		= baraction.sh
+##bar_action		= baraction
 # bar_justify		= left
 # bar_format		= +N:+I +S <+D>+4<%a %b %d %R %Z %Y+8<+A+4<+V
 # bar_at_bottom		= 1
@@ -47,9 +58,10 @@ bar_action		= baraction
 # clock_enabled		= 1
 # clock_format		= %a %b %d %R %Z %Y
 # iconic_enabled	= 0
-maximize_hide_bar	= 1
+# maximize_hide_bar	= 0
 # window_class_enabled	= 0
 # window_instance_enabled	= 0
+# window_name_enabled	= 0
 window_name_enabled	= 1
 # verbose_layout		= 1
 # urgent_enabled		= 1
@@ -63,6 +75,7 @@ window_name_enabled	= 1
 # region		= screen[1]:1280x1024+1280+0
 
 # Launch applications in a workspace of choice
+# autorun		= ws[1]:xterm
 autorun			= ws[1]:urxvt
 # autorun		= ws[2]:xombrero http://www.openbsd.org
 
@@ -88,13 +101,19 @@ modkey = Mod4
 # PROGRAMS
 
 # Validated default programs:
+# program[lock]		= xlock
 program[lock]		= slock
+# program[term]		= xterm
 program[term]		= urxvt
 # program[menu]		= dmenu_run $dmenu_bottom -fn $bar_font -nb $bar_color -nf $bar_font_color -sb $bar_border -sf $bar_color
+#program[menu]		= rofi -sidebar-mode -modi "run,ssh" -show run -font 'xos4 Terminus' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#000000 -bc \#008080 -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
+###program[menu]		= rofi -sidebar-mode -modi drun -show drun -font 'xos4 Terminus 18' -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
+program[menu]		= rofi -sidebar-mode -modi drun -show drun -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
+# -xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1
 
 # To disable validation of the above, free the respective binding(s):
 # bind[]		= MOD+Shift+Delete	# disable lock
-# bind[]		= MOD+Shift+Enter	# disable term
+# bind[]		= MOD+Shift+Return	# disable term
 # bind[]		= MOD+p			# disable menu
 
 # Optional default programs that will only be validated if you override:
@@ -103,8 +122,14 @@ program[term]		= urxvt
 # program[initscr]	= initscreen.sh			# optional
 
 # EXAMPLE: Define 'firefox' action and bind to key.
+# program[firefox]	= firefox http://spectrwm.org/
 program[firefox]	= firefox
+# bind[firefox]		= MOD+Shift+b
 bind[firefox]		= MOD+Shift+b
+
+# EXAMPLE: Define 'emacs' action and bind to key.
+program[emacs]		= emacs
+bind[emacs]		= MOD+Shift+e
 
 # QUIRKS
 # Default quirks, remove with: quirk[class:name] = NONE
@@ -120,6 +145,7 @@ quirk[mpv:vaapi]			= FLOAT + FULLSCREEN + FOCUSPREV
 ##quirk[Firefox:Dialog]			= FLOAT
 quirk[Firefox:Browser]			= FLOAT
 ##quirk[Firefox:Download]			= FLOAT
+##quirk[chromium:chromium]			= FLOAT
 # quirk[Gimp:gimp]			= FLOAT + ANYWHERE
 # quirk[XTerm:xterm]			= XTERM_FONTADJ
 # quirk[xine:Xine Window]			= FLOAT + ANYWHERE

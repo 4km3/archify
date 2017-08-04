@@ -1,8 +1,8 @@
 ---
 - name: Install xorg
   pacman:
-    name={{ item }}
-    state=installed
+    name: "{{ item }}"
+    state: installed
   with_items:
     - ttf-dejavu
     - xf86-video-intel
@@ -17,15 +17,14 @@
     - mkvtoolnix-cli
     - mkvtoolnix-gui
     - firefox
-    - firefox-firebug
-    - flashplugin
-
+    - arch-firefox-search
+    - chromium
 
 - name: Remove unneeded xorg packages
   pacman:
-    name={{ item }}
-    state=absent
-    recurse=yes
+    name: "{{ item }}"
+    state: absent
+    recurse: yes
   with_items:
     - xf86-input-vmmouse
     - xf86-input-void

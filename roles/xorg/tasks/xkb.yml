@@ -1,11 +1,12 @@
 ---
 - name: Configure xorg xkb
+  tags: xkb
   template:
-    src={{ item }}.j2
-    dest=/etc/X11/xorg.conf.d/{{ item }}
-    owner=root
-    group=root
-    mode=0644
+    src: "{{ item }}.j2"
+    dest: /etc/X11/xorg.conf.d/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - 10-keyboard-defaults.conf
     - 11-keyboard-apple-internal.conf

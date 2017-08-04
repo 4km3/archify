@@ -1,6 +1,6 @@
 ---
 - name: Install vimperator
-  sudo: no
+  become: no
   command:
     yaourt --noconfirm -S vimperator
   register: yaourt_result
@@ -9,7 +9,7 @@
     - vimperator
 
 - name: Install vimperator configuration files
-  sudo: no
+  become: no
   template:
     src={{ item }}.j2
     dest=/home/{{ vimperator_user }}/{{ item }}

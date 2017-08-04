@@ -1,21 +1,20 @@
 ---
 - name: Copy us keymap with CTRL and CAPS keys swapped
   copy:
-    src={{ item }}
-    dest=/usr/share/kbd/keymaps/i386/qwerty/{{ item }}
-    owner=root
-    group=root
-    mode=0644
+    src: "{{ item }}"
+    dest: /usr/share/kbd/keymaps/i386/qwerty/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - us-swap-ctrl-caps.map.gz
 
-
 - name: Configure console font and keymap
   template:
-    src={{ item }}.j2
-    dest=/etc/{{ item }}
-    owner=root
-    group=root
-    mode=0644
+    src: "{{ item }}.j2"
+    dest: /etc/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - vconsole.conf

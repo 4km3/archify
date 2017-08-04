@@ -1,0 +1,11 @@
+[Match]
+Name=eth*
+
+[Network]
+DHCP=ipv4
+LinkLocalAddressing=no
+LLMNR=false
+IPForward=no
+
+[DHCP]
+UseDNS=false

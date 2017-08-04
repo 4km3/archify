@@ -1,9 +1,203 @@
 ---
 - name: Bootstrap Arch Linux
+  tags: bootstrap
   hosts: bootstrap
   gather_facts: no
-
+  vars:
+    ata_pass: PasSWorD
+    sudoers_config: "%wheel ALL=(ALL) NOPASSWD: ALL"
+    home: "{{ lookup('env', 'HOME') }}"
+    user: "{{ lookup('env', 'USER') }}"
+    pubkey: "{{ home }}/.ssh/keys.d/id_ed25519-sparky.pub"
+    key: "{{ lookup('file', pubkey) }}"
+  pre_tasks:
+    - name: Fix .ssh/known_hosts
+      local_action:
+        module: known_hosts
+        host: "{{ item }}"
+        state: absent
+      with_items:
+        - "{{ ansible_host | default(inventory_hostname) }}"
+       # - "{{ lookup('pipe', 'getent hosts ' + ansible_host | default(inventory_hostname)) }}"
+# TODO: remove entry for hal's ip, otherwise funny locking occurs
+    - name: Add sparky ssh pubkey fingerprint to our known_hosts
+      local_action:
+        module: known_hosts
+        host: "{{ ansible_host | default(inventory_hostname) }}"
+        key: "{{ lookup('pipe', 'ssh-keyscan -t ed25519 ' + ansible_host | default(inventory_hostname) ) }}"
+    - name: Install python2
+      raw:
+        pacman --sync --refresh --needed --noconfirm python2 tmux
+    - name: Determine main block device
+      shell: >
+        lsblk --nodeps --exclude 7 --sort HOTPLUG --output NAME,HOTPLUG --noheadings | awk '/0/ { print $1 }' | egrep -v sda
+      register: lsblk_output
+    - debug:
+        var: lsblk_output
+    - name: Export main block device as a fact
+      set_fact:
+        target_block_device: "/dev/{{ lsblk_output.stdout }}"
+    - name: Clear stale EFI boot entries
+      command: efibootmgr -B -b "{{ item }}"
+      with_sequence: start=0 end=5
+      failed_when: false
+#    - name: Clear SSD using ATA secure erase
+#      command: "{{ item }}"
+#      changed_when: false
+#      with_items:
+#        - hdparm --security-set-pass {{ ata_pass }} {{ target_block_device }}
+#        - hdparm --security-erase    {{ ata_pass }} {{ target_block_device }}
   roles:
-    - python2
-  tags:
-    - bootstrap
+    - pacman
+    - role: partition
+      main_block_device: "{{ target_block_device }}"
+  tasks:
+    - name: Mount main block device on /mnt
+      mount:
+        name: /mnt
+        src: "{{ target_block_device }}p3"
+        fstype: btrfs
+        #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache
+        opts: noatime,ssd,autodefrag,compress=lzo,space_cache
+        state: mounted
+    - name: Create btrfs subvolumes
+      command: >
+        btrfs subvolume create {{ item }}
+      args:
+        chdir: /mnt
+        creates: /mnt/{{ item }}
+      with_items:
+        - '@'
+        - '@home'
+    - name: Umount /mnt
+      mount:
+        name: /mnt
+        src: "{{ target_block_device }}p3"
+        fstype: btrfs
+        state: unmounted
+    - name: Mount root subvolume on /mnt
+      mount:
+        name: /mnt
+        src: "{{ target_block_device }}p3"
+        fstype: btrfs
+        #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@
+        opts: noatime,ssd,nodiscard,autodefrag,compress=lzo,space_cache,subvol=@
+        state: mounted
+    - name: Mount boot subvolume on /mnt/boot
+      mount:
+        name: /mnt/boot
+        src: "{{ target_block_device }}p1"
+        fstype: vfat
+        opts: rw,noatime,fmask=0133,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro
+        state: mounted
+    - name: Mount home subvolume on /mnt/home
+      mount:
+        name: /mnt/home
+        src: "{{ target_block_device }}p3"
+        fstype: btrfs
+        #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@home
+        opts: noatime,ssd,nodiscard,autodefrag,compress=lzo,space_cache,subvol=@home
+        state: mounted
+    - name: pacstrap, create main user
+      command: "{{ item }}"
+      with_items:
+        - pacstrap /mnt base base-devel intel-ucode linux-lts python2 openssh btrfs-progs
+        - systemd-firstboot --root=/mnt --locale=en_US.UTF-8 --timezone=Europe/Madrid --hostname=sparky --copy-root-password --setup-machine-id
+        - bootctl --path /mnt/boot install
+        - cp -a /mnt/etc/fstab /mnt/etc/fstab.orig
+        - arch-chroot /mnt useradd -m -G wheel,log -s /bin/bash {{ user }}
+# TODO: add {{ user }} to kvm after group exists
+    - name: Populate /mnt/etc/fstab
+      shell: genfstab -U -p /mnt >> /mnt/etc/fstab
+    - name: Enable no-password sudo for users in wheel group
+      lineinfile:
+        dest: /mnt/etc/sudoers.d/wheel-nopasswd
+        line: "{{ sudoers_config }}"
+        create: yes
+        state: present
+    - name: Create main user on the live instance, so that subsequent call to authorized_key will work under /mnt
+      user:
+        name: "{{ user }}"
+        createhome: no
+    - name: Add main user pubkey to its ~/.ssh/authorized_keys
+      authorized_key:
+        user: "{{ user }}"
+        key: "{{ key }}"
+        path: "/mnt/home/{{ user }}/.ssh/authorized_keys"
+        manage_dir: yes
+    - name: Override udev rules file so that legacy network device names are used
+      file:
+        src: /dev/null
+        dest: /mnt/etc/udev/rules.d/80-net-setup-link.rules
+        state: link
+    - name: Copy OpenSSH server keys to /mnt
+      shell: cp -a /etc/ssh/ssh_host_* /mnt/etc/ssh
+
+- name: Bootstrap Arch Linux | Configure systemd-boot
+  hosts: bootstrap
+  tags: bootstrap
+  roles:
+    - role: systemd-boot
+      systemd_boot_main_block_device: "{{ target_block_device }}"
+
+- name: Bootstrap Arch Linux | Run new system in a container
+  tags: bootstrap
+  hosts: bootstrap
+  gather_facts: no
+#  accelerate: true
+  tasks:
+    - name: Disable sshd
+      service:
+        name: sshd
+        state: stopped
+    - name: Enable sshd on /mnt
+      command: >
+        arch-chroot /mnt systemctl enable sshd
+    - name: Boot new system on /mnt on a container
+      command: >
+        /usr/bin/tmux new-session -s local -n container -d systemd-nspawn --boot --directory=/mnt
+# Terminate:
+#        "/usr/bin/tmux send-keys -t local:container C-] C-] C-]"
+
+- name: Setup Arch Linux
+  tags: bootstrap
+  hosts: arch
+  gather_facts: no
+  become: yes
+  pre_tasks:
+    - name: Wait for container to become available again
+      local_action:
+        module: wait_for
+        port: 22
+        host: "{{ inventory_hostname }}"
+        search_regex: OpenSSH
+        delay: 10
+        timeout: 60
+  roles:
+    - base
+  post_tasks:
+    - name: Terminate container
+      shell: >
+        sleep 2 && poweroff
+      async: 1
+      poll: 0
+      ignore_errors: yes
+
+- name: Reboot host and wait for it to come back
+  tags: bootstrap-WIP
+  hosts: bootstrap
+  gather_facts: no
+  tasks:
+    - name: Reboot server
+      shell: >
+        sleep 2 && reboot
+      async: 1
+      poll: 0
+      ignore_errors: yes
+    - name: Wait for instance to become available again
+      local_action:
+        module: wait_for
+        port: 22
+        host: "{{ hostvars[inventory_hostname]['ansible_host'] }}"
+        search_regex: OpenSSH
+        delay: 10

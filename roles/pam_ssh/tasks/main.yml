@@ -1,6 +1,6 @@
 ---
 - name: Install Wolfgang Rosenauer GPG key
-  sudo: no
+  become: no
   command: >
     gpg --recv-keys 180F6A5B3EDE742E
   register: gpg_output
@@ -13,18 +13,18 @@
     yaourt --noconfirm -S pam_ssh
   register: yaourt_result
   changed_when: "yaourt_result.stderr != ''"
-  sudo: no
+  become: no
   tags:
     - pamssh
 
 
 - name: Enable pam_ssh for XDM
   template:
-    src={{ item }}.j2
-    dest=/etc/pam.d/{{ item }}
-    backup=yes
-    owner=root
-    group=root
-    mode=0644
+    src: "{{ item }}.j2"
+    dest: /etc/pam.d/{{ item }}
+    backup: yes
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - xdm

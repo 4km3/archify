@@ -1,17 +1,17 @@
 ---
 - name: Install xorg-xinit
   pacman:
-    name=xorg-xinit
-    state=installed
-
+    name: xorg-xinit
+    state: installed
 
 - name: Install global .Xresources
+  tags: xresources
   template:
-    src={{ item }}.j2
-    dest=/etc/X11/xinit/{{ item }}
-    backup=yes
-    owner=root
-    group=root
-    mode=0644
+    src: "{{ item }}.j2"
+    dest: /etc/X11/xinit/{{ item }}
+    backup: yes
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - .Xresources

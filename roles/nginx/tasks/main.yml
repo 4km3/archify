@@ -1,27 +1,25 @@
 ---
 - name: Install nginx
   pacman:
-    name=nginx
-    state=installed
-
+    name: nginx
+    state: installed
 
 - name:  Create root directory
   file:
-    dest={{ nginx_root_directory }}
-    state=directory
-    owner=root
-    group=root
-    mode=0755
-
+    dest: "{{ nginx_root_directory }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Configure nginx
   template:
-    src={{ item }}.j2
-    dest=/etc/nginx/{{ item }}
-    backup=yes
-    owner=root
-    group=root
-    mode=0644
+    src: "{{ item }}.j2"
+    dest: "/etc/nginx/{{ item }}"
+    backup: yes
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - nginx.conf
   notify:

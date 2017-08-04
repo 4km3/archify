@@ -1,12 +1,11 @@
 ---
 - name: Install git and tig
   pacman:
-    name={{ item }}
-    state=installed
+    name: "{{ item }}"
+    state: installed
   with_items:
     - git
     - tig
-
 
 - name: Install gitflow-avh
   command:
@@ -15,23 +14,23 @@
   changed_when: "yaourt_result.stderr != ''"
   with_items:
     - gitflow-avh
-  sudo: no
     - gitflow-fishcompletion-avh
+  become: no
   tags:
     - git
     - gitflow
 
 - name: Gather facts to refreash ansible_env
-  sudo: no
+  become: no
   setup:
   tags:
    - git
 
 - name: Configure git
-  sudo: no
+  become: no
   template:
-    src={{ item }}.j2
-    dest={{ ansible_env.HOME }}/{{ item }}
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
   with_items:
     - .gitconfig
   tags:

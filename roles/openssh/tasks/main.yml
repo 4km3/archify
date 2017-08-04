@@ -1,34 +1,31 @@
 ---
 - name: Install OpenSSH
   pacman:
-    name=openssh
-    state=installed
-
+    name: openssh
+    state: installed
 
 - name: Configure OpenSSH
   lineinfile:
-    dest=/etc/ssh/sshd_config
-    backup=yes
-    insertafter='^#PasswordAuthentication yes'
-    regexp='^PasswordAuthentication'
-    line='PasswordAuthentication no'
+    dest: /etc/ssh/sshd_config
+    backup: yes
+    insertafter: '^#PasswordAuthentication yes'
+    regexp: '^PasswordAuthentication'
+    line: 'PasswordAuthentication no'
   notify:
     - Restart OpenSSH
-
 
 - name: Configure OpenSSH | relax root access
   lineinfile:
-    dest=/etc/ssh/sshd_config
-    backup=yes
-    insertafter='^#PermitRootLogin prohibit-password'
-    regexp='^PermitRootLogin'
-    line='PermitRootLogin yes'
+    dest: /etc/ssh/sshd_config
+    backup: yes
+    insertafter: '^#PermitRootLogin prohibit-password'
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin yes'
   notify:
     - Restart OpenSSH
 
-
 - name: Start OpenSSH
   service:
-    name=sshd
-    state=started
-    enabled=yes
+    name: sshd
+    state: started
+    enabled: yes

@@ -1,0 +1,6 @@
+---
+- name: Configure ddclient
+  hosts: nuc
+  become: yes
+  roles:
+    - ddclient

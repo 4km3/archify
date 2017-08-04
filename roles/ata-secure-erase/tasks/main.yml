@@ -1,0 +1,16 @@
+---
+# tasks file for ata-secure-erase
+- name: Gather facts
+  setup:
+
+- name: Suspend host to unfreeze ATA security
+  shell:
+    echo mem > /sys/power/state
+
+- name: Set ATA password
+  shell:
+    hdparm --user-master u --security-set-pass PasSWorD /dev/sdb
+
+- name: Perform ATA enhanced erase command
+  shell:
+    hdparm --user-master u --security-erase-enhanced PasSWorD /dev/sdb

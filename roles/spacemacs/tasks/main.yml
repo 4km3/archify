@@ -1,0 +1,31 @@
+---
+- name: Install emacs and poppler
+  become: yes
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - emacs
+    - poppler
+    - poppler-glib
+  tags:
+    - spacemacs
+
+- name: Clone Spacemacs
+  become: no
+  git:
+    repo: "{{ spacemacs_repo }}"
+    dest: "{{ ansible_env.HOME }}/.emacs.d"
+    force: yes
+  tags:
+    - spacemacs
+
+- name: Configure Spacemacs
+  become: no
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+  with_items:
+    - .spacemacs
+  tags:
+    - spacemacs

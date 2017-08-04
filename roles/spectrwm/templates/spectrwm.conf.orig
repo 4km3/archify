@@ -36,7 +36,7 @@
 # bar_border_unfocus[1]	= rgb:00/40/40
 # bar_color[1]		= black
 # bar_font_color[1]	= rgb:a0/a0/a0
-# bar_font		= -*-profont-*-*-*-*-12-*-*-*-*-*-*-*
+# bar_font		= -*-terminus-medium-*-*-*-*-*-*-*-*-*-*-*
 # bar_action		= baraction.sh
 # bar_justify		= left
 # bar_format		= +N:+I +S <+D>+4<%a %b %d %R %Z %Y+8<+A+4<+V
@@ -92,7 +92,7 @@ modkey = Mod4
 
 # To disable validation of the above, free the respective binding(s):
 # bind[]		= MOD+Shift+Delete	# disable lock
-# bind[]		= MOD+Shift+Enter	# disable term
+# bind[]		= MOD+Shift+Return	# disable term
 # bind[]		= MOD+p			# disable menu
 
 # Optional default programs that will only be validated if you override:

@@ -1,7 +1,6 @@
 ---
 - name: Setup Arch Linux
   hosts: arch
-  sudo: yes
-
+  become: yes
   roles:
     - base

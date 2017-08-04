@@ -1,50 +1,45 @@
 ---
 - name: Install XDM
   pacman:
-    name={{ item }}
-    state=installed
+    name: "{{ item }}"
+    state: installed
   with_items:
     - xorg-xdm
     - xdm-archlinux
 
-
 - name: Copy Xresources to /etc/X11/xdm
   template:
-    src={{ item }}.j2
-    dest=/etc/X11/xdm/{{ item }}
-    backup=yes
-    owner=root
-    group=root
-    mode=0644
+    src: "{{ item }}.j2"
+    dest: /etc/X11/xdm/{{ item }}
+    backup: yes
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - Xresources
 
-
 - name: Copy arch.xpm to /etc/X11/xdm/archlinux
   copy:
-    src={{ item }}
-    dest=/etc/X11/xdm/archlinux/{{ item }}
-    backup=yes
-    owner=root
-    group=root
-    mode=0644
+    src: "{{ item }}"
+    dest: /etc/X11/xdm/archlinux/{{ item }}
+    backup: yes
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - arch.xpm
   tags:
     - archxpm
 
-
 - name: Secure Xservers
   lineinfile:
-    dest=/etc/X11/xdm/Xservers
-    backup=yes
-    backrefs=yes
-    regexp='^(:0 local /usr/bin/X) (:0)'
-    line='\1 -nolisten tcp \2'
-
+    dest: /etc/X11/xdm/Xservers
+    backup: yes
+    backrefs: yes
+    regexp: '^(:0 local /usr/bin/X) (:0)'
+    line: '\1 -nolisten tcp \2'
 
 - name: Start and enable XDM-archlinux
   service:
-    name=xdm-archlinux
-    state=started
-    enabled=yes
+    name: xdm-archlinux
+    enabled: yes

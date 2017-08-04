@@ -1,8 +1,8 @@
 ---
 - name: Install pentadactyl
-  sudo: no
+  become: no
   command:
-    yaourt --noconfirm -S firefox-pentadactyl
+    yaourt --noconfirm -S firefox-pentadactyl-signed
   register: yaourt_result
   changed_when: "yaourt_result.stderr != ''"
   tags:
@@ -10,17 +10,17 @@
     - pentadactyl-pkg
 
 - name: Gather facts to refresh ansible_env
-  sudo: no
+  become: no
   setup:
   tags:
     - pentadactyl
     - pentadactyl-cfg
 
 - name: Install pentadactyl configuration files
-  sudo: no
+  become: no
   template:
-    src={{ item }}.j2
-    dest={{ ansible_env.HOME }}/{{ item }}
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
   with_items:
     - .pentadactylrc
   tags:

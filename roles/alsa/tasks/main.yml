@@ -1,7 +1,7 @@
 ---
 - name: Install alsa-utils
   pacman:
-    name={{ item }}
-    state=installed
+    name: "{{ item }}"
+    state: installed
   with_items:
     - alsa-utils

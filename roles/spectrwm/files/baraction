@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while :
+do
+	echo Bat:$(cat /sys/bus/acpi/drivers/battery/PNP0C0A:00/power_supply/BAT0/capacity)
+	sleep 10
+done

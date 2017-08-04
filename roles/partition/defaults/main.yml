@@ -1,0 +1,3 @@
+---
+# defaults file for partition
+root_block_device: /dev/sdb

@@ -5,10 +5,10 @@
 
 - name: Blacklist b43 module
   copy:
-    content='blacklist b43\n'
-    dest=/etc/modprobe.d/b43.conf
-    backup=no
-    owner=root
-    group=root
-    mode=0644
+    content: "blacklist b43\n"
+    dest: /etc/modprobe.d/b43.conf
+    backup: no
+    owner: root
+    group: root
+    mode: 0644
 

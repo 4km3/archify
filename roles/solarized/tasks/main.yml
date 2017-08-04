@@ -1,16 +1,16 @@
 ---
 - name: Install Solarized Xresources file
   git:
-    repo={{ solarized_repo }}
-    dest=/opt/solarized/xresources
-    force=yes
+    repo: "{{ solarized_repo }}"
+    dest: /opt/solarized/xresources
+    force: yes
   tags:
     - solarized
 
 - name: Reduce fading
+  tags: fading
   lineinfile:
-    "dest=/opt/solarized/xresources/Xresources.dark
-    backrefs=yes
-    state=present
-    regexp='^\\*fading:'
-    line='*fading:                  15'"
+    dest: /opt/solarized/xresources/Xresources.dark
+    state: present
+    regexp: '^\*fading:'
+    line: '*fading:                15'

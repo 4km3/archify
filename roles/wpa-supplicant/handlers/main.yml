@@ -3,3 +3,4 @@
   service: 
     name=wpa_supplicant@wlan0.service
     state=restarted
+  failed_when: false

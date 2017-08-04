@@ -1,19 +1,18 @@
 ---
 - name: Install unclutter
   pacman:
-    state=installed
-    name=unclutter
+    state: installed
+    name: unclutter
   tags:
     - unclutter
 
-
 - name: Enable unclutter in xinitrc.d
   template:
-    src={{ item }}.j2
-    dest=/etc/X11/xinit/xinitrc.d/{{ item }}
-    owner=root
-    group=root
-    mode=0755
+    src: "{{ item }}.j2"
+    dest: /etc/X11/xinit/xinitrc.d/{{ item }}
+    owner: root
+    group: root
+    mode: 0755
   with_items:
     - 90-unclutter.sh
   tags:

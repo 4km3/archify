@@ -1,17 +1,17 @@
 - name: Install ddclient
   pacman:
-    name=ddclient
-    state=present
+    name: ddclient
+    state: present
   tags:
     - ddclient
 
 - name: Config ddclient
   template:
-    src={{ item }}.j2
-    dest=/etc/ddclient/{{ item }}
-    mode=600
-    owner=root
-    group=root
+    src: "{{ item }}.j2"
+    dest: "/etc/ddclient/{{ item }}"
+    mode: 600
+    owner: root
+    group: root
   with_items:
     - ddclient.conf
   notify:
@@ -21,8 +21,8 @@
 
 - name: Enable and start ddclient service
   service:
-    name=ddclient
-    enabled=yes
-    state=started
+    name: ddclient
+    enabled: yes
+    state: started
   tags:
     - ddclient

@@ -1,28 +1,28 @@
 ---
 - name: Install mpv
-  sudo: yes
+  become: yes
   pacman:
-    name=mpv
-    state=present
+    name: mpv
+    state: present
   tags: mpv
 
 - name: Gather facts to refresh ansible_env
-  sudo: no
+  become: no
   setup:
   tags: mpv
 
 - name: Create mpv config dir
   become: no
   file:
-    state=directory
-    dest={{ ansible_env.HOME }}/.config/mpv/
+    state: directory
+    dest: "{{ ansible_env.HOME }}/.config/mpv/"
   tags: mpv
 
 - name: Configure mpv
-  sudo: no
+  become: no
   template:
-    src={{ item }}.j2
-    dest={{ ansible_env.HOME }}/.config/mpv/{{ item }}
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/.config/mpv/{{ item }}"
   with_items:
     - config
   tags: mpv

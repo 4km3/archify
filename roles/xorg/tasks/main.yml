@@ -1,4 +1,4 @@
 ---
 - include: xorg.yml
 - include: xkb.yml
-- include: fonts.yml
+#- include: fonts.yml

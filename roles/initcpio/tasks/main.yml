@@ -1,9 +1,9 @@
 ---
 - name: Update /etc/mkinitcpio.conf
   template:
-    dest=/etc/{{ item }}
-    src={{ item }}.j2
-    backup=yes
+    dest: "/etc/{{ item }}"
+    src: "{{ item }}.j2"
+    backup: yes
   with_items:
     - mkinitcpio.conf
   notify:
