@@ -1,7 +1,16 @@
 ---
 - name: Install alsa-utils
+  tags: alsa
   pacman:
     name: "{{ item }}"
     state: installed
   with_items:
     - alsa-utils
+
+- name: Add main user to the audio group
+  tags: alsa
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    append: yes
+    groups: audio
