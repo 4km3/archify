@@ -11,6 +11,8 @@
   tags: docker
   command: >
     yaourt --noconfirm -S docker-compose
+  register: yaourt_result
+  changed_when: yaourt_result.stderr != ""
 
 - name: Enable docker service
   tags: docker

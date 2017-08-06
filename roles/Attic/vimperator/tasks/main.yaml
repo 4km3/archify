@@ -4,7 +4,7 @@
   command: >
     yaourt --noconfirm -S vimperator
   register: yaourt_result
-  changed_when: "yaourt_result.stderr != ''"
+  changed_when: yaourt_result.stderr != ""
   tags:
     - vimperator
 
