@@ -7,6 +7,11 @@
   with_items:
     - alsa-utils
 
+- name: Gather facts to refreash ansible_env
+  tags: alsa
+  become: no
+  setup:
+
 - name: Add main user to the audio group
   tags: alsa
   become: yes
