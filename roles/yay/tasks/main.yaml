@@ -1,5 +1,6 @@
 ---
 - name: Install yay
   tags: yay
+  become: no
   command: >
     yaourt --noconfirm -S yay-bin
