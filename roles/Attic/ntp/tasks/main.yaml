@@ -1,33 +1,29 @@
 ---
 - name: Install ntp
   pacman:
-    name=ntp
-    state=installed
-
+    name: ntp
+    state: installed
 
 - name: Configure ntp
   lineinfile:
-    dest=/etc/ntp.conf
-    backup=yes
-    regexp='server {{ ntp_server }}'
-    insertbefore='^server 0.pool.ntp.org'
-    line='server {{ ntp_server }}'
+    dest: /etc/ntp.conf
+    backup: yes
+    regexp: server {{ ntp_server }}
+    insertbefore: ^server 0.pool.ntp.org
+    line: server {{ ntp_server }}
   notify:
     - Restart ntpd
 
-
 - name: Stop ntpd
   service:
-    name=ntpd
-    state=stopped
-
+    name: ntpd
+    state: stopped
 
 - name: Set the time
   command:
     ntpdate {{ ntp_server }}
 
-
 - name: Start ntpd
   service:
-    name=ntpd
-    state=started
+    name: ntpd
+    state: started
