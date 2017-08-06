@@ -1,5 +1,8 @@
 ---
 # tasks file for partition
+- name: Clear SSD using blkdiscard
+  command: >
+    blkdiscard {{ main_block_device }}
 
 - name: Partition drive for EFI
   tags: sgdisk
