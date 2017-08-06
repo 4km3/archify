@@ -3,21 +3,22 @@
 
 - name: Partition drive for EFI
   tags: sgdisk
-  command:
+  command: >
     sgdisk  -n 0:0:+200M  -t 0:ef00 -c 0:'EFI System'
             -n 0:0:+8G    -t 0:8200 -c 0:swap
             -n 0:0:0      -t 0:8304 -c 0:root
             {{ main_block_device }}
 
 - name: Create ESP filesystem
-  command: mkfs.fat -F32 -nESP {{ main_block_device }}p1
+  command: >
+    mkfs.fat -F32 -nESP {{ main_block_device }}p1
 #  filesystem:
 #    dev: "{{ main_block_device }}p1"
 #    fstype: fat
 #    opts: -F32 -nESP
 
 - name: Create swap volume
-  command:
+  command: >
     mkswap -L swap {{ main_block_device }}p2
 
 - name: Create BTRFS filesystem

@@ -1,7 +1,7 @@
 ---
 - name: Install pentadactyl
   become: no
-  command:
+  command: >
     yaourt --noconfirm -S firefox-pentadactyl-signed
   register: yaourt_result
   changed_when: "yaourt_result.stderr != ''"

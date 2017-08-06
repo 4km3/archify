@@ -39,7 +39,8 @@
         target_block_device: /dev/{{ lsblk_output.stdout }}
         user: "{{ lookup('env', 'USER') }}"
     - name: Clear stale EFI boot entries
-      command: efibootmgr -B -b "{{ item }}"
+      command: >
+        efibootmgr -B -b "{{ item }}"
       with_sequence: start=0 end=5
       failed_when: false
     - name: Clear SSD using blkdiscard

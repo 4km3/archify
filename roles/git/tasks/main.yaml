@@ -8,7 +8,7 @@
     - tig
 
 - name: Install gitflow-avh
-  command:
+  command: >
     yaourt --noconfirm -S {{ item }}
   register: yaourt_result
   changed_when: "yaourt_result.stderr != ''"
