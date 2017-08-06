@@ -9,7 +9,7 @@
 
 - name: Install docker-compose
   tags: docker
-  command:
+  command: >
     yaourt --noconfirm -S docker-compose
 
 - name: Enable docker service

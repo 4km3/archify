@@ -1,3 +1,4 @@
 ---
 - name: Install todotxt.com
-  command: yaourt --noconfirm -S todotxt
+  command: >
+    yaourt --noconfirm -S todotxt

@@ -31,7 +31,7 @@
         fstype=btrfs
         opts=noatime,discard,ssd,autodefrag,compress=lzo,space_cache
         state=mounted
-    - command:
+    - command: >
         btrfs subvolume create {{ item }}
       args:
         chdir: /mnt
@@ -89,7 +89,7 @@
         owner=root
         group=root
         mode=0644
-    - command:
+    - command: >
         arch-chroot /mnt systemctl enable sshd
 
 - name: Bootstrap Arch Linux | Configure systemd-boot

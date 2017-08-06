@@ -44,7 +44,8 @@
       with_sequence: start=0 end=5
       failed_when: false
     - name: Clear SSD using blkdiscard
-      command: blkdiscard {{ target_block_device }}
+      command: >
+        blkdiscard {{ target_block_device }}
 #    - name: Clear SSD using ATA secure erase
 #      command: "{{ item }}"
 #      changed_when: false
