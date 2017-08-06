@@ -39,7 +39,7 @@
     regexp: '^(:0 local /usr/bin/X) (:0)'
     line: '\1 -nolisten tcp \2'
 
-- name: Start and enable XDM-archlinux
+- name: Enable XDM-archlinux
   service:
     name: xdm-archlinux
     enabled: yes

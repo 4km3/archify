@@ -12,12 +12,11 @@
   command:
     yaourt --noconfirm -S docker-compose
 
-- name: Start docker service
+- name: Enable docker service
   tags: docker
   service:
     name: docker
     enabled: yes
-    state: started
 
 - name: Add main user to group docker
   tags: docker
