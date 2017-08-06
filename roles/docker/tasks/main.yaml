@@ -1,12 +1,23 @@
 ---
-- name: Install docker, docker-compose
+- name: Install docker
   tags: docker
   pacman:
     name: "{{ item }}"
     state: latest
   with_items:
     - docker
-    - docker-compose
+
+- name: Install docker-compose
+  tags: docker
+  command:
+    yaourt --noconfirm -S docker-compose
+
+- name: Start docker service
+  tags: docker
+  service:
+    name: docker
+    enabled: yes
+    state: started
 
 - name: Add main user to group docker
   tags: docker
