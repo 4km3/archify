@@ -20,7 +20,7 @@
   become: no
   template:
     src: "{{ item }}.j2"
-    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    dest: "{{ ansible_user_dir }}/{{ item }}"
   with_items:
     - .pentadactylrc
   tags:

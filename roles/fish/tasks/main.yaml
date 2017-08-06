@@ -1,0 +1,32 @@
+---
+- name: Install fish
+  tags: fish
+  become: yes
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - fish
+
+- name: Create dir for fish config
+  tags: fish
+  become: no
+  file:
+    dest: "{{ ansible_user_dir }}/.config/fish/"
+    state: directory
+
+- name: Configure fish
+  tags: fish
+  become: no
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_user_dir }}/.config/fish/{{ item }}"
+  with_items:
+    - config.fish
+
+- name: Set fish as default shell for main user
+  tags: fish
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/fish

@@ -21,7 +21,7 @@
   become: no
   git:
     repo: "{{ spacemacs_repo }}"
-    dest: "{{ ansible_env.HOME }}/.emacs.d"
+    dest: "{{ ansible_user_dir }}/.emacs.d"
     force: yes
   tags:
     - spacemacs
@@ -30,7 +30,7 @@
   become: no
   template:
     src: "{{ item }}.j2"
-    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    dest: "{{ ansible_user_dir }}/{{ item }}"
   with_items:
     - .spacemacs
   tags:

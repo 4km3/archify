@@ -32,3 +32,4 @@ dependencies:
     - nginx
     - spacemacs
     - bash
+    - fish

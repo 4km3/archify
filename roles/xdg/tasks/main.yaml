@@ -8,7 +8,7 @@
   tags: xdg
   become: no
   file:
-    dest: "{{ ansible_env.HOME }}/.config/"
+    dest: "{{ ansible_user_dir }}/.config/"
     state: directory
 
 - name: Configure user xdg
@@ -16,7 +16,7 @@
   become: no
   template:
     src: "{{ item }}.j2"
-    dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
+    dest: "{{ ansible_user_dir }}/.config/{{ item }}"
   with_items:
     - user-dirs.dirs
     - user-dirs.locale

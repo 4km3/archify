@@ -15,14 +15,14 @@
   become: no
   file:
     state: directory
-    dest: "{{ ansible_env.HOME }}/.config/mpv/"
+    dest: "{{ ansible_user_dir }}/.config/mpv/"
   tags: mpv
 
 - name: Configure mpv
   become: no
   template:
     src: "{{ item }}.j2"
-    dest: "{{ ansible_env.HOME }}/.config/mpv/{{ item }}"
+    dest: "{{ ansible_user_dir }}/.config/mpv/{{ item }}"
   with_items:
     - config
   tags: mpv

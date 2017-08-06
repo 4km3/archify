@@ -1,5 +1,6 @@
 ---
 - name: Install libvirt, virt-manager, bridge-utils, openbsd-netcat, qemu, ebtables and dmidecode
+  tags: libvirt
   pacman:
     name: "{{ item }}"
     state: installed
@@ -13,6 +14,7 @@
     - dmidecode
 
 - name: Config qemu
+  tags: libvirt
   lineinfile:
     dest: /etc/libvirt/qemu.conf
     backup: yes
@@ -22,9 +24,10 @@
     line: '\1'
 
 - name: Install polkit rules file
+  tags: libvirt
   template:
     src: "{{ item }}.j2"
-    dest: "/etc/polkit-1/rules.d/{{ item }}"
+    dest: /etc/polkit-1/rules.d/{{ item }}
     backup: yes
     owner: root
     group: root
@@ -33,6 +36,7 @@
     - 50-org.libvirt.unix.manage.rules
 
 - name: Enable libvirtd and libvirt-guests
+  tags: libvirt
   service:
     name: "{{ item }}"
     enabled: yes
@@ -40,3 +44,11 @@
   with_items:
     - libvirtd
     - libvirt-guests
+
+- name: Add main user to group kvm
+  tags: libvirt
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    append: yes
+    groups: kvm
