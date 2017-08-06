@@ -41,6 +41,10 @@
       command: efibootmgr -B -b "{{ item }}"
       with_sequence: start=0 end=5
       failed_when: false
+    - name: Clear SSD using blkdiscard
+      command: "{{ item }}"
+      with_items:
+        - blkdiscard {{ target_block_device }}
 #    - name: Clear SSD using ATA secure erase
 #      command: "{{ item }}"
 #      changed_when: false
