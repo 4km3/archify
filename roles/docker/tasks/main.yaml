@@ -1,0 +1,17 @@
+---
+- name: Install docker, docker-compose
+  tags: docker
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - docker
+    - docker-compose
+
+- name: Add main user to group docker
+  tags: docker
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    append: yes
+    groups: docker

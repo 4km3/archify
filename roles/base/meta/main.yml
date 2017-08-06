@@ -28,6 +28,7 @@ dependencies:
     - pam_ssh
     - pentadactyl
     - libvirt
+    - docker
     - mlocate
     - nginx
     - spacemacs
