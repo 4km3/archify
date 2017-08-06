@@ -109,7 +109,6 @@
         - bootctl --path /mnt/boot install
         - cp -a /mnt/etc/fstab /mnt/etc/fstab.orig
         - arch-chroot /mnt useradd -m -G wheel,log -s /bin/bash {{ user }}
-# TODO: add {{ user }} to kvm, docker groups after they are created
     - name: Populate /mnt/etc/fstab
       shell: genfstab -U -p /mnt >> /mnt/etc/fstab
     - name: Enable no-password sudo for users in wheel group
