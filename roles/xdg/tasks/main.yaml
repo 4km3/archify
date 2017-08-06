@@ -4,6 +4,13 @@
   become: no
   setup:
 
+- name: Create ~/.config/
+  tags: xdg
+  become: no
+  file:
+    dest: "{{ ansible_env.HOME }}/.config/"
+    state: directory
+
 - name: Configure user xdg
   tags: xdg
   become: no
