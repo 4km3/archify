@@ -34,3 +34,4 @@ dependencies:
     - spacemacs
     - bash
     - fish
+    - yay
