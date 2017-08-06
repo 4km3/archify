@@ -1,11 +1,12 @@
 ---
-- name: Install iw and remove wireless_tools
+- name: Install iw and remove wireless_tools and netctl
   pacman:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items:
     - { name: iw, state: present }
     - { name: wireless_tools, state: absent }
+    - { name: netctl, state: absent }
 
 - name: Configure wlan0 and eth0
   template:
