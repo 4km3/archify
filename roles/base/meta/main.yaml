@@ -30,6 +30,7 @@ dependencies:
     - libvirt
     - docker
     - mlocate
+    - pkgfile
     - nginx
     - spacemacs
     - bash

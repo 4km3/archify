@@ -1,0 +1,17 @@
+---
+- name: Install pkgfile
+  tags: pkgfile
+  pacman:
+    name: pkgfile
+    state: latest
+
+- name: Update pkgfile cache
+  tags: pkgfile
+  command: >
+    pkgfile --update
+
+- name: Enable pkgfile-update.timer
+  tags: pkgfile
+  service:
+    name: pkgfile-update.timer
+    enabled: yes
