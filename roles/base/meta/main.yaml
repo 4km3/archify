@@ -1,7 +1,7 @@
 ---
 dependencies:
     - intel
-    - broadcom
+    - { role: broadcom, when: has_broadcom is defined and has_broadcom }
     - hostname
     - sudo
     - udev
