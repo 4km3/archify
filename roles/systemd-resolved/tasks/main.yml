@@ -32,3 +32,12 @@
   notify: Restart systemd-resolved
   tags:
     - systemd-resolved
+
+- name: Install /etc/nsswitch.conf
+  template:
+    src: "{{ item }}.j2"
+    dest: /etc/{{ item }}
+  with_items:
+    - nsswitch.conf
+  tags:
+    - systemd-resolved
