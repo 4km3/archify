@@ -14,15 +14,15 @@
   notify:
     - Restart OpenSSH
 
-- name: Configure OpenSSH | relax root access
-  lineinfile:
-    dest: /etc/ssh/sshd_config
-    backup: yes
-    insertafter: '^#PermitRootLogin prohibit-password'
-    regexp: '^PermitRootLogin'
-    line: 'PermitRootLogin yes'
-  notify:
-    - Restart OpenSSH
+# - name: Relax root access
+#   lineinfile:
+#     dest: /etc/ssh/sshd_config
+#     backup: yes
+#     insertafter: '^#PermitRootLogin prohibit-password'
+#     regexp: '^PermitRootLogin'
+#     line: 'PermitRootLogin yes'
+#   notify:
+#     - Restart OpenSSH
 
 - name: Start OpenSSH
   service:
