@@ -1,2 +1,2 @@
 ---
-systemd_boot_main_block_device: /dev/sdb
+systemd_boot_main_block_device: /dev/sdFIXME

@@ -9,8 +9,8 @@
 
 - name: Set ATA password
   shell:
-    hdparm --user-master u --security-set-pass PasSWorD /dev/sdb
+    hdparm --user-master u --security-set-pass PasSWorD /dev/sdFIXME
 
 - name: Perform ATA enhanced erase command
   shell:
-    hdparm --user-master u --security-erase-enhanced PasSWorD /dev/sdb
+    hdparm --user-master u --security-erase-enhanced PasSWorD /dev/sdFIXME

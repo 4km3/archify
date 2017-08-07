@@ -4,11 +4,10 @@
   hosts: bootstrap
   gather_facts: no
   vars:
-    ata_pass: PasSWorD
     sudoers_config: "%wheel ALL=(ALL) NOPASSWD: ALL"
     home: "{{ lookup('env', 'HOME') }}"
     user: "{{ lookup('env', 'USER') }}"
-    pubkey: "{{ home }}/.ssh/keys.d/id_ed25519-sparky.pub"
+    pubkey: "{{ home }}/.ssh/keys.d/id_ed25519-{{ ansible_host }}.pub"
     key: "{{ lookup('file', pubkey) }}"
   pre_tasks:
     - name: Fix .ssh/known_hosts
@@ -17,15 +16,14 @@
         host: "{{ item }}"
         state: absent
       with_items:
-        - "{{ ansible_host | default(inventory_hostname) }}"
-       # - "{{ lookup('pipe', 'getent hosts ' + ansible_host | default(inventory_hostname)) }}"
-# TODO: remove entry for hal's ip, otherwise funny locking occurs
-    - name: Add sparky ssh pubkey fingerprint to our known_hosts
+        - "{{ ansible_host }}"
+        - "{{ lookup('dig', ansible_host) }}"
+    - name: Add target host ssh pubkey fingerprint to our known_hosts
       local_action:
         module: known_hosts
-        host: "{{ ansible_host | default(inventory_hostname) }}"
-        key: "{{ lookup('pipe', 'ssh-keyscan -t ed25519 ' + ansible_host | default(inventory_hostname) ) }}"
-    - name: Install python2
+        host: "{{ ansible_host }}"
+        key: "{{ lookup('pipe', 'ssh-keyscan -t ed25519 ' + ansible_host) }}"
+    - name: Install python2 and tmux
       raw:
         pacman --sync --refresh --needed --noconfirm python2 tmux
     - name: Determine main block device
@@ -37,18 +35,11 @@
     - name: Export main block device as a fact
       set_fact:
         target_block_device: /dev/{{ lsblk_output.stdout }}
-        user: "{{ lookup('env', 'USER') }}"
     - name: Clear stale EFI boot entries
       command: >
         efibootmgr -B -b "{{ item }}"
       with_sequence: start=0 end=5
       failed_when: false
-#    - name: Clear SSD using ATA secure erase
-#      command: "{{ item }}"
-#      changed_when: false
-#      with_items:
-#        - hdparm --security-set-pass {{ ata_pass }} {{ target_block_device }}
-#        - hdparm --security-erase    {{ ata_pass }} {{ target_block_device }}
   roles:
     - pacman
     - role: partition
@@ -137,6 +128,7 @@
 - name: Bootstrap Arch Linux | Configure systemd-boot
   hosts: bootstrap
   tags: bootstrap
+  gather_facts: no
   roles:
     - role: systemd-boot
       systemd_boot_main_block_device: "{{ target_block_device }}"
@@ -145,7 +137,7 @@
   tags: bootstrap
   hosts: bootstrap
   gather_facts: no
-#  accelerate: true
+# accelerate: true
   tasks:
     - name: Disable sshd
       service:
