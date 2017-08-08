@@ -8,6 +8,11 @@
   with_items:
     - fish
 
+- name: Gather facts to refresh ansible_env
+  tags: fish
+  become: no
+  setup:
+
 - name: Create dir for fish config
   tags: fish
   become: no
