@@ -117,11 +117,6 @@
         key: "{{ key }}"
         path: "/mnt/home/{{ user }}/.ssh/authorized_keys"
         manage_dir: yes
-    - name: Override udev rules file so that legacy network device names are used
-      file:
-        src: /dev/null
-        dest: /mnt/etc/udev/rules.d/80-net-setup-link.rules
-        state: link
     - name: Copy OpenSSH server keys to /mnt
       shell: cp -a /etc/ssh/ssh_host_* /mnt/etc/ssh
 
