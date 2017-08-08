@@ -57,3 +57,8 @@
     - xf86-video-vesa
     - xf86-video-vmware
     - xf86-video-voodoo
+    - xorg-server-devel
+    - xorg-server-xdmx
+    - xorg-server-xephyr
+    - xorg-server-xnest
+    - xorg-server-xvfb
