@@ -1,8 +1,14 @@
+#
 # {{ ansible_managed }}
+#
+
 [Match]
-Name=eth*
+Name=eno*
 
 [Network]
-DHCP=v4
-IPv4LL=no
-#UseHostname=false
+DHCP=ipv4
+DNS=8.8.8.8
+DNS=8.8.4.4
+
+[DHCP]
+UseDNS=no
