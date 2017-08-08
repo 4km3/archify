@@ -1,4 +1,22 @@
 ---
 - name: Install todotxt.com
+  tags: todotxt
   command: >
     yaourt --noconfirm -S todotxt
+
+- name: Gather facts to refresh ansible_env
+  tags: todotxt
+  become: no
+  setup:
+
+- name: Install helper scripts
+  tags: todotxt
+  become: no
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_user_dir }}/.config/fish/functions/{{ item }}"
+  with_items:
+    - t.fish
+    - ct.fish
+    - ut.fish
+    - pusht.fish
