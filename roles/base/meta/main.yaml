@@ -35,3 +35,4 @@ dependencies:
     - bash
     - fish
     - yay
+    - todotxt
