@@ -1,6 +1,7 @@
 ---
 - name: Install todotxt.com
   tags: todotxt
+  become: no
   command: >
     yaourt --noconfirm -S todotxt
 
