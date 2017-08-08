@@ -21,3 +21,15 @@
     - ct.fish
     - ut.fish
     - pusht.fish
+
+# - name: TODO add TODO var pointing to ~/.todo
+#   tags: todotxt
+#   become: no
+#   setup:
+
+# - name: Clone todo.git
+#   tags: todotxt
+#   become: no
+#   git:
+#     repo: "{{ todotxt_repo }}"
+#     dest: "{{ ansible_user_dir }}/.todo"
