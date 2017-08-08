@@ -1,5 +1,5 @@
 ---
-- name: Install libvirt, virt-manager, bridge-utils, openbsd-netcat, qemu, ebtables and dmidecode
+- name: Install libvirt and friends
   tags: libvirt
   pacman:
     name: "{{ item }}"
@@ -7,7 +7,9 @@
   with_items:
     - libvirt
     - virt-manager
+    - virt-viewer
     - bridge-utils
+    - dnsmasq
     - openbsd-netcat
     - qemu
     - ebtables
