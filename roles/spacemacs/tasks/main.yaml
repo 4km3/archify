@@ -21,6 +21,7 @@
   git:
     repo: "{{ spacemacs_repo }}"
     dest: "{{ ansible_user_dir }}/.emacs.d"
+  failed_when: false
 
 - name: Patch Spacemacs
   tags: spacemacs
