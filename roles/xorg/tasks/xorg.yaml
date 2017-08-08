@@ -1,5 +1,8 @@
 ---
 - name: Install xorg
+  tags:
+    - xorg
+    - cleanup
   pacman:
     name: "{{ item }}"
     state: installed
@@ -21,6 +24,9 @@
     - chromium
 
 - name: Remove unneeded xorg packages
+  tags:
+    - xorg
+    - cleanup
   pacman:
     name: "{{ item }}"
     state: absent
@@ -51,5 +57,3 @@
     - xf86-video-vesa
     - xf86-video-vmware
     - xf86-video-voodoo
-  tags:
-    - cleanup
