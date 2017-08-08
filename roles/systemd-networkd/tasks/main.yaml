@@ -1,12 +1,14 @@
 ---
-- name: Install iw and remove wireless_tools and netctl
+- name: Install iw and get rid of deprecated and/or unneeded stuff
   pacman:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items:
-    - { name: iw, state: present }
-    - { name: wireless_tools, state: absent }
-    - { name: netctl, state: absent }
+    - { name: iw,             state: present }
+    - { name: wireless_tools, state: absent  }
+    - { name: netctl,         state: absent  }
+    - { name: dhcpcd,         state: absent  }
+    - { name: openresolv,     state: absent  }
 
 - name: Configure wlan0 and eno*
   template:
