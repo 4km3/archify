@@ -22,6 +22,14 @@
     repo: "{{ spacemacs_repo }}"
     dest: "{{ ansible_user_dir }}/.emacs.d"
 
+- name: Patch Spacemacs
+  tags: spacemacs
+  become: noatime
+  patch:
+    src: pdf-view-fix-colors.patch
+    basedir: "{{ ansible_user_dir }}/.emacs.d"
+    strip: 1
+
 - name: Configure Spacemacs
   tags: spacemacs
   become: no
