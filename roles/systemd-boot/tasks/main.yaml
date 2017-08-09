@@ -23,7 +23,7 @@
 - name: Create /boot/loader/entries/*.conf
   template:
     src: "{{ item }}.conf.j2"
-    dest: /mnt//boot/loader/entries/{{ item }}.conf
+    dest: /mnt/boot/loader/entries/{{ item }}.conf
   with_items:
     - arch
     - arch-fallback
