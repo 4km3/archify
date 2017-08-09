@@ -2,4 +2,4 @@ title   Arch Linux
 linux   /vmlinuz-linux
 initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
-options root=PARTUUID="{{ root_guid.stdout | lower }}" rootflags=subvol=@ rw add_efi_memmap elevator=noop systemd.restore_state=0 quiet
+options root=PARTUUID={{ root_guid.stdout | lower }} rootflags=subvol=@ rw add_efi_memmap elevator=noop quiet
