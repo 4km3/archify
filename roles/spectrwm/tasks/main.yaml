@@ -1,5 +1,6 @@
 ---
 - name: Install spectrwm, rofi, scrot and slock
+  tags: spectrwm
   pacman:
     name: "{{ item }}"
     state: installed
@@ -10,15 +11,23 @@
     - slock
 
 - name: Configure spectrwm
+  tags: spectrwm
   template:
     src: spectrwm.conf.j2
     dest: /etc/spectrwm.conf
+
+- name: Enable screenshot.sh
+  tags: spectrwm
+  file:
+    src: /usr/share/spectrwm/{{ item }}
+    dest: /usr/local/bin/{{ item }}
+    state: link
     backup: yes
-    owner: root
-    group: root
-    mode: 0644
+  with_items:
+    - screenshot.sh
 
 - name: Enable spectrwm
+  tags: spectrwm
   copy:
     content: "exec spectrwm\n"
     dest: /etc/X11/xinit/xinitrc.d/99-spectrwm.sh
