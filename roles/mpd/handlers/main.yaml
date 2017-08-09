@@ -1,0 +1,6 @@
+---
+- name: Restart MPD
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: mpd

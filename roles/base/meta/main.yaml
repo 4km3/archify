@@ -17,6 +17,7 @@ dependencies:
     - readline
     - vconsole
     - alsa
+    - mpd
     - xorg
     - xdm
     - spectrwm

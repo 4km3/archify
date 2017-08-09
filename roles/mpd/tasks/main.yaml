@@ -1,0 +1,36 @@
+---
+- name: Install MPD and clients
+  tags: mpd
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - mpd
+    - mpc
+    - ncmpc
+    - ncmpcpp
+
+- name: Create override dir for mpd.socket
+  tags: mpd
+  file:
+    state: directory
+    path: /etc/systemd/system/mpd.socket.d
+
+- name: Install config files
+  tags: mpd
+  notify: Restart MPD
+  template:
+    src: "{{ item.name }}.j2"
+    dest: "{{ item.path }}/{{ item.name }}"
+  with_items:
+    - { name: override.conf, path: /etc/systemd/system/mpd.socket.d/ }
+    - { name: mpd.conf,      path: /etc/                             }
+
+- name: Configure ncmpcpp
+  tags: mpd
+  become: no
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_user_dir }}/.ncmpcpp/{{ item }}"
+  with_items:
+    - bindings
+    - config

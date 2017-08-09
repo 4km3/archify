@@ -1,0 +1,45 @@
+#
+# {{ ansible_managed }}
+#
+
+# See: /usr/share/doc/mpd/mpdconf.example
+
+bind_to_address "127.0.0.1"
+bind_to_address "/run/mpd/socket"
+pid_file "/run/mpd/mpd.pid"
+db_file "/var/lib/mpd/mpd.db"
+state_file "/var/lib/mpd/mpdstate"
+playlist_directory "/var/lib/mpd/playlists"
+music_directory	"/srv/media/audio"
+
+###############################################################################
+
+# Audio Output ################################################################
+#
+# MPD supports various audio output types, as well as playing through multiple 
+# audio outputs at the same time, through multiple audio_output settings 
+# blocks. Setting this block is optional, though the server will only attempt
+# autodetection for one sound card.
+#
+# See <http://mpd.wikia.com/wiki/Configuration#Audio_Outputs> for examples of 
+# other audio outputs.
+#
+# An example of an ALSA output:
+#
+audio_output {
+	type		"alsa"
+	name		"My ALSA Device"
+	#device		"hw:0,0"	# optional
+	#format		"44100:16:2"	# optional
+	format		"48000:16:2"	# optional
+	mixer_device	"hw:0"	# optional
+	mixer_control	"PCM"		# optional
+	mixer_index	"0"		# optional
+}
+
+#audio_output {
+#    type                    "fifo"
+#    name                    "my_fifo"
+#    path                    "/tmp/mpd.fifo"
+#    format                  "48000:16:2"
+#}
