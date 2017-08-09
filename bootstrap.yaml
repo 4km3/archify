@@ -94,13 +94,14 @@
     - name: pacstrap, create main user
       command: "{{ item }}"
       with_items:
-        - pacstrap /mnt base base-devel intel-ucode linux-lts python2 openssh btrfs-progs
-        - systemd-firstboot --root=/mnt --locale=en_US.UTF-8 --timezone=Europe/Madrid --hostname={{ inventory_hostname }} --copy-root-password --setup-machine-id
+        - pacstrap /mnt base base-devel intel-ucode linux-lts python2 openssh btrfs-progs fish
+        - rm /mnt/etc/localtime
+        - systemd-firstboot --root=/mnt --locale=en_US.UTF-8 --timezone=Europe/Madrid --hostname={{ hostvars[inventory_hostname]['ansible_host'] }} --setup-machine-id
         - bootctl --path /mnt/boot install
         - cp -a /mnt/etc/fstab /mnt/etc/fstab.orig
-        - arch-chroot /mnt useradd -m -G wheel,log -s /bin/bash {{ user }}
+        - arch-chroot /mnt useradd -m -G wheel,log -s /usr/bin/fish {{ user }}
     - name: Populate /mnt/etc/fstab
-      shell: genfstab -U -p /mnt >> /mnt/etc/fstab
+      shell: genfstab -t PARTUUID -p /mnt >> /mnt/etc/fstab
     - name: Enable no-password sudo for users in wheel group
       lineinfile:
         dest: /mnt/etc/sudoers.d/wheel-nopasswd
