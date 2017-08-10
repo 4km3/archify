@@ -7,7 +7,7 @@
   with_items:
     - alsa-utils
 
-- name: Gather facts to refreash ansible_env
+- name: Gather facts to refresh ansible_env
   tags: alsa
   become: no
   setup:
