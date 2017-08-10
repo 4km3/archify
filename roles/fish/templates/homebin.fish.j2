@@ -1,0 +1,10 @@
+#
+# {{ ansible_managed }}
+#
+
+if status --is-login
+    set homebin ~/.local/bin
+    if test -d "$homebin"
+        set PATH $homebin $PATH
+    end
+end

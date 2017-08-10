@@ -8,6 +8,14 @@
   with_items:
     - fish
 
+- name: Add ~/.local/bin to PATH
+  tags: fish
+  template:
+    src: "{{ item }}.j2"
+    dest: /etc/fish/conf.d/{{ item }}
+  with_items:
+    - homebin.fish
+
 - name: Gather facts to refresh ansible_env
   tags: fish
   become: no
