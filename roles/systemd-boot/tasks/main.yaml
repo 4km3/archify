@@ -34,3 +34,6 @@
     - arch-fallback
     - arch-lts
     - arch-lts-fallback
+    - arch-zen
+    - arch-zen-fallback
+    - arch-custom
