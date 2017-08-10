@@ -153,6 +153,14 @@
   hosts: arch
   gather_facts: no
   become: yes
+  vars_prompt:
+    - name: main_user_password
+      prompt: Enter your password
+      encrypt: "sha512_crypt"
+      private: yes
+    - name: main_user_passphrase
+      prompt: Enter your passphrase
+      private: yes
   pre_tasks:
     - name: Wait for container to become available again
       local_action:
@@ -163,6 +171,9 @@
         delay: 10
         timeout: 60
   roles:
+    - role: credentials
+      user_password: "{{ main_user_password }}"
+      user_passphrase: "{{ main_user_passphrase }}"
     - base
   post_tasks:
     - name: Terminate container
