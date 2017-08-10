@@ -37,3 +37,4 @@ dependencies:
     - fish
     - yay
     - todotxt
+    - ansible
