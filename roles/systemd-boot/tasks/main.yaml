@@ -20,7 +20,7 @@
 - name: Create /boot/loader/loader.conf
   tags: systemd-boot
   copy:
-    content: "default arch\n"
+    content: "timeout 10\ndefault arch\n"
     dest: /mnt/boot/loader/loader.conf
     backup: no
     
