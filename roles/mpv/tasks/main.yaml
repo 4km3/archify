@@ -15,7 +15,7 @@
   become: no
   file:
     state: directory
-    dest: "{{ ansible_user_dir }}/.config/mpv/"
+    path: "{{ ansible_user_dir }}/.config/mpv/"
   tags: mpv
 
 - name: Configure mpv

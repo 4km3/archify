@@ -12,8 +12,8 @@
 - name: Create override dir for mpd.socket
   tags: mpd
   file:
-    state: directory
     path: /etc/systemd/system/mpd.socket.d
+    state: directory
 
 - name: Install config files
   tags: mpd

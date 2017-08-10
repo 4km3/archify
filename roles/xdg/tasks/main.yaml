@@ -8,7 +8,7 @@
   tags: xdg
   become: no
   file:
-    dest: "{{ ansible_user_dir }}/.config/"
+    path: "{{ ansible_user_dir }}/.config/"
     state: directory
 
 - name: Configure user xdg

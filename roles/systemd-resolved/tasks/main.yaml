@@ -1,43 +1,38 @@
 ---
 - name: Create /etc/resolv.conf symlink to /usr/lib/systemd/resolv.conf
+  tags: systemd-resolved
   file:
-    state: link
-    force: yes
     src: /usr/lib/systemd/resolv.conf
     path: /etc/resolv.conf
-  tags:
-    - systemd-resolved
+    state: link
+    force: yes
 
 - name: Enable and start systemd-resolved
+  tags: systemd-resolved
   service:
     name: systemd-resolved
     enabled: yes
     state: started
-  tags:
-    - systemd-resolved
 
 - name: Create /etc/systemd/resolved.conf.d
+  tags: systemd-resolved
   file:
-    dest: /etc/systemd/resolved.conf.d
+    path: /etc/systemd/resolved.conf.d
     state: directory
-  tags:
-    - systemd-resolved
 
 - name: Install resolved.conf.d/noipv6.conf
+  tags: systemd-resolved
   template:
     src: "{{ item }}.j2"
     dest: /etc/systemd/resolved.conf.d/{{ item }}
   with_items:
     - noipv6.conf
   notify: Restart systemd-resolved
-  tags:
-    - systemd-resolved
 
 - name: Install /etc/nsswitch.conf
+  tags: systemd-resolved
   template:
     src: "{{ item }}.j2"
     dest: /etc/{{ item }}
   with_items:
     - nsswitch.conf
-  tags:
-    - systemd-resolved

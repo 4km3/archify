@@ -20,7 +20,7 @@
   tags: spectrwm
   file:
     src: /usr/share/spectrwm/{{ item }}
-    dest: /usr/local/bin/{{ item }}
+    path: /usr/local/bin/{{ item }}
     state: link
     backup: yes
   with_items:

@@ -1,26 +1,31 @@
 ---
 - name: Obtain ID of root part
+  tags: systemd-boot
   shell:
     "sgdisk -i 3 {{ systemd_boot_main_block_device }} | grep unique | awk -F': *' '{ print $2 }'"
   register: root_guid
   changed_when: false
 
 - name: Debug show root_guid
+  tags: systemd-boot
   debug:
     msg: "{{ root_guid.stdout }}"
 
 - name: Create /boot/loader/entries directory
+  tags: systemd-boot
   file:
+    path: /mnt/boot/loader/entries
     state: directory
-    dest: /mnt/boot/loader/entries
 
 - name: Create /boot/loader/loader.conf
+  tags: systemd-boot
   copy:
     content: "default arch\n"
     dest: /mnt/boot/loader/loader.conf
     backup: no
     
 - name: Create /boot/loader/entries/*.conf
+  tags: systemd-boot
   template:
     src: "{{ item }}.conf.j2"
     dest: /mnt/boot/loader/entries/{{ item }}.conf
