@@ -5,7 +5,7 @@
   command: >
     gpg --keyserver hkp://eu.pool.sks-keyservers.net --recv-keys 180F6A5B3EDE742E
   register: gpg_output
-  until: gpg_output | success
+  until: gpg_output is success
   retries: 5
 
 - name: Install pam_ssh
