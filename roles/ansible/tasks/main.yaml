@@ -7,5 +7,5 @@
     - ansible
     - ansible-lint
     - cowsay
-    - python2-passlib
-    - python2-dnspython
+    - python-passlib
+    - python-dnspython

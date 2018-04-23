@@ -23,9 +23,9 @@
         module: known_hosts
         host: "{{ ansible_host }}"
         key: "{{ lookup('pipe', 'ssh-keyscan -t ed25519 ' + ansible_host) }}"
-    - name: Install python2 and tmux
+    - name: Install tmux
       raw:
-        pacman --sync --refresh --needed --noconfirm python2 tmux
+        pacman --sync --refresh --needed --noconfirm tmux
     - name: Determine main block device
       shell: >
         lsblk --nodeps --exclude 7 --sort HOTPLUG --output NAME,HOTPLUG --noheadings | awk '/0/ { print $1 }' | egrep -v sda
@@ -94,7 +94,7 @@
     - name: pacstrap, create main user
       command: "{{ item }}"
       with_items:
-        - pacstrap /mnt base base-devel intel-ucode linux-lts python2 openssh btrfs-progs fish
+        - pacstrap /mnt base base-devel intel-ucode linux-lts python openssh btrfs-progs fish
         - rm /mnt/etc/localtime
         - systemd-firstboot --root=/mnt --locale=en_US.UTF-8 --timezone=Europe/Madrid --hostname={{ hostvars[inventory_hostname]['ansible_host'] }} --setup-machine-id
         - bootctl --path /mnt/boot install

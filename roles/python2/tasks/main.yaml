@@ -1,4 +1,0 @@
----
-- name: Install python2 interpreter
-  raw:
-    pacman --sync --refresh --needed --noconfirm python2
