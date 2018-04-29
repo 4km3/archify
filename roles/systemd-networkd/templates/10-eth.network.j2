@@ -3,12 +3,12 @@
 #
 
 [Match]
-Name=eno*
+Name={{ wired_device | default("eno*") }}
 
 [Network]
 DHCP=ipv4
-DNS=8.8.8.8
-DNS=8.8.4.4
+LinkLocalAddressing=no
+LLMNR=false
 
 [DHCP]
-UseDNS=no
+UseDomains=yes

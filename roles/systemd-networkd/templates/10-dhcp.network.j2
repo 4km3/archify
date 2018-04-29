@@ -3,8 +3,12 @@
 #
 
 [Match]
-Name=wlan0
+Name={{ wifi_device | default("wlan0") }}
 
 [Network]
 DHCP=ipv4
-#UseHostname=false
+LinkLocalAddressing=no
+LLMNR=false
+
+[DHCP]
+UseDomains=yes
