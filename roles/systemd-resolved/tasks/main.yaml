@@ -2,7 +2,7 @@
 - name: Create /etc/resolv.conf symlink to /usr/lib/systemd/resolv.conf
   tags: systemd-resolved
   file:
-    src: /usr/lib/systemd/resolv.conf
+    src: /run/systemd/resolve/stub-resolv.conf
     path: /etc/resolv.conf
     state: link
     force: yes
