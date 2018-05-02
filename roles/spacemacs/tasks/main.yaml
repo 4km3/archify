@@ -26,7 +26,7 @@
 
 - name: Patch Spacemacs
   tags: spacemacs
-  become: noatime
+  become: no
   patch:
     src: pdf-view-fix-colors.patch
     basedir: "{{ ansible_user_dir }}/.emacs.d"
