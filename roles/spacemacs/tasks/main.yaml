@@ -1,5 +1,5 @@
 ---
-- name: Install emacs and poppler
+- name: Install emacs, bdf-unifont and poppler
   tags: spacemacs
   become: yes
   pacman:
@@ -7,6 +7,7 @@
     state: latest
   with_items:
     - emacs
+    - bdf-unifont
     - poppler
     - poppler-glib
 
