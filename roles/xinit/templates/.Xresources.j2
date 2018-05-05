@@ -1,28 +1,40 @@
 ! {{ ansible_managed }}
 
-#include "/opt/solarized/xresources/Xresources.dark"
-#include "/usr/share/rofi/themes/solarized.theme"
+#include "/etc/X11/xinit/base16-spacemacs.Xresources.WIP"
 
-! TODO: make rofi.font value dependent on dpi
-rofi.font:		xos4 Terminus 18
-
-XTerm*eightBitInput:	false
 #if (WIDTH > 2880)
-XTerm*font:		-*-terminus-medium-*-*-*-24-*-*-*-*-*-*-* 
-Rxvt*font:		ft:xos4 Terminus:size=18
-#else
-XTerm*font:		-*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*
-Rxvt*font:		xft:xos4 Terminus:size=16
+!Xft.dpi value should be a not-too-fractional multiple of 96, to prevent artifacts
+!Xft.dpi:               192
+Xft.dpi:                144
 #endif
-Rxvt*scrollBar:		false
-Rxvt*transparent:	false
-!Rxvt*loginShell:	true
-URxvt.visualBell:	true
-URxvt.urgentOnBell:	true
-URxvt.saveLines:	10000
-URxvt.internalBorder:	0
-xdvi.mfMode:		ljfzzz:1200
-R_dataentry*foreground:	gray
-R_dataentry*background:	black
-R_x11*Foreground:	gray
-R_x11*Background:	black
+Xft.autohint:           0
+Xft.lcdfilter:          lcddefault
+Xft.hintstyle:          hintfull
+Xft.hinting:            1
+Xft.antialias:          1
+Xft.rgba:               rgb
+
+rofi.font:              xos4 Terminus 22
+
+XTerm*eightBitInput:    false
+XTerm*font:             -*-terminus-medium-*-*-*-22-*-*-*-*-*-*-*
+Rxvt*font:              xft:xos4 Terminus:pixelsize=22
+!Rxvt*font:             -*-terminus-medium-*-*-*-22-*-*-*-*-*-*-*
+!Rxvt*font:             -xos4-terminus-medium-r-normal--28-280-72-72-c-140-iso10646-1
+!Rxvt*font:             -xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1
+Rxvt*scrollBar:         false
+Rxvt*transparent:       false
+!Rxvt*loginShell:       true
+URxvt.visualBell:       true
+URxvt.urgentOnBell:     true
+URxvt.saveLines:        10000
+URxvt.internalBorder:   0
+URxvt.secondaryScreen:  1
+URxvt.secondaryScroll:  0
+
+xdvi.mfMode:            ljfzzz: 1200
+
+R_dataentry*foreground: gray
+R_dataentry*background: black
+R_x11*Foreground:       gray
+R_x11*Background:       black
