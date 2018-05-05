@@ -1,0 +1,10 @@
+#
+# {{ ansible_managed }}
+#
+
+if status --is-login
+    set gobin ~/go/bin
+    if test -d "$gobin"
+        set PATH $gobin $PATH
+    end
+end
