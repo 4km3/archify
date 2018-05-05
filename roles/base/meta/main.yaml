@@ -26,7 +26,6 @@ dependencies:
     - mpv
     - xbindkeys
     - pam_ssh
-    - pentadactyl
     - libvirt
     - docker
     - mlocate
