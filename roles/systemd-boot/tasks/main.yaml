@@ -23,7 +23,7 @@
     content: "timeout 10\ndefault arch\n"
     dest: /mnt/boot/loader/loader.conf
     backup: no
-    
+
 - name: Create /boot/loader/entries/*.conf
   tags: systemd-boot
   template:
