@@ -32,6 +32,7 @@ dependencies:
     - pkgfile
     - nginx
     - spacemacs
+    - golang
     - bash
     - fish
     - yay

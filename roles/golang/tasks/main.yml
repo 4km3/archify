@@ -1,0 +1,38 @@
+---
+- name: Install go, go-tools
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - go
+    - go-tools
+  tags:
+    - golang
+
+- name: Install golang helpers
+  become: no
+  command: >
+    go get -u {{ item }}
+  register: goget_result
+  changed_when: goget_result.stderr != ""
+  tags:
+    - golang
+  with_items:
+    - github.com/nsf/gocode
+    - github.com/rogpeppe/godef
+    - golang.org/x/tools/cmd/guru
+    - golang.org/x/tools/cmd/gorename
+    - golang.org/x/tools/cmd/goimports
+    - github.com/zmb3/gogetdoc
+    - github.com/godoctor/godoctor
+    - github.com/fatih/gomodifytags
+    - github.com/alecthomas/gometalinter
+
+- name: Setup gometalinter
+  become: no
+  command: >
+    gometalinter --install
+  register: gometalinter_result
+  changed_when: gometalinter_result.stderr != ""
+  tags:
+    - golang
