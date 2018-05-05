@@ -1,2 +1,5 @@
 ---
-service_name: "wpa_supplicant@wlan0.service"
+service_name: "wpa_supplicant@{{ wifi_device }}.service"
+config_file:
+  template: "wpa_supplicant-wlan0.conf.j2"
+  dest: "wpa_supplicant-{{ wifi_device }}.conf"

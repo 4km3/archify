@@ -6,20 +6,20 @@
     update_cache: yes
   with_items:
     - wpa_supplicant
-    - wpa_supplicant_gui
+#    - wpa_supplicant_gui
   tags:
     - wpa_supplicant
 
 - name: Install wpa_supplicant-wlan0.conf
   template:
-    src: "{{ item }}.j2"
-    dest: /etc/wpa_supplicant/{{ item }}
+    src: "{{ item.template }}"
+    dest: /etc/wpa_supplicant/{{ item.dest }}
     backup: yes
     owner: root
     group: root
     mode: 0600
   with_items:
-    - wpa_supplicant-wlan0.conf
+    - "{{ config_file }}"
   notify:
     - Restart wpa_supplicant@wlan0.service
   tags:

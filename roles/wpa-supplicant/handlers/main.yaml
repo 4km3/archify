@@ -1,6 +1,6 @@
 ---
 - name: Restart wpa_supplicant@wlan0.service
-  service: 
-    name=wpa_supplicant@wlan0.service
+  service:
+    name="{{ service_name }}"
     state=restarted
   failed_when: false

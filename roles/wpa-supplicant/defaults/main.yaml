@@ -1,0 +1,7 @@
+---
+# narada
+wifi_device: "wlp3s0"
+# hp
+#wifi_device: "wlp58s0"
+# mother
+#wifi_device: "wlp1s0"
