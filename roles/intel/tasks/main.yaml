@@ -1,8 +1,14 @@
 ---
-- name: Install intel-ucode and mcelog
+- name: Install intel-ucode
+  tags: intel
   pacman:
     name: "{{ item }}"
     state: present
   with_items:
     - intel-ucode
-    - mcelog
+
+- name: Install rasdaemon
+  tags: intel
+  become: no
+  command: >
+    yaourt --noconfirm -S rasdaemon
