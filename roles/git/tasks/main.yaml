@@ -20,7 +20,7 @@
     - git
     - gitflow
 
-- name: Gather facts to refreash ansible_env
+- name: Gather facts to refresh ansible_env
   become: no
   setup:
   tags:
