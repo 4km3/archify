@@ -14,19 +14,19 @@
 
 - name: Create ESP filesystem
   command: >
-    mkfs.fat -F32 -nESP {{ main_block_device }}p1
+    mkfs.fat -F32 -nESP {{ main_block_device_base }}1
 #  filesystem:
-#    dev: "{{ main_block_device }}p1"
+#    dev: "{{ main_block_device_base }}1"
 #    fstype: fat
 #    opts: -F32 -nESP
 
 - name: Create swap volume
   command: >
-    mkswap -L swap {{ main_block_device }}p2
+    mkswap -L swap {{ main_block_device_base }}2
 
 - name: Create BTRFS filesystem
   filesystem:
-    dev: "{{ main_block_device }}p3"
+    dev: "{{ main_block_device_base }}3"
     fstype: btrfs
     force: yes
     opts: -L root

@@ -35,6 +35,7 @@
     - name: Export main block device as a fact
       set_fact:
         target_block_device: /dev/{{ lsblk_output.stdout }}
+        target_block_device_base: /dev/{{ lsblk_output.stdout }}p
     - name: Clear stale EFI boot entries
       command: >
         efibootmgr -B -b "{{ item }}"
@@ -44,11 +45,12 @@
     - pacman
     - role: partition
       main_block_device: "{{ target_block_device }}"
+      main_block_device_base: "{{ target_block_device_base }}"
   tasks:
     - name: Mount main block device on /mnt
       mount:
         name: /mnt
-        src: "{{ target_block_device }}p3"
+        src: "{{ target_block_device_base }}3"
         fstype: btrfs
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache
         opts: noatime,ssd,autodefrag,compress=lzo,space_cache
@@ -65,13 +67,13 @@
     - name: Umount /mnt
       mount:
         name: /mnt
-        src: "{{ target_block_device }}p3"
+        src: "{{ target_block_device_base }}3"
         fstype: btrfs
         state: unmounted
     - name: Mount root subvolume on /mnt
       mount:
         name: /mnt
-        src: "{{ target_block_device }}p3"
+        src: "{{ target_block_device_base }}3"
         fstype: btrfs
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@
         opts: noatime,ssd,nodiscard,autodefrag,compress=lzo,space_cache,subvol=@
@@ -79,14 +81,14 @@
     - name: Mount boot subvolume on /mnt/boot
       mount:
         name: /mnt/boot
-        src: "{{ target_block_device }}p1"
+        src: "{{ target_block_device_base }}1"
         fstype: vfat
         opts: rw,noatime,fmask=0133,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro
         state: mounted
     - name: Mount home subvolume on /mnt/home
       mount:
         name: /mnt/home
-        src: "{{ target_block_device }}p3"
+        src: "{{ target_block_device_base }}3"
         fstype: btrfs
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@home
         opts: noatime,ssd,nodiscard,autodefrag,compress=lzo,space_cache,subvol=@home
