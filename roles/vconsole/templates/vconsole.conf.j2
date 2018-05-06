@@ -1,6 +1,4 @@
 # {{ ansible_managed }}
 
-#KEYMAP=us-swap-ctrl-caps
-KEYMAP=us
+KEYMAP={{ vconsole_keymap | default("us") }}
 FONT=ter-124n
-#FONT_MAP=8859-1_to_uni
