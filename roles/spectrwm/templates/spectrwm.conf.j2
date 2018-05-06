@@ -48,7 +48,7 @@ bar_color[1]		= rgb:00/2B/36
 bar_font_color[1]	= rgb:65/7B/83
 # bar_font		= -*-terminus-medium-*-*-*-*-*-*-*-*-*-*-*
 ##bar_font		= -*-terminus-medium-*-*-*-24-*-*-*-*-*-*-*
-bar_font		= Terminus:foundry=xos4:pixelsize=24
+bar_font		= Terminus:foundry=xos4:pixelsize=28
 # bar_action		= baraction.sh
 ##bar_action		= baraction
 # bar_justify		= left
@@ -108,7 +108,8 @@ program[term]		= urxvt
 # program[menu]		= dmenu_run $dmenu_bottom -fn $bar_font -nb $bar_color -nf $bar_font_color -sb $bar_border -sf $bar_color
 #program[menu]		= rofi -sidebar-mode -modi "run,ssh" -show run -font 'xos4 Terminus' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#000000 -bc \#008080 -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
 ###program[menu]		= rofi -sidebar-mode -modi drun -show drun -font 'xos4 Terminus 18' -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
-program[menu]		= rofi -sidebar-mode -modi drun -show drun -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
+####program[menu]		= rofi -sidebar-mode -modi drun -show drun -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
+program[menu]		= rofi -sidebar-mode -auto-select -modi drun -show drun -show-icons -no-disable-history -no-levenshtein-sort
 # -xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1
 
 # To disable validation of the above, free the respective binding(s):
