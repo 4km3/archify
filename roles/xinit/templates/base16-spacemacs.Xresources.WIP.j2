@@ -1,0 +1,69 @@
+!
+! {{ ansible_managed }}
+!
+! Base16 Spacemacs
+! Based on Scheme: Nasser Alshammari (https://github.com/nashamri/spacemacs-theme)
+! WIP!
+!
+
+#define base00 #292b2e
+#define base01 #333333
+#define base02 #444155
+#define base03 #585858
+#define base04 #888888
+#define base05 #b2b2b2
+#define base06 #e8e8e8
+#define base07 #f8f8f8
+#define base08 #f2241f
+#define base09 #ffa500
+#define base0A #b1951d
+#define base0B #67b11d
+#define base0C #2d9574
+#define base0D #4f97d7
+#define base0E #a31db1
+#define base0F #b03060
+
+! #define base00 #292b2e    !G  bg1 *
+! #define base01 #333333    !T  ttip-sl *
+! #define base02 #444155    !G  highlight
+! #define base03 #585858    ! T base-dim
+! #define base04 #888888    ! *
+! #define base05 #b2b2b2    !G  base
+! #define base06 #e8e8e8    !
+! #define base07 #f8f8f8    !
+! #define base08 #f2241f    !G  red
+! #define base09 #ffa500    !   light orange
+! #define base0A #b1951d    !G  yellow
+! #define base0B #67b11d    !G  green
+! #define base0C #2d9574    !G  aqua
+! #define base0D #4f97d7    !G  blue
+! #define base0E #a31db1    !G  magenta
+! #define base0F #b03060    !   maroon
+
+*.foreground:   base05
+#ifdef background_opacity
+*.background:   [background_opacity]base00
+#else
+*.background:   base00
+#endif
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base0F
+*.color2:       base0C
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base04
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base09
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0D
+*.color15:      base06
+
+*.fading:	15
