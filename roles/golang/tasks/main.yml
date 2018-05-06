@@ -32,8 +32,7 @@
 - name: Setup gometalinter
   become: no
   command: >
-    gometalinter --install
-  register: gometalinter_result
-  changed_when: gometalinter_result.stderr != ""
+    go/bin/gometalinter --install
+  failed_when: no
   tags:
     - golang
