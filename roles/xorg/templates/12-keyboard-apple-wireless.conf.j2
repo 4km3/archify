@@ -1,13 +1,14 @@
 # {{ ansible_managed }}
 
 Section "InputClass"
-	Identifier	"Apple Wireless Keyboard"
-	MatchIsKeyboard	"yes"
-	MatchProduct	"Apple Wireless Keyboard"
-	Option		"XkbLayout"		"us"
-	Option		"XkbModel"		"apple_laptop"
-	Option		"XkbVariant"		"altgr-intl"
-	Option		"XkbOptions"		"ctrl:swapcaps,compose:lctrl"
+  Identifier	"Apple Wireless Keyboard"
+  MatchIsKeyboard	"on"
+  MatchProduct	"Apple Wireless Keyboard"
+
+  Option		"XkbLayout"		"us"
+  Option		"XkbModel"		"apple_laptop"
+  Option		"XkbVariant"		"altgr-intl"
+  Option		"XkbOptions"		"ctrl:swapcaps,compose:lctrl"
 #	Option		"XkbLayout"		"us,us"
 #	Option		"XkbModel"		"apple_laptop"
 #	Option		"XkbVariant"		"altgr-intl,dvorak"
