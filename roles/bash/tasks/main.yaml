@@ -1,5 +1,5 @@
 ---
-- name: Install /etc/profile.d/homebin.sh
+- name: Install /etc/profile.d/{homebin.sh,gobin.sh}
   template:
     src={{ item }}.j2
     dest=/etc/profile.d/{{ item }}
@@ -8,5 +8,6 @@
     mode=0644
   with_items:
     - homebin.sh
+    - gobin.sh
   tags:
     - bash
