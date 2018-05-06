@@ -106,6 +106,7 @@
         - bootctl --path /mnt/boot install
         - cp -a /mnt/etc/fstab /mnt/etc/fstab.orig
         - arch-chroot /mnt useradd -m -G wheel,log -s /usr/bin/fish {{ user }}
+      failed_when: no
     - name: Populate /mnt/etc/fstab
       shell: genfstab -t PARTUUID -p /mnt >> /mnt/etc/fstab
     - name: Enable no-password sudo for users in wheel group
