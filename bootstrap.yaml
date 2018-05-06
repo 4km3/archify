@@ -26,7 +26,7 @@
     - name: Install tmux
       raw:
         pacman --sync --refresh --needed --noconfirm tmux
-    - name: Determine main block device
+    - name: Identify main block device
       shell: >
         lsblk --nodeps --exclude 7 --sort HOTPLUG --output NAME,HOTPLUG --noheadings | awk '/0$/ { print $1; exit }'
       register: lsblk_output
