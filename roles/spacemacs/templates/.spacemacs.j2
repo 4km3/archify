@@ -61,7 +61,7 @@ This function should only modify configuration layer settings."
      latex
      (markdown :variables markdown-live-preview-engine 'vmd)
      ;;neotree
-     ;; org
+     org
      pdf-tools
      perl5
      puppet
@@ -80,6 +80,7 @@ This function should only modify configuration layer settings."
      systemd
      terraform
      treemacs
+     unicode-fonts
      version-control
      xkcd
      yaml
@@ -214,16 +215,18 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("xos4 Terminus"
-                               :size 28
-                               :weight normal
-                               :width normal
-                               :powerline-scale 1.4)
-   ;; dotspacemacs-default-font '("IBM Plex Mono"
-   ;;                            :size 28
-   ;;                            :weight light
-   ;;                            :width normal
-   ;;                            :powerline-scale 1.4)
+   ;; dotspacemacs-default-font '("xos4 Terminus"
+   ;;                             ;; :size 20
+   ;;                             :size 28
+   ;;                             :weight normal
+   ;;                             :width normal
+   ;;                             :powerline-scale 1.4)
+   dotspacemacs-default-font '("IBM Plex Mono"
+                              ;; :size 22
+                              :size 28
+                              :weight light
+                              :width normal
+                              :powerline-scale 1.4)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -484,23 +487,3 @@ before packages are loaded."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (yasnippet-snippets yapfify yaml-mode xterm-color xkcd ws-butler winum web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen unfill typit mmt treemacs-projectile treemacs-evil treemacs pfuture toml-mode toc-org tagedit systemd symon sudoku string-inflection spaceline-all-the-icons all-the-icons memoize spaceline powerline smeargle slim-mode slack circe oauth2 shell-pop selectric-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restclient-helm restart-emacs rbenv rake rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort puppet-mode pug-mode popwin pippel pipenv pip-requirements persp-mode pdf-tools pcre2el password-generator paradox spinner pacmacs overseer org-bullets open-junk-file ob-restclient ob-ipython ob-http ob-elixir nameless mwim multi-term move-text mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode js2-refactor multiple-cursors js-doc jinja2-mode insert-shebang indent-guide importmagic epc ctable concurrent impatient-mode htmlize hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose window-purpose imenu-list helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio godoctor go-tag go-rename go-guru go-eldoc gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-rust flycheck-pos-tip pos-tip flycheck-mix flycheck-gometalinter flycheck-credo flycheck-bashate flycheck flx-ido flx fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit ghub let-alist with-editor evil-lisp-state evil-lion evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-cleverparens smartparens paredit evil-args evil-anzu anzu eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help erlang emojify ht emoji-cheat-sheet-plus emmet-mode elisp-slime-nav ein skewer-mode request-deferred websocket request deferred js2-mode simple-httpd editorconfig dumb-jump dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diff-hl define-word cython-mode csv-mode counsel-projectile projectile counsel swiper ivy company-web web-completion-data company-terraform terraform-mode hcl-mode company-tern dash-functional tern company-statistics company-shell company-restclient restclient know-your-http-well company-plsense company-go go-mode company-emoji company-auctex company-ansible company-anaconda column-enforce-mode coffee-mode clean-aindent-mode chruby centered-cursor-mode cargo rust-mode bundler inf-ruby browse-at-remote auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed auctex ansible-doc ansible anaconda-mode pythonic f alert log4e gntp alchemist s company dash elixir-mode pkg-info epl aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core ac-ispell auto-complete popup 2048-game which-key use-package org-plus-contrib hydra font-lock+ exec-path-from-shell evil goto-chg undo-tree diminish bind-map bind-key async))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
