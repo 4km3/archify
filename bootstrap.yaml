@@ -28,7 +28,7 @@
         pacman --sync --refresh --needed --noconfirm tmux
     - name: Determine main block device
       shell: >
-        lsblk --nodeps --exclude 7 --sort HOTPLUG --output NAME,HOTPLUG --noheadings | awk '/0/ { print $1 }' | egrep -v sda
+        lsblk --nodeps --exclude 7 --sort HOTPLUG --output NAME,HOTPLUG --noheadings | awk '/0$/ { print $1; exit }'
       register: lsblk_output
     - debug:
         var: lsblk_output
