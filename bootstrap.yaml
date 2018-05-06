@@ -30,8 +30,6 @@
       shell: >
         lsblk --nodeps --exclude 7 --sort HOTPLUG --output NAME,HOTPLUG --noheadings | awk '/0$/ { print $1; exit }'
       register: lsblk_output
-    - debug:
-        var: lsblk_output
     - name: Determine if p prefix is needed for main block device parts
       set_fact:
         target_block_device_part_prefix: p
@@ -181,8 +179,6 @@
       shell: >
         networkctl --no-legend | awk '/wl/ { print $2; exit }'
       register: networkctl_output
-    - debug:
-        var: networkctl_output
     - name: Export wireless interface as a fact
       set_fact:
         wifi_device: "{{ networkctl_output.stdout }}"

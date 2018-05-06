@@ -6,11 +6,6 @@
   register: root_guid
   changed_when: false
 
-- name: Debug show root_guid
-  tags: systemd-boot
-  debug:
-    msg: "{{ root_guid.stdout }}"
-
 - name: Create /boot/loader/entries directory
   tags: systemd-boot
   file:
