@@ -32,10 +32,14 @@
       register: lsblk_output
     - debug:
         var: lsblk_output
+    - name: Determine if p prefix is needed for main block device parts
+      set_fact:
+        target_block_device_part_prefix: p
+      when: "'nvme' in lsblk_output.stdout"
     - name: Export main block device as a fact
       set_fact:
         target_block_device: /dev/{{ lsblk_output.stdout }}
-        target_block_device_base: /dev/{{ lsblk_output.stdout }}p
+        target_block_device_base: /dev/{{ lsblk_output.stdout }}{{ target_block_device_part_prefix | default() }}
     - name: Clear stale EFI boot entries
       command: >
         efibootmgr -B -b "{{ item }}"
