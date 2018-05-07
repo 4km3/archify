@@ -1,14 +1,18 @@
 ---
-- name: Install wpa_supplicant and wpa_supplicant_gui
+- name: Install wpa_supplicant
   pacman:
     name: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
     - wpa_supplicant
-#    - wpa_supplicant_gui
   tags:
     - wpa_supplicant
+
+- name: Install wpa_supplicant_gui
+  become: no
+  command: >
+    yaourt -S --noconfirm wpa_supplicant_gui
 
 - name: Install wpa_supplicant-wlan0.conf
   template:
