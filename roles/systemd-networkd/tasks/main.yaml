@@ -10,13 +10,13 @@
     - { name: dhcpcd,         state: absent  }
     - { name: openresolv,     state: absent  }
 
-- name: Configure wlan0 and eno*
+- name: Configure wl* and en*
   template:
     src: "{{ item }}.j2"
     dest: /etc/systemd/network/{{ item }}
   with_items:
-    - 10-dhcp.network
-    - 10-eth.network
+    - 10-wl.network
+    - 10-en.network
   notify:
     - Reload systemd-networkd
 

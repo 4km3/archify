@@ -3,7 +3,7 @@
 #
 
 [Match]
-Name={{ wired_device | default("eno*") }}
+Name={{ wifi_device | default("wl*") }}
 
 [Network]
 DHCP=ipv4
