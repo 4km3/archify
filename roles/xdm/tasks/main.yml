@@ -5,7 +5,12 @@
     state: installed
   with_items:
     - xorg-xdm
-    - xdm-archlinux
+
+- name: Install xdm-minimalist
+  become: no
+  aur:
+    name: xdm-minimalist
+    skip_installed: yes
 
 - name: Copy Xresources to /etc/X11/xdm
   template:
@@ -18,19 +23,6 @@
   with_items:
     - Xresources
 
-- name: Copy arch.xpm to /etc/X11/xdm/archlinux
-  copy:
-    src: "{{ item }}"
-    dest: /etc/X11/xdm/archlinux/{{ item }}
-    backup: yes
-    owner: root
-    group: root
-    mode: 0644
-  with_items:
-    - arch.xpm
-  tags:
-    - archxpm
-
 - name: Secure Xservers
   lineinfile:
     dest: /etc/X11/xdm/Xservers
@@ -39,7 +31,7 @@
     regexp: '^(:0 local /usr/bin/X) (:0)'
     line: '\1 -nolisten tcp \2'
 
-- name: Enable XDM-archlinux
+- name: Enable XDM-minimalist
   service:
-    name: xdm-archlinux
+    name: xdm-minimalist
     enabled: yes
