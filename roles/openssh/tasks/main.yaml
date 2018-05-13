@@ -14,6 +14,16 @@
   notify:
     - Restart OpenSSH
 
+- name: Restrict HostKeyAlgorithms to ed25519
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    backup: yes
+    insertbefore: '^#HostKey /'
+    regexp: '^HostKeyAlgorithms'
+    line: 'HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-ed25519'
+  notify:
+    - Restart OpenSSH
+
 # - name: Relax root access
 #   lineinfile:
 #     dest: /etc/ssh/sshd_config
