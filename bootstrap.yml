@@ -175,7 +175,7 @@
         port: 22
         host: "{{ inventory_hostname }}"
         search_regex: OpenSSH
-        delay: 10
+        delay: 1
         timeout: 60
     - name: Identify wifi interface
       shell: >
