@@ -34,3 +34,17 @@
     owner: root
     group: root
     mode: 0755
+
+- name: Create rofi config dir
+  tags: rofi
+  become: no
+  file:
+    path: "{{ ansible_user_dir }}/.config/rofi"
+    state: directory
+
+- name: Configure rofi theme
+  tags: rofi
+  become: no
+  copy:
+    content: "rofi.theme: /usr/share/rofi/themes/glue_pro_blue.rasi\n"
+    dest: "{{ ansible_user_dir }}/.config/rofi/config"
