@@ -1,5 +1,6 @@
 ---
 dependencies:
+    - aur
     - intel
     - { role: broadcom, when: has_broadcom is defined and has_broadcom }
     - hostname
@@ -35,6 +36,5 @@ dependencies:
     - golang
     - bash
     - fish
-    - yay
     - todotxt
     - ansible

@@ -2,8 +2,9 @@
 - name: Install todotxt.com
   tags: todotxt
   become: no
-  command: >
-    yaourt --noconfirm -S todotxt
+  aur:
+    name: todotxt
+    skip_installed: yes
 
 - name: Gather facts to refresh ansible_env
   tags: todotxt

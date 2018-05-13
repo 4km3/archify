@@ -2,4 +2,4 @@
 dependencies:
   - infozip
   - xorg
-  - yaourt
+  - aur

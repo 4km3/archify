@@ -10,11 +10,10 @@
 
 - name: Install pam_ssh
   tags: pamssh
-  command: >
-    yaourt --noconfirm -S pam_ssh
-  register: yaourt_result
-  changed_when: yaourt_result.stderr != ""
   become: no
+  aur:
+    name: pam_ssh
+    skip_installed: yes
 
 - name: Enable pam_ssh for XDM
   tags: pamssh

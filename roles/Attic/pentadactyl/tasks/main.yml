@@ -1,28 +1,27 @@
 ---
 - name: Install pentadactyl
-  become: no
-  command: >
-    yaourt --noconfirm -S firefox-pentadactyl-signed
-  register: yaourt_result
-  changed_when: yaourt_result.stderr != ""
   tags:
     - pentadactyl
     - pentadactyl-pkg
+  become: no
+  aur:
+    name: firefox-pentadactyl-signed
+    skip_installed: yes
 
 - name: Gather facts to refresh ansible_env
-  become: no
-  setup:
   tags:
     - pentadactyl
     - pentadactyl-cfg
+  become: no
+  setup:
 
 - name: Install pentadactyl configuration files
+  tags:
+    - pentadactyl
+    - pentadactyl-cfg
   become: no
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/{{ item }}"
   with_items:
     - .pentadactylrc
-  tags:
-    - pentadactyl
-    - pentadactyl-cfg

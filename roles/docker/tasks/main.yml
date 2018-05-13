@@ -9,10 +9,10 @@
 
 - name: Install docker-compose
   tags: docker
-  command: >
-    yaourt --noconfirm -S docker-compose
-  register: yaourt_result
-  changed_when: yaourt_result.stderr != ""
+  become: no
+  aur:
+    name: docker-compose
+    skip_installed: yes
 
 - name: Enable docker service
   tags: docker

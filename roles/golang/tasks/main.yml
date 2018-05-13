@@ -11,8 +11,9 @@
 
 - name: Install Go fonts
   become: no
-  command: >
-    yaourt --noconfirm -S go-fonts-git
+  aur:
+    name: go-fonts-git
+    skip_installed: yes
 
 - name: Install golang helpers
   become: no

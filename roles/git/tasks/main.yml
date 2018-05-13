@@ -8,14 +8,12 @@
     - tig
 
 - name: Install gitflow-avh
-  command: >
-    yaourt --noconfirm -S {{ item }}
-  register: yaourt_result
-  changed_when: yaourt_result.stderr != ""
-  with_items:
-    - gitflow-avh
-    - gitflow-fishcompletion-avh
   become: no
+  aur:
+    name:
+      - gitflow-avh
+      - gitflow-fishcompletion-avh
+    skip_installed: yes
   tags:
     - git
     - gitflow

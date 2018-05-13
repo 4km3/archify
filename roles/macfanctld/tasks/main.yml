@@ -1,13 +1,13 @@
 ---
 - name: Install macfanctld fan control daemon for Mac
+  tags: macfanctld
   become: no
-  command: >
-    yaourt --noconfirm -S {{ item }}
-  register: yaourt_result
-  changed_when: yaourt_result.stderr != ""
-  with_items: macfanctld
+  aur:
+    name: macfanctld
+    skip_installed: yes
 
 - name: Start and enable macfanctld
+  tags: macfanctld
   service:
     name: macfanctld
     state: started

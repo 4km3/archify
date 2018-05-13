@@ -10,5 +10,6 @@
 - name: Install rasdaemon
   tags: intel
   become: no
-  command: >
-    yaourt --noconfirm -S rasdaemon
+  aur:
+    name: rasdaemon
+    skip_installed: yes

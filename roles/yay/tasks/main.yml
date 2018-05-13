@@ -1,6 +1,7 @@
 ---
-- name: Install yay
+- name: Install yay-bin
   tags: yay
   become: no
-  command: >
-    yaourt --noconfirm -S yay-bin
+  aur:
+    name: yay-bin
+    skip_installed: yes

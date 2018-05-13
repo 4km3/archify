@@ -1,5 +1,5 @@
 ---
 dependencies:
     - gnupg
-    - yaourt
+    - aur
     - xdm
