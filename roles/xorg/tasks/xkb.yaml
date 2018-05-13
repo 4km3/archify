@@ -12,3 +12,4 @@
     - 11-keyboard-apple-internal.conf
     - 12-keyboard-apple-wireless.conf
     - 13-keyboard-hhk.conf
+    - 30-touchpad.conf

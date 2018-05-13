@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+Section              "InputClass"
+  Identifier         "touchpad"
+  MatchDevicePath    "/dev/input/event*"
+  MatchIsTouchpad    "on"
+  Driver             "libinput"
+
+  Option             "Tapping"              "on"
+  Option             "DisableWhileTyping"   "on"
+EndSection
