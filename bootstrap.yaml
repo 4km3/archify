@@ -163,9 +163,11 @@
       prompt: Enter your password
       encrypt: "sha512_crypt"
       private: yes
+      confirm: yes
     - name: main_user_passphrase
       prompt: Enter your passphrase
       private: yes
+      confirm: yes
   pre_tasks:
     - name: Wait for container to become available again
       local_action:
