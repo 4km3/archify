@@ -14,7 +14,7 @@
   command: >
     yaourt -S --noconfirm wpa_supplicant_gui
 
-- name: Install wpa_supplicant-wlan0.conf
+- name: Install wpa_supplicant-{{ wifi_device }}.conf
   template:
     src: "{{ item.template }}"
     dest: /etc/wpa_supplicant/{{ item.dest }}
@@ -29,7 +29,7 @@
   tags:
     - wpa_supplicant
 
-- name: Enable wpa_supplicant@wlan0.service
+- name: Enable wpa_supplicant@{{ wifi_device }}.service
   service:
     name: "{{ service_name }}"
     enabled: yes
