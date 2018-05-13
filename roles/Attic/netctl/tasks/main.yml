@@ -1,3 +1,3 @@
 ---
-- include: wireless.yaml
+- include: wireless.yml
   when: "'wlan0' in ansible_interfaces"
