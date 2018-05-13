@@ -9,6 +9,11 @@
   tags:
     - golang
 
+- name: Install Go fonts
+  become: no
+  command: >
+    yaourt --noconfirm -S go-fonts-git
+
 - name: Install golang helpers
   become: no
   command: >
