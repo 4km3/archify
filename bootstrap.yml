@@ -177,13 +177,11 @@
         search_regex: OpenSSH
         delay: 1
         timeout: 60
-    - name: Identify wifi interface
-      shell: >
-        networkctl --no-legend | awk '/wl/ { print $2; exit }'
-      register: networkctl_output
+    - name: Gather facts
+      setup:
     - name: Export wireless interface as a fact
       set_fact:
-        wifi_device: "{{ networkctl_output.stdout }}"
+        wifi_device: "{{ ansible_interfaces | select('match', '^wl') | first | default(omit) }}"
   roles:
     - role: credentials
       user_password: "{{ main_user_password }}"
