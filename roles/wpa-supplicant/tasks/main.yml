@@ -1,4 +1,9 @@
 ---
+- name: Assert that wifi_device is defined
+  assert:
+    that: "wifi_device is defined"
+    msg: "'wifi_device' must be defined"
+
 - name: Install wpa_supplicant
   pacman:
     name: "{{ item }}"
