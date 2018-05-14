@@ -1,7 +1,5 @@
 #%PAM-1.0
-#
-# {{ ansible_managed }}
-#
+{{ ansible_managed | comment }}
 auth		sufficient	pam_unix.so	try_first_pass
 auth		sufficient	pam_ssh.so	try_first_pass 
 auth		required	pam_nologin.so

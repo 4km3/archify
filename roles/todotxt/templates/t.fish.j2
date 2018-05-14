@@ -1,5 +1,4 @@
-# {{ ansible_managed }}
-
+{{ ansible_managed | comment }}
 function t --description='Short for todo.sh' --wraps=todo.sh
 	todo.sh  $argv;
 end

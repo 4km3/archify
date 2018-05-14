@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 : ${GOBIN:=~/go/bin}
 if [ -d "$GOBIN" ]; then
     PATH="$GOBIN:$PATH"

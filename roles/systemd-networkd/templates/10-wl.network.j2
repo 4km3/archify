@@ -1,7 +1,4 @@
-#
-# {{ ansible_managed }}
-#
-
+{{ ansible_managed | comment }}
 [Match]
 Name={{ wifi_device | default("wl*") }}
 

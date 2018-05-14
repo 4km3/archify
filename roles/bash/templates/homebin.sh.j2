@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 HOMEBIN=~/.local/bin
 if [ -d "$HOMEBIN" ]; then
     PATH="$HOMEBIN:$PATH"
