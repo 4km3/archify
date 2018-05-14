@@ -1,5 +1,5 @@
 ---
-- name: Install emacs, bdf-unifont and poppler
+- name: Install emacs, hunspell-en, bdf-unifont and poppler
   tags: spacemacs
   become: yes
   pacman:
@@ -7,6 +7,7 @@
     state: latest
   with_items:
     - emacs
+    - hunspell-en
     - bdf-unifont
     - poppler
     - poppler-glib
@@ -15,6 +16,13 @@
   tags: spacemacs
   become: no
   setup:
+
+- name: Install nodejs-tern
+  tags: spacemacs
+  become: no
+  aur:
+    skip_installed: yes
+    name: nodejs-tern
 
 - name: Clone Spacemacs
   tags: spacemacs
