@@ -31,7 +31,6 @@ dependencies:
     - docker
     - mlocate
     - pkgfile
-    - nginx
     - spacemacs
     - golang
     - bash
