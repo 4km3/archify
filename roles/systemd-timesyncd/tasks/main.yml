@@ -1,6 +1,4 @@
 ---
 - name: Enable and start systemd-timesyncd
-  service:
-    name: systemd-timesyncd
-    enabled: yes
-    state: started
+  command: >
+    timedatectl set-ntp true
