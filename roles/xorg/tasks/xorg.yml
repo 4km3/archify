@@ -2,7 +2,6 @@
 - name: Install xorg
   tags:
     - xorg
-    - cleanup
   pacman:
     name: "{{ item }}"
     state: installed
@@ -23,44 +22,3 @@
     - firefox
     - arch-firefox-search
     - chromium
-
-- name: Remove unneeded xorg packages
-  tags:
-    - xorg
-    - cleanup
-  pacman:
-    name: "{{ item }}"
-    state: absent
-    recurse: yes
-  with_items:
-    - brltty
-    - xf86-input-vmmouse
-    - xf86-input-void
-    - xf86-video-ark
-    - xf86-video-ast
-    - xf86-video-ati
-    - xf86-video-cirrus
-    - xf86-video-dummy
-    - xf86-video-fbdev
-    - xf86-video-glint
-    - xf86-video-i128
-    - xf86-video-mach64
-    - xf86-video-mga
-    - xf86-video-neomagic
-    - xf86-video-nouveau
-    - xf86-video-nv
-    - xf86-video-openchrome
-    - xf86-video-r128
-    - xf86-video-savage
-    - xf86-video-siliconmotion
-    - xf86-video-sis
-    - xf86-video-tdfx
-    - xf86-video-trident
-    - xf86-video-vesa
-    - xf86-video-vmware
-    - xf86-video-voodoo
-    - xorg-server-devel
-    - xorg-server-xdmx
-    - xorg-server-xephyr
-    - xorg-server-xnest
-    - xorg-server-xvfb
