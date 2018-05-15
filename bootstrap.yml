@@ -99,7 +99,7 @@
       command: "{{ item }}"
       with_items:
         - pacstrap /mnt base base-devel intel-ucode linux-lts python openssh btrfs-progs fish
-        - rm -f /mnt/etc/localtime
+        - rm -f /mnt/etc/localtime /mnt/etc/locale.conf
         - systemd-firstboot --root=/mnt --locale=en_US.UTF-8 --timezone=Europe/Madrid --hostname={{ hostvars[inventory_hostname]['ansible_host'] }} --setup-machine-id
         - bootctl --path /mnt/boot install
         - cp -a /mnt/etc/fstab /mnt/etc/fstab.orig

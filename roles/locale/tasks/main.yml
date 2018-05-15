@@ -3,14 +3,3 @@
   locale_gen:
     name: "{{ locale_lang }}"
     state: present
-
-- name: Set en_US.UTF-8 locale as default
-  template:
-    src: "{{ item }}.j2"
-    dest: "/etc/{{ item }}"
-    backup: yes
-    owner: root
-    group: root
-    mode: 0644
-  with_items:
-    - locale.conf
