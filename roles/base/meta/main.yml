@@ -10,6 +10,7 @@ dependencies:
     - systemd-resolved
     - systemd-timesyncd
     - openssh
+    - opensc
     - { role: bluetooth, when: has_bt is defined and has_bt }
     - { role: macfanctld, when: is_mac is defined and is_mac }
     - initcpio
