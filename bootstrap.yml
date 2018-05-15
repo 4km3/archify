@@ -68,13 +68,13 @@
         - '@home'
     - name: Umount /mnt
       mount:
-        name: /mnt
+        path: /mnt
         src: "{{ target_block_device_base }}3"
         fstype: btrfs
         state: unmounted
     - name: Mount root subvolume on /mnt
       mount:
-        name: /mnt
+        path: /mnt
         src: "{{ target_block_device_base }}3"
         fstype: btrfs
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@
@@ -82,14 +82,14 @@
         state: mounted
     - name: Mount boot subvolume on /mnt/boot
       mount:
-        name: /mnt/boot
+        path: /mnt/boot
         src: "{{ target_block_device_base }}1"
         fstype: vfat
         opts: rw,noatime,fmask=0133,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro
         state: mounted
     - name: Mount home subvolume on /mnt/home
       mount:
-        name: /mnt/home
+        path: /mnt/home
         src: "{{ target_block_device_base }}3"
         fstype: btrfs
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@home
