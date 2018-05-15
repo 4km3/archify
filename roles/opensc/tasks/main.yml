@@ -1,0 +1,24 @@
+---
+- name: Install opensc and friends
+  tags:
+    opensc
+  pacman:
+    name:
+      - opensc
+      - ccid
+      - pcsc-tools
+      - ca-certificates-utils
+
+- name: Install ca-certificates-{fnmt,dnie}
+  become: no
+  aur:
+    name:
+      - ca-certificates-fnmt
+      - ca-certificates-dnie
+    skip_installed: true
+
+- name: Enable pcscd.service
+  service:
+    name: pcscd
+    enabled: yes
+    state: started
