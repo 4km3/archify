@@ -11,6 +11,12 @@
     - xorg
     - xorg-apps
     - xorg-xeyes
+    - xorg-appres
+    - xorg-xfd
+    - xorg-xlsfonts
+    - xorg-xlsclients
+    - xorg-xload
+    - xorg-xmag
     - mesa
     - mesa-demos
     - rxvt-unicode
