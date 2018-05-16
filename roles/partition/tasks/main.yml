@@ -13,12 +13,10 @@
             {{ main_block_device }}
 
 - name: Create ESP filesystem
-  command: >
-    mkfs.fat -F32 -nESP {{ main_block_device_base }}1
-#  filesystem:
-#    dev: "{{ main_block_device_base }}1"
-#    fstype: fat
-#    opts: -F32 -nESP
+  filesystem:
+    dev: "{{ main_block_device_base }}1"
+    fstype: vfat
+    opts: -F32 -nESP
 
 - name: Create swap volume
   command: >
