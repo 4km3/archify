@@ -1,11 +1,12 @@
 ---
 - name: Install git and tig
-  pacman:
-    name: "{{ item }}"
-    state: installed
-  with_items:
+  tags:
     - git
     - tig
+  pacman:
+    name:
+      - git
+      - tig
 
 - name: Install gitflow-avh
   become: no

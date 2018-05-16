@@ -2,13 +2,11 @@
 - name: Install spectrwm, rofi, scrot and slock
   tags: spectrwm
   pacman:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - spectrwm
-    - rofi
-    - scrot
-    - slock
+    name:
+      - spectrwm
+      - rofi
+      - scrot
+      - slock
 
 - name: Configure spectrwm
   tags: spectrwm

@@ -2,4 +2,3 @@
 - name: Install Terminus font
   pacman:
     name: terminus-font
-    state: installed

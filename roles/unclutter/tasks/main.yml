@@ -1,7 +1,6 @@
 ---
 - name: Install unclutter
   pacman:
-    state: installed
     name: unclutter
   tags:
     - unclutter

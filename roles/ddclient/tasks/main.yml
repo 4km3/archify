@@ -1,7 +1,6 @@
 - name: Install ddclient
   pacman:
     name: ddclient
-    state: present
   tags:
     - ddclient
 

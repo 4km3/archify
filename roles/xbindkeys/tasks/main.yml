@@ -1,7 +1,6 @@
 ---
 - name: Install xbindkeys
   pacman:
-    state: installed
     name: xbindkeys
   tags:
     - xbindkeys

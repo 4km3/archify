@@ -3,10 +3,8 @@
   tags: fish
   become: yes
   pacman:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - fish
+    name:
+      - fish
 
 - name: Add ~/.local/bin, ~/go/bin to PATH
   tags: fish

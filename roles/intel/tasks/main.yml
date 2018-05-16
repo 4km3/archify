@@ -2,10 +2,7 @@
 - name: Install intel-ucode
   tags: intel
   pacman:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - intel-ucode
+    name: intel-ucode
 
 - name: Install rasdaemon
   tags: intel

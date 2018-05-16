@@ -2,10 +2,7 @@
 - name: Install docker
   tags: docker
   pacman:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - docker
+    name: docker
 
 - name: Install docker-compose
   tags: docker

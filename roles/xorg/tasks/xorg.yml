@@ -3,29 +3,27 @@
   tags:
     - xorg
   pacman:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - ttf-dejavu
-    - xf86-video-intel
-    - xorg
-    - xorg-apps
-    - xorg-xeyes
-    - xorg-appres
-    - xorg-xfd
-    - xorg-xlsfonts
-    - xorg-xlsclients
-    - xorg-xload
-    - xorg-xmag
-    - mesa
-    - mesa-demos
-    - rxvt-unicode
-    - libva-intel-driver
-    - libva
-    - mpv
-    - mkvtoolnix-cli
-    - mkvtoolnix-gui
-    - firefox
-    - arch-firefox-search
-    - chromium
-    - feh
+    name:
+      - ttf-dejavu
+      - xf86-video-intel
+      - xorg
+      - xorg-apps
+      - xorg-xeyes
+      - xorg-appres
+      - xorg-xfd
+      - xorg-xlsfonts
+      - xorg-xlsclients
+      - xorg-xload
+      - xorg-xmag
+      - mesa
+      - mesa-demos
+      - rxvt-unicode
+      - libva-intel-driver
+      - libva
+      - mpv
+      - mkvtoolnix-cli
+      - mkvtoolnix-gui
+      - firefox
+      - arch-firefox-search
+      - chromium
+      - feh

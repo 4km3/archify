@@ -3,15 +3,13 @@
   tags: spacemacs
   become: yes
   pacman:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - emacs
-    - ctags
-    - hunspell-en
-    - bdf-unifont
-    - poppler
-    - poppler-glib
+    name:
+      - emacs
+      - ctags
+      - hunspell-en
+      - bdf-unifont
+      - poppler
+      - poppler-glib
 
 - name: Gather facts to refresh ansible_env
   tags: spacemacs

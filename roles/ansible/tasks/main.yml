@@ -2,10 +2,9 @@
 - name: Install ansible and friends
   tags: ansible
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - ansible
-    - ansible-lint
-    - cowsay
-    - python-passlib
-    - python-dnspython
+    name:
+      - ansible
+      - ansible-lint
+      - cowsay
+      - python-passlib
+      - python-dnspython

@@ -3,7 +3,6 @@
   tags: pkgfile
   pacman:
     name: pkgfile
-    state: latest
 
 - name: Update pkgfile cache
   tags: pkgfile

@@ -2,12 +2,11 @@
 - name: Install MPD and clients
   tags: mpd
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - mpd
-    - mpc
-    - ncmpc
-    - ncmpcpp
+    name:
+      - mpd
+      - mpc
+      - ncmpc
+      - ncmpcpp
 
 - name: Create override dir for mpd.socket
   tags: mpd

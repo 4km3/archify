@@ -2,7 +2,6 @@
 - name: Install sudo
   pacman:
     name: sudo
-    state: installed
 
 - name: Enable password-less sudo for wheel
   template:

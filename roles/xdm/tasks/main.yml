@@ -1,10 +1,7 @@
 ---
 - name: Install XDM
   pacman:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - xorg-xdm
+    name: xorg-xdm
 
 - name: Install xdm-minimalist
   become: no

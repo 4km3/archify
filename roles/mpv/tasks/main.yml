@@ -3,7 +3,6 @@
   become: yes
   pacman:
     name: mpv
-    state: present
   tags: mpv
 
 - name: Gather facts to refresh ansible_env

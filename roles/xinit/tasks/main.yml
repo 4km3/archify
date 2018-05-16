@@ -2,7 +2,6 @@
 - name: Install xorg-xinit
   pacman:
     name: xorg-xinit
-    state: installed
 
 - name: Install global .Xresources
   tags: xresources

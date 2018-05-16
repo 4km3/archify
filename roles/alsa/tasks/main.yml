@@ -2,10 +2,7 @@
 - name: Install alsa-utils
   tags: alsa
   pacman:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - alsa-utils
+    name: alsa-utils
 
 - name: Gather facts to refresh ansible_env
   tags: alsa

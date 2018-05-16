@@ -2,7 +2,6 @@
 - name: Install OpenSSH
   pacman:
     name: openssh
-    state: installed
 
 - name: Configure OpenSSH
   lineinfile:

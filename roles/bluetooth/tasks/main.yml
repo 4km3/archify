@@ -1,12 +1,9 @@
 ---
 - name: Install bluez and bluez-utils
   pacman:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - bluez
-    - bluez-utils
-
+    name:
+      - bluez
+      - bluez-utils
 
 - name: Enable bluetooth controller on startup
   template:
