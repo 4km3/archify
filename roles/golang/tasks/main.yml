@@ -37,6 +37,6 @@
   become: no
   command: >
     go/bin/gometalinter --install
-  failed_when: no
+  ignore_errors: yes
   tags:
     - golang

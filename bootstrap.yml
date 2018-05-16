@@ -42,7 +42,7 @@
       command: >
         efibootmgr -B -b "{{ item }}"
       with_sequence: start=0 end=5
-      failed_when: false
+      ignore_errors: yes
   roles:
     - pacman
     - role: partition
@@ -104,7 +104,7 @@
         - bootctl --path /mnt/boot install
         - cp -a /mnt/etc/fstab /mnt/etc/fstab.orig
         - arch-chroot /mnt useradd -m -G wheel,log -s /usr/bin/fish {{ user }}
-      failed_when: no
+      ignore_errors: yes
     - name: Populate /mnt/etc/fstab
       shell: genfstab -t PARTUUID -p /mnt >> /mnt/etc/fstab
     - name: Enable no-password sudo for users in wheel group

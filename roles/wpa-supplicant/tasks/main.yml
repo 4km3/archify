@@ -36,7 +36,7 @@
     name: "{{ service_name }}"
     enabled: yes
     state: started
-  failed_when: false
+  ignore_errors: yes
   tags:
     - wpa_supplicant
     - DEBUG

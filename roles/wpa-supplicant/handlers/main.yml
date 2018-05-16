@@ -3,4 +3,4 @@
   service:
     name="{{ service_name }}"
     state=restarted
-  failed_when: false
+  ignore_errors: yes

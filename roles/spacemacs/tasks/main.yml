@@ -32,7 +32,7 @@
     repo: "{{ spacemacs_repo }}"
     version: "{{ spacemacs_branch }}"
     dest: "{{ ansible_user_dir }}/.emacs.d"
-  failed_when: false
+  ignore_errors: yes
 
 - name: Patch Spacemacs
   tags: spacemacs
