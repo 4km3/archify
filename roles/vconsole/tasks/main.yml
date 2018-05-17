@@ -1,20 +1,15 @@
 ---
-- name: Copy us keymap with CTRL and CAPS keys swapped
-  copy:
-    src: "{{ item }}"
-    dest: /usr/share/kbd/keymaps/i386/qwerty/{{ item }}
-    owner: root
-    group: root
-    mode: 0644
-  with_items:
-    - us-swap-ctrl-caps.map.gz
-
-- name: Configure console font and keymap
+- name: Copy include keymap with CTRL and CAPS_LOCK swapped, configure vconsole font and keymap
+  tags:
+    - vconsole
   template:
-    src: "{{ item }}.j2"
-    dest: /etc/{{ item }}
+    src: "{{ item.name }}.j2"
+    dest: "{{ item.dest }}/{{ item.name }}"
     owner: root
     group: root
     mode: 0644
   with_items:
-    - vconsole.conf
+    - { name: swap.ctrl-caps, dest: /usr/share/kbd/keymaps/include }
+    - { name: vconsole.conf,  dest: /etc }
+  notify:
+    - Restart systemd-vconsole-setup

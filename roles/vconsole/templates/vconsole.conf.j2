@@ -1,4 +1,4 @@
 {{ ansible_managed | comment }}
-
 KEYMAP={{ vconsole_keymap | default("us") }}
-FONT=ter-124n
+KEYMAP_TOGGLE={{ vconsole_keymap_toggle | default("") }}
+FONT={{ vconsole_font | default("ter-124n") }}
