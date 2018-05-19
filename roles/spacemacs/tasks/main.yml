@@ -51,3 +51,13 @@
     dest: "{{ ansible_user_dir }}/{{ item }}"
   with_items:
     - .spacemacs
+
+- name: Install packages
+  tags: spacemacs
+  become: no
+  shell: >
+    yes | emacs --batch --load={{ ansible_user_dir }}/.emacs.d/init.el
+  loop:
+    - 0
+    - 1
+  ignore_errors: yes
