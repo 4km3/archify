@@ -13,7 +13,7 @@
     owner=root
     group=root
     mode=0644
-  with_items:
+  loop:
     - dnsmasq.conf
   notify:
     - Restart dnsmasq
@@ -27,6 +27,6 @@
     owner=root
     group=root
     mode=0644
-  with_items:
+  loop:
     - resolv.conf.head
     - resolv.conf.tail

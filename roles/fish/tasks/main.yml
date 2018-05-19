@@ -11,7 +11,7 @@
   template:
     src: "{{ item }}.j2"
     dest: /etc/fish/conf.d/{{ item }}
-  with_items:
+  loop:
     - homebin.fish
     - gobin.fish
 
@@ -33,7 +33,7 @@
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/.config/fish/{{ item }}"
-  with_items:
+  loop:
     - config.fish
 
 - name: Configure fish prompt

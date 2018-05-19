@@ -20,7 +20,7 @@
     owner: root
     group: root
     mode: 0644
-  with_items:
+  loop:
     - nginx.conf
   notify:
     - Restart nginx

@@ -20,7 +20,7 @@
   template:
     src: "{{ item.name }}.j2"
     dest: "{{ item.path }}/{{ item.name }}"
-  with_items:
+  loop:
     - { name: override.conf, path: /etc/systemd/system/mpd.socket.d/ }
     - { name: mpd.conf,      path: /etc/                             }
 
@@ -30,6 +30,6 @@
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/.ncmpcpp/{{ item }}"
-  with_items:
+  loop:
     - bindings
     - config

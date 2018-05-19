@@ -49,7 +49,7 @@
     force: no
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/{{ item }}"
-  with_items:
+  loop:
     - .spacemacs
 
 - name: Install packages

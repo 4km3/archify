@@ -3,7 +3,7 @@
   pacman:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
-  with_items:
+  loop:
     - { name: iw,             state: present }
     - { name: wireless_tools, state: absent  }
     - { name: netctl,         state: absent  }
@@ -14,7 +14,7 @@
   template:
     src: "{{ item }}.j2"
     dest: /etc/systemd/network/{{ item }}
-  with_items:
+  loop:
     - 10-wl.network
     - 10-en.network
   notify:

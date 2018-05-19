@@ -12,6 +12,6 @@
     owner: root
     group: root
     mode: 0644
-  with_items:
+  loop:
     - .Xresources
     - base16-spacemacs.Xresources.WIP

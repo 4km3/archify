@@ -3,5 +3,5 @@
   pacman:
     name: "{{ item }}"
     state: installed
-  with_items:
-    - yaourt 
+  loop:
+    - yaourt

@@ -12,7 +12,7 @@
     owner: root
     group: root
     mode: 0755
-  with_items:
+  loop:
     - 80-xbindkeys.sh
   tags:
     - xbindkeys
@@ -28,7 +28,7 @@
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/{{ item }}"
-  with_items:
+  loop:
     - .xbindkeysrc
   tags:
     - xbindkeys

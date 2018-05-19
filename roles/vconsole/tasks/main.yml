@@ -8,7 +8,7 @@
     owner: root
     group: root
     mode: 0644
-  with_items:
+  loop:
     - { name: swap.ctrl-caps, dest: /usr/share/kbd/keymaps/include }
     - { name: vconsole.conf,  dest: /etc }
   notify:

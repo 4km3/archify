@@ -21,7 +21,7 @@
   changed_when: goget_result.stderr != ""
   tags:
     - golang
-  with_items:
+  loop:
     - github.com/nsf/gocode
     - github.com/rogpeppe/godef
     - golang.org/x/tools/cmd/guru

@@ -4,7 +4,7 @@
     dest: "/etc/{{ item }}"
     src: "{{ item }}.j2"
     backup: yes
-  with_items:
+  loop:
     - mkinitcpio.conf
   notify:
     - Regenerate initcpio

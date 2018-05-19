@@ -3,7 +3,7 @@
   pacman:
     name={{ item }}
     state=installed
-  with_items:
+  loop:
     - wpa_supplicant
     - wpa_actiond
 

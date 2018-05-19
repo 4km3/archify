@@ -7,7 +7,7 @@
     owner: root
     group: root
     mode: 0644
-  with_items:
+  loop:
     - 10-keyboard-defaults.conf
     - 11-keyboard-apple-internal.conf
     - 12-keyboard-apple-wireless.conf

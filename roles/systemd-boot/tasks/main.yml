@@ -24,7 +24,7 @@
   template:
     src: "{{ item }}.conf.j2"
     dest: /mnt/boot/loader/entries/{{ item }}.conf
-  with_items:
+  loop:
     - arch
     - arch-fallback
     - arch-lts

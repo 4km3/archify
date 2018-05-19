@@ -7,5 +7,5 @@
   template:
     src: '{{ item }}.j2'
     dest: '/etc/xdg/termite/{{ item }}'
-  with_items:
+  loop:
     - config

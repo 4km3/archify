@@ -21,7 +21,7 @@
     path: /usr/local/bin/{{ item }}
     state: link
     backup: yes
-  with_items:
+  loop:
     - screenshot.sh
 
 - name: Enable spectrwm

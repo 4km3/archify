@@ -15,7 +15,7 @@
         module: known_hosts
         host: "{{ item }}"
         state: absent
-      with_items:
+      loop:
         - "{{ ansible_host }}"
         - "{{ lookup('dig', ansible_host) }}"
     - name: Add target host ssh pubkey fingerprint to our known_hosts
@@ -63,7 +63,7 @@
       args:
         chdir: /mnt
         creates: /mnt/{{ item }}
-      with_items:
+      loop:
         - '@'
         - '@home'
     - name: Umount /mnt
@@ -97,7 +97,7 @@
         state: mounted
     - name: pacstrap, create main user
       command: "{{ item }}"
-      with_items:
+      loop:
         - pacstrap /mnt base base-devel intel-ucode linux-lts python openssh btrfs-progs fish
         - rm -f /mnt/etc/localtime /mnt/etc/locale.conf
         - systemd-firstboot --root=/mnt --locale=en_US.UTF-8 --timezone=Europe/Madrid --hostname={{ hostvars[inventory_hostname]['ansible_host'] }} --setup-machine-id

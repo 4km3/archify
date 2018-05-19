@@ -22,6 +22,6 @@
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/.config/mpv/{{ item }}"
-  with_items:
+  loop:
     - config
   tags: mpv

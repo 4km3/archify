@@ -32,7 +32,7 @@
     owner: root
     group: root
     mode: 0644
-  with_items:
+  loop:
     - 50-org.libvirt.unix.manage.rules
 
 - name: Enable libvirtd and libvirt-guests
@@ -41,7 +41,7 @@
     name: "{{ item }}"
     enabled: yes
     state: started
-  with_items:
+  loop:
     - libvirtd
     - libvirt-guests
 
