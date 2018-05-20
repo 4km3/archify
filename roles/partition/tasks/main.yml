@@ -13,9 +13,9 @@
 - name: Partition drive for EFI
   tags: sgdisk
   command: >
-    sgdisk  -n 0:0:+200M  -t 0:ef00 -c 0:'EFI System'
-            -n 0:0:+8G    -t 0:8200 -c 0:swap
-            -n 0:0:0      -t 0:8304 -c 0:root
+    sgdisk  --new=0:0:+200M  --typecode=0:ef00 --change-name=0:'EFI System'
+            --new=0:0:+8G    --typecode=0:8200 --change-name=0:swap
+            --new=0:0:0      --typecode=0:8304 --change-name=0:root
             {{ main_block_device }}
 
 - name: Create ESP filesystem
