@@ -5,6 +5,11 @@
     blkdiscard {{ main_block_device }}
   when: "'vda' not in main_block_device"
 
+- name: Zap GPT and MBR
+  tags: sgdisk
+  command: >
+    sgdisk --zap-all {{ main_block_device }}
+
 - name: Partition drive for EFI
   tags: sgdisk
   command: >
