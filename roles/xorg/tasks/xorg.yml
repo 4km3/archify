@@ -6,6 +6,7 @@
     name:
       - ttf-dejavu
       - xf86-video-intel
+      - xf86-video-qxl
       - xorg
       - xorg-apps
       - xorg-xeyes
@@ -26,4 +27,6 @@
       - firefox
       - arch-firefox-search
       - chromium
+      - arandr
       - feh
+      - meld
