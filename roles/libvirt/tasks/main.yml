@@ -10,6 +10,7 @@
       - dnsmasq
       - openbsd-netcat
       - qemu
+      - qemu-guest-agent
       - ebtables
       - dmidecode
 
