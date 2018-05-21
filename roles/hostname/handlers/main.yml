@@ -1,4 +1,4 @@
 ---
 - name: Set hostname
-  command: >
+  command:
     hostname -F /etc/hostname

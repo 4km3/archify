@@ -55,6 +55,6 @@
 - name: Install packages
   tags: spacemacs
   become: no
-  command: >
+  command:
     emacs --batch --load={{ ansible_user_dir }}/.emacs.d/init.el
   ignore_errors: yes

@@ -39,7 +39,7 @@
         target_block_device: /dev/{{ lsblk_output.stdout }}
         target_block_device_base: /dev/{{ lsblk_output.stdout }}{{ target_block_device_part_prefix | default() }}
     - name: Clear stale EFI boot entries
-      command: >
+      command:
         efibootmgr -B -b "{{ item }}"
       with_sequence: start=0 end=5
       ignore_errors: yes
@@ -58,7 +58,7 @@
         opts: noatime,ssd,autodefrag,compress=lzo,space_cache
         state: mounted
     - name: Create btrfs subvolumes
-      command: >
+      command:
         btrfs subvolume create {{ item }}
       args:
         chdir: /mnt
@@ -145,10 +145,10 @@
         name: sshd
         state: stopped
     - name: Enable sshd on /mnt
-      command: >
+      command:
         arch-chroot /mnt systemctl enable sshd
     - name: Boot new system on /mnt on a container
-      command: >
+      command:
         /usr/bin/tmux new-session -s local -n container -d systemd-nspawn --boot --directory=/mnt
 # Terminate:
 #        "/usr/bin/tmux send-keys -t local:container C-] C-] C-]"

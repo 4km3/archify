@@ -2,7 +2,7 @@
 - name: Install Wolfgang Rosenauer GPG key
   tags: pamssh
   become: no
-  command: >
+  command:
     gpg --keyserver hkp://eu.pool.sks-keyservers.net --recv-keys 180F6A5B3EDE742E
   register: gpg_output
   until: gpg_output is success

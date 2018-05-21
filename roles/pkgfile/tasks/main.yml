@@ -6,7 +6,7 @@
 
 - name: Update pkgfile cache
   tags: pkgfile
-  command: >
+  command:
     pkgfile --update
 
 - name: Enable pkgfile-update.timer

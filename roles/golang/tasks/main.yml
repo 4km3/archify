@@ -15,7 +15,7 @@
 
 - name: Install golang helpers
   become: no
-  command: >
+  command:
     go get -u {{ item }}
   register: goget_result
   changed_when: goget_result.stderr != ""
@@ -35,7 +35,7 @@
 
 - name: Setup gometalinter
   become: no
-  command: >
+  command:
     go/bin/gometalinter --install
   ignore_errors: yes
   tags:

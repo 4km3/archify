@@ -1,4 +1,4 @@
 ---
 - name: Enable and start systemd-timesyncd
-  command: >
+  command:
     timedatectl set-ntp true

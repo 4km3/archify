@@ -20,7 +20,7 @@
     state: stopped
 
 - name: Set the time
-  command: >
+  command:
     ntpdate {{ ntp_server }}
 
 - name: Start ntpd
