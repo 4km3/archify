@@ -6,5 +6,12 @@
       - ansible
       - ansible-lint
       - cowsay
+      - sshpass
       - python-passlib
+      - python-pyopenssl
+      - python-netaddr
+      - python-systemd
       - python-dnspython
+      - python-boto3
+      - python-jmespath
+      - acme-tiny
