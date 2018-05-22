@@ -196,7 +196,7 @@
       ignore_errors: yes
 
 - name: Reboot host and wait for it to come back
-  tags: bootstrap-WIP
+  tags: bootstrap
   hosts: bootstrap
   gather_facts: no
   tasks:
