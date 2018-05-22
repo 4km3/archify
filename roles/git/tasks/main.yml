@@ -1,5 +1,5 @@
 ---
-- name: Install git and tig
+- name: Install git, tig and gitg
   tags:
     - git
     - tig
@@ -7,6 +7,7 @@
     name:
       - git
       - tig
+      - gitg
 
 - name: Install gitflow-avh
   become: no
