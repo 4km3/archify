@@ -16,6 +16,7 @@
       - xorg-xlsclients
       - xorg-xload
       - xorg-xmag
+      - xclip
       - mesa
       - mesa-demos
       - rxvt-unicode
