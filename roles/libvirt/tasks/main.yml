@@ -11,10 +11,11 @@
       - openbsd-netcat
       - qemu
       - qemu-guest-agent
+      - ovmf
       - ebtables
       - dmidecode
 
-- name: Config qemu
+- name: Config qemu - root user
   tags: libvirt
   lineinfile:
     dest: /etc/libvirt/qemu.conf
@@ -23,6 +24,17 @@
     state: present
     regexp: '^#?(user = "root")'
     line: '\1'
+
+- name: Config qemu - UEFI settings
+  tags: libvirt
+  blockinfile:
+    dest: /etc/libvirt/qemu.conf
+    backup: yes
+    insertbefore: "#nvram = \\["
+    block: |
+      nvram = [
+          "/usr/share/ovmf/x64/OVMF_CODE.fd:/usr/share/ovmf/x64/OVMF_VARS.fd"
+      ]
 
 - name: Install polkit rules file
   tags: libvirt
