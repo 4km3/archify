@@ -1,0 +1,11 @@
+{{ ansible_managed | comment }}
+Section "InputClass"
+  Identifier		"Microdia"
+  MatchIsKeyboard	"on"
+  MatchDevicePath	"/dev/input/event*"
+  MatchProduct		"      USB Keyboard"
+# MatchVendor		"Microdia"
+
+  Option		"XkbLayout"	"es"
+  Option		"XkbOptions"	"caps:capslock,ctrl:aa_ctrl"
+EndSection
