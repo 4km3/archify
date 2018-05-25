@@ -1,3 +1,4 @@
 ---
 spacemacs_repo: https://github.com/syl20bnr/spacemacs.git
 spacemacs_branch: develop
+spacemacs_dotdir: .spacemacs.d

@@ -42,15 +42,22 @@
     basedir: "{{ ansible_user_dir }}/.emacs.d"
     strip: 1
 
+- name: Create ~/.spacemacs.d config dir
+  tags: spacemacs
+  become: no
+  file:
+    state: directory
+    path: "{{ ansible_user_dir }}/{{ spacemacs_dotdir }}"
+
 - name: Configure Spacemacs
   tags: spacemacs
   become: no
   template:
     force: no
     src: "{{ item }}.j2"
-    dest: "{{ ansible_user_dir }}/{{ item }}"
+    dest: "{{ ansible_user_dir }}/{{ spacemacs_dotdir }}/{{ item }}"
   loop:
-    - .spacemacs
+    - init.el
 
 - name: Install packages
   tags: spacemacs
