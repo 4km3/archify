@@ -1,11 +1,12 @@
 ---
-- name: Install emacs, ctags, hunspell-en, bdf-unifont and poppler
+- name: Install emacs, ctags, aspell-en, hunspell-en, bdf-unifont and poppler
   tags: spacemacs
   become: yes
   pacman:
     name:
       - emacs
       - ctags
+      - aspell-en
       - hunspell-en
       - bdf-unifont
       - poppler
