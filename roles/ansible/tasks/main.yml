@@ -15,3 +15,9 @@
       - python-boto3
       - python-jmespath
       - acme-tiny
+
+- name: Install ansible-aur-git
+  tags: ansible
+  become: no
+  aur:
+    name: ansible-aur-git
