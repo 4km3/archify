@@ -44,6 +44,18 @@
     src: /usr/share/fish/tools/web_config/sample_prompts/terlar.fish
     dest: "{{ ansible_user_dir }}/.config/fish/functions/fish_prompt.fish"
 
+- name: Use simple prompt if TERM=dumb for emacs' tramp to function ok
+  tags: fish
+  become: no
+  blockinfile:
+    path: "{{ ansible_user_dir }}/.config/fish/functions/fish_prompt.fish"
+    insertafter: set -l last_status $status
+    block: |2
+          if test $TERM = dumb
+              echo -n '$ '
+              return
+          end
+
 - name: Set fish as default shell for main user
   tags: fish
   become: yes
