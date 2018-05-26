@@ -23,10 +23,6 @@
         module: known_hosts
         host: "{{ ansible_host }}"
         key: "{{ lookup('pipe', 'ssh-keyscan -t ed25519 ' + ansible_host) }}"
-    - name: Install tmux
-      pacman:
-        name: tmux
-        update_cache: yes
     - name: Identify main block device
       shell: >
         lsblk --nodeps --exclude 7 --sort HOTPLUG --output NAME,HOTPLUG --noheadings | awk '/0$/ { print $1; exit }'
@@ -141,6 +137,10 @@
   gather_facts: no
 # accelerate: true
   tasks:
+    - name: Install tmux
+      pacman:
+        name: tmux
+        update_cache: yes
     - name: Disable sshd
       service:
         name: sshd
