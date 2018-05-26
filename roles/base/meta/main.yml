@@ -5,7 +5,6 @@ dependencies:
     - { role: broadcom, when: has_broadcom is defined and has_broadcom }
     - hostname
     - sudo
-    - pacman
     - systemd-networkd
     - systemd-resolved
     - systemd-timesyncd
