@@ -5,3 +5,12 @@
   aur:
     name: yay-bin
     skip_installed: yes
+
+- name: Configure yay
+  tags: yay
+  become: no
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_user_dir }}/.config/yay/{{ item }}"
+  loop:
+    - config.json
