@@ -10,3 +10,12 @@
     mode: 0644
   loop:
     - mirrorlist
+
+- name: Configure pacman
+  tags:
+    - pacman
+  ini_file:
+    path: /etc/pacman.conf
+    allow_no_value: yes
+    section: options
+    option: ILoveCandy
