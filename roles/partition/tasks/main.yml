@@ -23,6 +23,7 @@
     dev: "{{ main_block_device_base }}1"
     fstype: vfat
     opts: -F32 -nESP
+    force: yes
 
 - name: Create swap volume
   command:
