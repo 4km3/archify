@@ -7,7 +7,7 @@
     sudoers_config: "%wheel ALL=(ALL) NOPASSWD: ALL"
     home: "{{ lookup('env', 'HOME') }}"
     user: "{{ lookup('env', 'USER') }}"
-    pubkey: "{{ home }}/.ssh/keys.d/id_ed25519-{{ ansible_host }}.pub"
+    pubkey: "{{ home }}/.ssh/keys.d/id_ed25519-{{ user }}@{{ ansible_host }}.pub"
     key: "{{ lookup('file', pubkey) }}"
   pre_tasks:
     - name: Fix .ssh/known_hosts
