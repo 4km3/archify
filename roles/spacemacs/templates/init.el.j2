@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -39,50 +39,74 @@ This function should only modify configuration layer settings."
    ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
    ;; `M-m f e R' (Emacs style) to install them.
    ;; ----------------------------------------------------------------
-   helm
    ansible
    auto-completion
    better-defaults
    chrome
+   command-log
    csv
+   dap
    docker
    emacs-lisp
-   elixir
-   erlang
+   ;; elixir
+   ;; erlang
+   ess
    games
    git
    github
    (go :variables
-   gofmt-command "goimports"
-   go-use-gometalinter t
-   go-tab-width 4)
+     go-tab-width 4
+     go-format-before-save t
+     gofmt-command "goimports"
+     go-backend 'lsp
+     go-use-golangci-lint t
+     godoc-at-point-function 'godoc-gogetdoc)
+   graphviz
+   helm
    html
    ipython-notebook
    javascript
    latex
    lua
+   lsp
+   ;; lua
    major-modes
-   (markdown :variables markdown-live-preview-engine 'vmd)
+   (markdown :variables
+         markdown-live-preview-engine 'vmd)
    ;;neotree
-   org
+   multiple-cursors
+   (org :variables
+      ;; org-want-todo-bindings t
+      org-enable-bootstrap-support t
+      org-enable-github-support t
+      org-enable-reveal-js-support t
+      org-enable-org-journal-support t
+      org-enable-hugo-support t
+      org-enable-trello-support t)
    pdf
    perl5
-   puppet
-   python
+   ;; puppet
+   (python :variables
+           python-backend 'lsp
+           python-enable-yapf-format-on-save t)
+   (ranger :variables
+       ranger-enter-with-minus t
+       ranger-cleanup-eagerly t
+       ranger-show-literal nil)
    restclient
-   rust
+   ;; rust
    selectric
    (shell :variables
-  shell-default-shell 'ansi-term
-  shell-default-height 60
-  shell-default-position 'bottom)
+      shell-default-shell 'ansi-term
+      shell-default-position 'right)
    shell-scripts
    slack
    spell-checking
    syntax-checking
    systemd
-   templates
-   terraform
+   (templates :variables
+        templates-private-directory "~/.spacemacs.d/templates")
+   (terraform :variables terraform-auto-format-on-save t)
    treemacs
    ;; unicode-fonts
    version-control
@@ -98,7 +122,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(gif-screencast)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -206,7 +230,7 @@ It should only modify the values of Spacemacs settings."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
-        (projects . 7))
+                                (projects . 7))
 
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
@@ -222,14 +246,14 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-       spacemacs-light)
+                         spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
-   ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
-   ;; are spaceline themes. `vanilla' is default Emacs mode-line. `custom' is a
-   ;; user defined themes, refer to the DOCUMENTATION.org for more info on how
-   ;; to create your own spaceline theme. Value can be a symbol or list with\
-   ;; additional properties.
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
    dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
@@ -239,22 +263,30 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   ;; dotspacemacs-default-font '("Source Code Pro"
-   ;;               :size 22
-   ;;               :weight light
-   ;;               :width normal)
-   dotspacemacs-default-font '("xos4 Terminus"
-   :size 22
-   :weight normal
-   :width normal)
-   ;; dotspacemacs-default-font '("IBM Plex Mono"
-   ;;                            :size 22
-   ;;                            :weight light
-   ;;                            :width normal)
-   ;; dotspacemacs-default-font '("Go Mono"
-   ;;                             :size 28
-   ;;                             :weight normal
-   ;;                             :width normal)
+   dotspacemacs-default-font '(("xos4 Terminus"
+                                :size 18
+                                :weight normal
+                                :width normal)
+                               ("IBM Plex Mono"
+                                :size 18
+                                :weight light
+                                :width normal)
+                               ("Space Code Pro"
+                                :size 32
+                                :weight light
+                                :width normal)
+                               ("Source Code Pro"
+                                :size 22
+                                :weight light
+                                :width normal)
+                               ("Go Mono"
+                                :size 28
+                                :weight normal
+                                :width normal)
+                               ("Sans Forgetica"
+                                :size 34
+                                :weight normal
+                                :width normal))
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -315,9 +347,9 @@ It should only modify the values of Spacemacs settings."
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
 
-   ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
-   ;; `p' several times cycles through the elements in the `kill-ring'.
-   ;; (default nil)
+   ;; If non-nil, the paste transient-state is enabled. While enabled, after you
+   ;; paste something, pressing `C-j' and `C-k' several times cycles through the
+   ;; elements in the `kill-ring'. (default nil)
    dotspacemacs-enable-paste-transient-state nil
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
@@ -402,7 +434,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode t
+   dotspacemacs-smartparens-strict-mode nil
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
@@ -471,7 +503,15 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs nil))
+   dotspacemacs-pretty-docs t))
+
+(defun dotspacemacs/user-env ()
+  "Environment variables setup.
+This function defines the environment variables for your Emacs session. By
+default it calls `spacemacs/load-spacemacs-env' which loads the environment
+variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
+See the header of this file for more information."
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -479,14 +519,13 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (spacemacs/init-env t)
   )
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
-This function is called while dumping Spacemacs configuration. You can
-`require' or `load' the libraries of your choice that will be included
-in the dump."
+This function is called only while dumping Spacemacs configuration. You can
+`require' or `load' the libraries of your choice that will be included in the
+dump."
   )
 
 (defun dotspacemacs/user-config ()
@@ -495,17 +534,74 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (add-hook 'term-mode-hook 'toggle-truncate-lines)
-  (setq magit-repository-directories '("~/sandbox/"))
-  (setq-default indent-tabs-mode t)
-  (setq-default tab-width 4)
-  (defvaralias 'c-basic-offset 'tab-width)
-  (defvaralias 'cperl-indent-level 'tab-width)
+  ;; Tweak scrolling (Thanks to @iknite)
+  (setq-default scroll-margin 7)
+
+
+  ;; Tweak org-mode
+  ;; (setq org-adapt-indentation t)
+  ;; org-mode babel languages
+  (with-eval-after-load 'org
+    (require 'ob-R)
+    )
+
+
+  ;; Tweak terminal emulator
+  (add-hook 'term-mode-hook 'toggle-truncate-lines t)
+  ;; https://stackoverflow.com/questions/27196664/send-eof-d-to-emacs-ansi-term
+  (delete 'term-mode evil-insert-state-modes)
+  (add-to-list 'evil-emacs-state-modes 'term-mode)
+
+
+  ;; Tweak magit
+  (setq split-height-threshold nil
+        split-width-threshold 0
+        magit-repository-directories
+        '(("~/.emacs.d-spacemacs/" . 0)
+          ("~/.emacs.d-spacemacs/lib/" . 1)
+          ("~/go/" . 9)
+          ("~/sandbox/" . 1)))
+
+  (with-eval-after-load 'gif-screencast
+  (define-key gif-screencast-mode-map (kbd "<f7>") 'gif-screencast)
+  (define-key gif-screencast-mode-map (kbd "<f8>") 'gif-screencast-toggle-pause)
+  (define-key gif-screencast-mode-map (kbd "<f9>") 'gif-screencast-stop)
+  )
+
+
+  ;; (setq-default indent-tabs-mode t)
+  ;; (setq-default tab-width 4)
+
+  ;; (defvaralias 'c-basic-offset 'tab-width)
+  ;; (defvaralias 'cperl-indent-level 'tab-width)
+
   ;; (sh-basic-indent-line)
   ;; (setq-default sh-indentation 8)
-  (add-hook 'sh-mode-hook (lambda() (setq tab-width 8 sh-basic-offset 8 indent-tabs-mode t)))
-  (add-hook 'conf-mode-hook (lambda() (setq tab-width 8 sh-basic-offset 8 indent-tabs-mode t)))
   ;; (setq-default sh-basic-offset 8)
+
+  ;; (add-hook 'sh-mode-hook (lambda ()
+  ;;                           (setq tab-width 4
+  ;;                                 sh-basic-offset 4
+  ;;                                 indent-tabs-mode t)
+  ;;                           t))
+
+  ;; (add-hook 'conf-mode-hook (lambda ()
+  ;;                           (setq tab-width 4
+  ;;                                 sh-basic-offset 4
+  ;;                                 indent-tabs-mode t)
+  ;;                           t))
+
+  ;; (add-hook 'markdown-mode-hook (lambda ()
+  ;;                           (setq tab-width 4
+  ;;                                 sh-basic-offset 4
+  ;;                                 indent-tabs-mode t)
+  ;;                           t))
+
+  ;; WIP extract common stuff into 'sane-tabs to reduce redundancy
+  ;; (fset 'sane-tabs (lambda () (setq tab-width 8 sh-basic-offset 8 indent-tabs-mode t)))
+  ;; (add-hook 'sh-mode-hook (sane-tabs))
+  ;; (add-hook 'conf-mode-hook (lambda () (setq tab-width 8 sh-basic-offset 8 indent-tabs-mode t)))
+  ;; (add-hook 'markdown-mode-hook (lambda () (setq tab-width 8 sh-basic-offset 8 indent-tabs-mode t)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
