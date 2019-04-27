@@ -7,12 +7,6 @@
   tags:
     - golang
 
-- name: Install Go fonts
-  become: no
-  aur:
-    name: go-fonts-git
-    skip_installed: yes
-
 - name: Install golang helpers
   become: no
   command:
