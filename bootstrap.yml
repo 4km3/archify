@@ -150,7 +150,7 @@
         arch-chroot /mnt systemctl enable sshd
     - name: Boot new system on /mnt on a container
       command:
-        /usr/bin/tmux new-session -s local -n container -d systemd-nspawn --boot --directory=/mnt
+        /usr/bin/tmux new-session -s local -n container -d systemd-nspawn --boot --directory=/mnt --machine=target-on-mnt
 # Terminate:
 #        "/usr/bin/tmux send-keys -t local:container C-] C-] C-]"
 
@@ -188,29 +188,23 @@
       user_password: "{{ main_user_password }}"
       user_passphrase: "{{ main_user_passphrase }}"
     - base
-  post_tasks:
-    - name: Terminate container
-      shell: >
-        sleep 2 && poweroff
-      async: 1
-      poll: 0
-      ignore_errors: yes
 
-- name: Reboot host and wait for it to come back
+- name: Reboot host
   tags: bootstrap
   hosts: bootstrap
   gather_facts: no
   tasks:
+    - name: Terminate container on /mnt
+      command:
+        machinectl poweroff target-on-mnt
     - name: Reboot server
-      shell: >
-        sleep 2 && reboot
-      async: 1
-      poll: 0
+      reboot:
+        reboot_timeout: 0
       ignore_errors: yes
-    - name: Wait for instance to become available again
-      local_action:
-        module: wait_for
-        port: 22
-        host: "{{ hostvars[inventory_hostname]['ansible_host'] }}"
-        search_regex: OpenSSH
-        delay: 10
+
+- name: Wait for host to come back
+  tags: bootstrap
+  hosts: arch
+  tasks:
+    - name: Wait for connection
+      wait_for_connection:
