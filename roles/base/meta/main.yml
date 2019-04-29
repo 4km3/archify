@@ -10,7 +10,7 @@ dependencies:
     - systemd-resolved
     - systemd-timesyncd
     - openssh
-    - opensc
+    - { role: opensc, when: want_opensc is defined and want_opensc }
     - { role: bluetooth, when: has_bt is defined and has_bt }
     - { role: macfanctld, when: is_mac is defined and is_mac }
     - initcpio
@@ -19,7 +19,7 @@ dependencies:
     - readline
     - vconsole
     - alsa
-    - mpd
+    - { role: mpd, when: want_mpd is defined and want_mpd }
     - xorg
     - xdm
     - spectrwm
@@ -28,13 +28,13 @@ dependencies:
     - mpv
     - xbindkeys
     - pam_ssh
-    - libvirt
-    - docker
+    - { role: libvirt, when: want_libvirt is defined and want_libvirt }
+    - { role: docker, when: want_docker is defined and want_docker }
     - mlocate
     - pkgfile
-    - spacemacs
-    - golang
+    - { role: spacemacs, when: want_emacs is defined and want_emacs }
+    - { role: golang, when: want_golang is defined and want_golang }
     - bash
     - fish
-    - todotxt
-    - ansible
+    - { role: todotxt, when: want_todotxt is defined and want_todotxt }
+    - { role: ansible, when: want_ansible is defined and want_ansible }
