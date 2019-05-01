@@ -40,6 +40,10 @@
         efibootmgr -B -b "{{ item }}"
       with_sequence: start=0 end=5
       ignore_errors: yes
+    - name: Ensure no fs is mounted
+      ignore_errors: yes
+      command:
+        umount -R /mnt
   roles:
     - pacman
     - role: partition
