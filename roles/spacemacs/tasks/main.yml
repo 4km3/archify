@@ -1,5 +1,5 @@
 ---
-- name: Install emacs, ctags, aspell-en, hunspell-en, bdf-unifont and poppler
+- name: Install emacs and dependencies
   tags: spacemacs
   become: yes
   pacman:
@@ -11,13 +11,16 @@
       - bdf-unifont
       - poppler
       - poppler-glib
+      - python-black
+      - python-pytest
+      - yapf
 
 - name: Gather facts to refresh ansible_env
   tags: spacemacs
   become: no
   setup:
 
-- name: Install global and nodejs-tern
+- name: Install dependencies
   tags: spacemacs
   become: no
   aur:
@@ -25,6 +28,15 @@
     name:
       - global
       - nodejs-tern
+      - nodejs-vmd
+      - python-autoflake
+      - python-epc
+      - python-importmagic
+      - python-language-server
+      - python-ptvsd
+      - python-pyls-isort-git
+      - pyls-mypy
+      - flake8
 
 - name: Clone Spacemacs
   tags: spacemacs
