@@ -24,6 +24,7 @@ dependencies:
     - xdm
     - spectrwm
     - unclutter
+    - xcape
     - xdg
     - mpv
     - xbindkeys
