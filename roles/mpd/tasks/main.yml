@@ -24,6 +24,13 @@
     - { name: override.conf, path: /etc/systemd/system/mpd.socket.d/ }
     - { name: mpd.conf,      path: /etc/                             }
 
+- name: Create ncmpcpp dotdir
+  tags: mpd
+  become: no
+  file:
+    state: directory
+    dest: "{{ ansible_user_dir }}/.ncmpcpp/"
+
 - name: Configure ncmpcpp
   tags: mpd
   become: no
