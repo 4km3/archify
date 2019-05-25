@@ -3,8 +3,8 @@
 Section              "InputClass"
   Identifier         "touchpad"
   MatchDevicePath    "/dev/input/event*"
+  MatchDriver        "libinput"
   MatchIsTouchpad    "on"
-  Driver             "libinput"
 
   Option             "Tapping"              "on"
   Option             "DisableWhileTyping"   "on"
