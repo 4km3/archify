@@ -1,15 +1,19 @@
 {{ ansible_managed | comment }}
 Section "InputClass"
-  Identifier		"Apple Internal Keyboard"
-  MatchIsKeyboard	"on"
-  MatchProduct		"Apple Internal Keyboard / Trackpad"
+  Identifier	"Apple Internal Keyboard"
 
-  Option		"XkbLayout"		"us"
-  Option		"XkbModel"		"apple_laptop"
-  Option		"XkbVariant"		"altgr-intl"
-  Option		"XkbOptions"		"ctrl:swapcaps,compose:lctrl"
-# Option		"XkbLayout"		"us,us"
-# Option		"XkbModel"		"apple_laptop"
-# Option		"XkbVariant"		"altgr-intl,dvorak"
-# Option		"XkbOptions"		"ctrl:swapcaps,compose:lctrl,grp:shifts_toggle"
+  MatchProduct		"Apple Internal Keyboard / Trackpad"
+  MatchDevicePath	"/dev/input/event*"
+  MatchDriver		"libinput"
+  MatchIsKeyboard	"on"
+
+  Option	"XkbModel"	"apple_laptop"
+  Option	"XkbLayout"	"us"
+  Option	"XkbVariant"	"altgr-intl"
+  Option	"XkbOptions"	"ctrl:swapcaps,compose:lctrl"
+
+# Option	"XkbModel"	"apple_laptop"
+# Option	"XkbLayout"	"us,us"
+# Option	"XkbVariant"	"altgr-intl,dvorak-alt-intl"
+# Option	"XkbOptions"	"ctrl:swapcaps,compose:lctrl,grp:shifts_toggle"
 EndSection

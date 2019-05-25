@@ -1,12 +1,15 @@
 {{ ansible_managed | comment }}
 Section "InputClass"
-  Identifier		"Keyboard Defaults"
+  Identifier	"Keyboard Defaults"
+
+  MatchDevicePath	"/dev/input/event*"
   MatchIsKeyboard	"on"
 
-  Option		"XkbLayout"		"us"
-  Option		"XkbVariant"		"altgr-intl"
-  Option		"XkbOptions"		"ctrl:swapcaps,compose:lctrl"
-# Option		"XkbLayout"		"us,us"
-# Option		"XkbVariant"		"altgr-intl,dvorak"
-# Option		"XkbOptions"		"ctrl:swapcaps,compose:lctrl,grp:shifts_toggle"
+  Option	"XkbLayout"	"us"
+  Option	"XkbVariant"	"altgr-intl"
+  Option	"XkbOptions"	"ctrl:swapcaps,compose:lctrl,keypad:pointerkeys"
+
+# Option	"XkbLayout"	"us,us"
+# Option	"XkbVariant"	"altgr-intl,dvorak-alt-intl"
+# Option	"XkbOptions"	"ctrl:swapcaps,compose:lctrl,grp:shifts_toggle,keypad:pointerkeys"
 EndSection

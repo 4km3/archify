@@ -1,18 +1,20 @@
 {{ ansible_managed | comment }}
 Section "InputClass"
-  Identifier		"Happy Hacking Pro 2 Type-S Keyboard"
+  Identifier	"Happy Hacking Pro 2 Type-S Keyboard"
+
   MatchProduct		"HHKB Professional"
   MatchVendor		"Topre_Corporation"
   MatchDevicePath	"/dev/input/event*"
   MatchDriver		"libinput"
   MatchIsKeyboard	"on"
 
-  Option		"XkbModel"	"hhk"
-  Option		"XkbLayout"	"us"
-  Option		"XkbVariant"	"altgr-intl"
-  Option		"XkbOptions"	"compose:slck"
+  Option	"XkbModel"	"hhk"
+  Option	"XkbLayout"	"us"
+  Option	"XkbVariant"	"altgr-intl"
+  Option	"XkbOptions"	"compose:slck,keypad:pointerkeys"
 
-# Option		"XkbLayout"	"us,us"
-# Option		"XkbVariant"	"altgr-intl,dvorak-alt-intl"
-# Option		"XkbOptions"	"compose:slck,grp:shifts_toggle"
+# Option	"XkbModel"	"hhk"
+# Option	"XkbLayout"	"us,us"
+# Option	"XkbVariant"	"altgr-intl,dvorak-alt-intl"
+# Option	"XkbOptions"	"compose:slck,grp:shifts_toggle,keypad:pointerkeys"
 EndSection

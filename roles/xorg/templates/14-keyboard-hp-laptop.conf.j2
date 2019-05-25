@@ -1,12 +1,13 @@
 {{ ansible_managed | comment }}
 Section "InputClass"
-  Identifier		"internal HP keyboard"
+  Identifier	"Internal HP Keyboard"
+
   MatchDevicePath	"/dev/input/event4"
   MatchDriver		"libinput"
-  ##MatchTag		"platform-i8042-serio-0"
+  #MatchTag		"platform-i8042-serio-0"
   MatchIsKeyboard	"on"
 
-  Option		"XkbLayout"		"us"
-  Option		"XkbVariant"		"altgr-intl"
-  Option		"XkbOptions"		"ctrl:swapcaps,compose:menu"
+  Option	"XkbLayout"	"us"
+  Option	"XkbVariant"	"altgr-intl"
+  Option	"XkbOptions"	"ctrl:swapcaps,compose:menu"
 EndSection

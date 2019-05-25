@@ -1,11 +1,13 @@
 {{ ansible_managed | comment }}
 Section "InputClass"
-  Identifier		"Microdia"
-  MatchIsKeyboard	"on"
-  MatchDevicePath	"/dev/input/event*"
+  Identifier	"Microdia"
+
   MatchProduct		"      USB Keyboard"
 # MatchVendor		"Microdia"
+  MatchDevicePath	"/dev/input/event*"
+  MatchDriver		"libinput"
+  MatchIsKeyboard	"on"
 
-  Option		"XkbLayout"	"es"
-  Option		"XkbOptions"	"caps:capslock,ctrl:aa_ctrl"
+  Option	"XkbLayout"	"es"
+  Option	"XkbOptions"	"caps:capslock,ctrl:aa_ctrl"
 EndSection
