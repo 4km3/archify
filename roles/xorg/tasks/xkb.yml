@@ -9,7 +9,10 @@
     mode: 0644
   loop:
     - 10-keyboard-defaults.conf
+    - 10-keyboard-hhk.conf
     - 11-keyboard-apple-internal.conf
     - 12-keyboard-apple-wireless.conf
-    - 13-keyboard-hhk.conf
+    - 13-keyboard-rpi.conf
+    - 14-keyboard-hp-laptop.conf
+    - 15-keyboard-microdia.conf
     - 30-touchpad.conf
