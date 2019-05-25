@@ -18,4 +18,7 @@
     path: /etc/pacman.conf
     allow_no_value: yes
     section: options
-    option: ILoveCandy
+    option: "{{ item }}"
+  loop:
+    - ILoveCandy
+    - Color
