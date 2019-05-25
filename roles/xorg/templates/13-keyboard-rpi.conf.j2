@@ -1,0 +1,13 @@
+{{ ansible_managed | comment }}
+Section "InputClass"
+  Identifier		"Raspberry Pi official keyboard"
+
+  MatchProduct		"RPI Wired Keyboard 4"
+  MatchDevicePath	"/dev/input/event*"
+  MatchDriver		"libinput"
+  MatchIsKeyboard	"on"
+
+  Option		"XkbLayout"		"us"
+  Option		"XkbVariant"		"altgr-intl"
+  Option		"XkbOptions"		"ctrl:swapcaps,compose:sclk"
+EndSection
