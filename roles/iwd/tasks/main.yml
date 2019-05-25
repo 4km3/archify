@@ -1,0 +1,12 @@
+---
+- name: Install iwd
+  tags: iwd
+  pacman:
+    name: iwd
+
+- name: Enable iwd service
+  tags: iwd
+  service:
+    name: iwd
+    enabled: yes
+    state: started
