@@ -1,4 +1,4 @@
 - name: Restart systemd-resolved
   service:
-    name=systemd-resolved
-    state=restarted
+    name: systemd-resolved
+    state: restarted

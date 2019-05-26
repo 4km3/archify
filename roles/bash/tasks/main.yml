@@ -1,11 +1,11 @@
 ---
 - name: Install /etc/profile.d/{homebin.sh,gobin.sh}
   template:
-    src={{ item }}.j2
-    dest=/etc/profile.d/{{ item }}
-    owner=root
-    group=root
-    mode=0644
+    src: "{{ item }}.j2"
+    dest: /etc/profile.d/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
   loop:
     - homebin.sh
     - gobin.sh
