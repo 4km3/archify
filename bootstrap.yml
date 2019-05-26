@@ -26,6 +26,8 @@
     - name: Identify main block device
       shell: >
         lsblk --nodeps --exclude 7 --sort HOTPLUG --output NAME,HOTPLUG --noheadings | awk '/0$/ { print $1; exit }'
+        # Note: use the following line instead to force a specific device
+        #echo -n sdb
       register: lsblk_output
     - name: Determine if p prefix is needed for main block device parts
       set_fact:
