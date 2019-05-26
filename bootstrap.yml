@@ -209,6 +209,7 @@
 - name: Wait for host to come back
   tags: bootstrap
   hosts: arch
+  gather_facts: no
   tasks:
     - name: Wait for connection
       wait_for_connection:
