@@ -13,6 +13,7 @@
       - poppler-glib
       - python-black
       - python-pytest
+      - ripgrep
       - yapf
 
 - name: Gather facts to refresh ansible_env
