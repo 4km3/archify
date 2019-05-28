@@ -9,6 +9,7 @@
       - aspell-en
       - hunspell-en_US
       - bdf-unifont
+      - jupyter
       - poppler
       - poppler-glib
       - python-black
