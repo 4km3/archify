@@ -26,6 +26,7 @@
       - mkvtoolnix-cli
       - mkvtoolnix-gui
       - firefox
+      - arch-firefox-search
       - chromium
       - arandr
       - feh
