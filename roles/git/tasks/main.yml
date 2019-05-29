@@ -8,6 +8,7 @@
       - git
       - tig
       - gitg
+      - hub
 
 - name: Install gitflow-avh
   become: no
@@ -19,6 +20,7 @@
   tags:
     - git
     - gitflow
+    - gti
 
 - name: Gather facts to refresh ansible_env
   become: no
