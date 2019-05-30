@@ -69,7 +69,7 @@
 
 - name: Set fish as default shell for main user
   tags: fish
-  become: yes
+  become: no
   user:
     name: "{{ ansible_user_id }}"
     shell: /usr/bin/fish
