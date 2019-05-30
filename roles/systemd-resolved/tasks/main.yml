@@ -5,6 +5,7 @@
     src: /run/systemd/resolve/stub-resolv.conf
     path: /etc/resolv.conf
     state: link
+    follow: no
     force: yes
 
 - name: Enable and start systemd-resolved
