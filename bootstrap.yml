@@ -9,6 +9,7 @@
     user: "{{ lookup('env', 'USER') }}"
     pubkey: "{{ home }}/.ssh/keys.d/id_ed25519-{{ user }}@{{ ansible_host }}.pub"
     key: "{{ lookup('file', pubkey) }}"
+
   pre_tasks:
     - name: Fix .ssh/known_hosts
       local_action:
@@ -18,39 +19,47 @@
       loop:
         - "{{ ansible_host }}"
         - "{{ lookup('dig', ansible_host) }}"
+
     - name: Add target host ssh pubkey fingerprint to our known_hosts
       local_action:
         module: known_hosts
         name: "{{ ansible_host }}"
         key: "{{ lookup('pipe', 'ssh-keyscan -t ed25519 ' + ansible_host) }}"
+
     - name: Identify main block device
       shell: >
         lsblk --nodeps --exclude 7 --sort HOTPLUG --output NAME,HOTPLUG --noheadings | awk '/0$/ { print $1; exit }'
         # Note: use the following line instead to force a specific device
         #echo -n sdb
       register: lsblk_output
+
     - name: Determine if p prefix is needed for main block device parts
       set_fact:
         target_block_device_part_prefix: p
       when: "'nvme' in lsblk_output.stdout"
+
     - name: Export main block device as a fact
       set_fact:
         target_block_device: /dev/{{ lsblk_output.stdout }}
         target_block_device_base: /dev/{{ lsblk_output.stdout }}{{ target_block_device_part_prefix | default() }}
+
     - name: Clear stale EFI boot entries
       command:
         efibootmgr -B -b "{{ item }}"
       with_sequence: start=0 end=5
       ignore_errors: yes
+
     - name: Ensure no fs is mounted
       ignore_errors: yes
       command:
         umount -R /mnt
+
   roles:
     - pacman
     - role: partition
       main_block_device: "{{ target_block_device }}"
       main_block_device_base: "{{ target_block_device_base }}"
+
   tasks:
     - name: Mount main block device on /mnt
       mount:
@@ -60,6 +69,7 @@
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache
         opts: noatime,ssd,autodefrag,compress=lzo,space_cache
         state: mounted
+
     - name: Create btrfs subvolumes
       command:
         btrfs subvolume create {{ item }}
@@ -69,12 +79,14 @@
       loop:
         - '@'
         - '@home'
+
     - name: Umount /mnt
       mount:
         path: /mnt
         src: "{{ target_block_device_base }}3"
         fstype: btrfs
         state: unmounted
+
     - name: Mount root subvolume on /mnt
       mount:
         path: /mnt
@@ -83,6 +95,7 @@
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@
         opts: noatime,ssd,nodiscard,autodefrag,compress=lzo,space_cache,subvol=@
         state: mounted
+
     - name: Mount boot subvolume on /mnt/boot
       mount:
         path: /mnt/boot
@@ -90,6 +103,7 @@
         fstype: vfat
         opts: rw,noatime,fmask=0133,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro
         state: mounted
+
     - name: Mount home subvolume on /mnt/home
       mount:
         path: /mnt/home
@@ -98,6 +112,7 @@
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@home
         opts: noatime,ssd,nodiscard,autodefrag,compress=lzo,space_cache,subvol=@home
         state: mounted
+
     - name: pacstrap, create main user
       command: "{{ item }}"
       loop:
@@ -108,24 +123,29 @@
         - cp -a /mnt/etc/fstab /mnt/etc/fstab.orig
         - arch-chroot /mnt useradd -m -G wheel,log -s /usr/bin/fish {{ user }}
       ignore_errors: yes
+
     - name: Populate /mnt/etc/fstab
       shell: genfstab -t PARTUUID -p /mnt >> /mnt/etc/fstab
+
     - name: Enable no-password sudo for users in wheel group
       lineinfile:
         dest: /mnt/etc/sudoers.d/wheel-nopasswd
         line: "{{ sudoers_config }}"
         create: yes
         state: present
+
     - name: Create main user on the live instance, so that subsequent call to authorized_key will work under /mnt
       user:
         name: "{{ user }}"
         createhome: no
+
     - name: Add main user pubkey to its ~/.ssh/authorized_keys
       authorized_key:
         user: "{{ user }}"
         key: "{{ key }}"
         path: "/mnt/home/{{ user }}/.ssh/authorized_keys"
         manage_dir: yes
+
     - name: Copy OpenSSH server keys to /mnt
       shell: cp -a /etc/ssh/ssh_host_* /mnt/etc/ssh
 
@@ -147,16 +167,20 @@
       pacman:
         name: tmux
         update_cache: yes
+
     - name: Disable sshd
       service:
         name: sshd
         state: stopped
+
     - name: Enable sshd on /mnt
       command:
         arch-chroot /mnt systemctl enable sshd
+
     - name: Boot new system on /mnt on a container
       command:
         /usr/bin/tmux new-session -s local -n container -d systemd-nspawn --boot --directory=/mnt --machine=target-on-mnt
+
 # Terminate:
 #        "/usr/bin/tmux send-keys -t local:container C-] C-] C-]"
 
@@ -171,18 +195,23 @@
       encrypt: "sha512_crypt"
       private: yes
       confirm: yes
+
     - name: main_user_passphrase
       prompt: Enter your passphrase
       private: yes
       confirm: yes
+
   pre_tasks:
     - name: Wait for container to become reachable
       wait_for_connection:
+
     - name: Gather facts
       setup:
+
     - name: Export wireless interface as a fact
       set_fact:
         wifi_device: "{{ ansible_interfaces | select('match', '^wl') | first | default(omit) }}"
+
   roles:
     - role: credentials
       user_password: "{{ main_user_password }}"
@@ -197,6 +226,7 @@
     - name: Terminate container on /mnt
       command:
         machinectl poweroff target-on-mnt
+
     - name: Reboot server
       reboot:
         reboot_timeout: 0
