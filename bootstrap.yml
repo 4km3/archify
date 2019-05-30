@@ -225,6 +225,8 @@
     - name: Terminate container on /mnt
       command:
         machinectl poweroff target-on-mnt
+      args:
+        warn: false
 
     - name: Reboot server
       reboot:
