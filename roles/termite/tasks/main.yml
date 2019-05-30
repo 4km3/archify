@@ -1,7 +1,6 @@
 ---
 - name: Install termite terminal emulator
   tags: termite
-  become: no
   aur:
     skip_installed: yes
     name: termite

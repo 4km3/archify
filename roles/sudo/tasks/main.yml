@@ -1,7 +1,6 @@
 ---
 - name: Install sudo
   tags: sudo
-  become: no
   aur:
     skip_installed: yes
     name: sudo

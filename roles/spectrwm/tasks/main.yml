@@ -1,7 +1,6 @@
 ---
 - name: Install spectrwm, rofi, scrot and slock
   tags: spectrwm
-  become: no
   aur:
     skip_installed: yes
     name:
@@ -39,14 +38,12 @@
 
 - name: Create rofi config dir
   tags: rofi
-  become: no
   file:
     path: "{{ ansible_user_dir }}/.config/rofi"
     state: directory
 
 - name: Configure rofi theme
   tags: rofi
-  become: no
   copy:
     content: "rofi.theme: /usr/share/rofi/themes/glue_pro_blue.rasi\n"
     dest: "{{ ansible_user_dir }}/.config/rofi/config"

@@ -1,19 +1,16 @@
 ---
 - name: Install todotxt.com
   tags: todotxt
-  become: no
   aur:
     name: todotxt
     skip_installed: yes
 
 - name: Gather facts to refresh ansible_env
   tags: todotxt
-  become: no
   setup:
 
 - name: Install helper scripts
   tags: todotxt
-  become: no
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/.config/fish/functions/{{ item }}"
@@ -25,12 +22,10 @@
 
 # - name: TODO add TODO var pointing to ~/.todo
 #   tags: todotxt
-#   become: no
 #   setup:
 
 # - name: Clone todo.git
 #   tags: todotxt
-#   become: no
 #   git:
 #     repo: "{{ todotxt_repo }}"
 #     dest: "{{ ansible_user_dir }}/.todo"

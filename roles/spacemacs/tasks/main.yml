@@ -1,7 +1,6 @@
 ---
 - name: Install emacs and dependencies
   tags: spacemacs
-  become: no
   aur:
     skip_installed: yes
     name:
@@ -31,12 +30,10 @@
 
 - name: Gather facts to refresh ansible_env
   tags: spacemacs
-  become: no
   setup:
 
 - name: Clone Spacemacs
   tags: spacemacs
-  become: no
   git:
     repo: "{{ spacemacs_repo }}"
     version: "{{ spacemacs_branch }}"
@@ -45,7 +42,6 @@
 
 - name: Patch Spacemacs
   tags: spacemacs
-  become: no
   patch:
     src: pdf-view-fix-colors.patch
     basedir: "{{ ansible_user_dir }}/.emacs.d"
@@ -53,14 +49,12 @@
 
 - name: Create ~/.spacemacs.d config dir
   tags: spacemacs
-  become: no
   file:
     state: directory
     path: "{{ ansible_user_dir }}/{{ spacemacs_dotdir }}"
 
 - name: Configure Spacemacs
   tags: spacemacs
-  become: no
   template:
     force: no
     src: "{{ item }}.j2"
@@ -70,7 +64,6 @@
 
 - name: Install packages
   tags: spacemacs
-  become: no
   command:
     emacs --batch --load={{ ansible_user_dir }}/.emacs.d/init.el
   args:

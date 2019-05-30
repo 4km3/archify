@@ -1,7 +1,6 @@
 ---
 - name: Install xorg-xinit
   tags: xinit
-  become: no
   aur:
     skip_installed: yes
     name: xorg-xinit

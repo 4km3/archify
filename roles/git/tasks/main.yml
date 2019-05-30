@@ -1,7 +1,6 @@
 ---
 - name: Install git, tig, gitg, gti, hub and gitflow
   tags: git
-  become: no
   aur:
     skip_installed: yes
     name:
@@ -14,13 +13,11 @@
       - gitflow-fishcompletion-avh
 
 - name: Gather facts to refresh ansible_env
-  become: no
   setup:
   tags:
    - git
 
 - name: Configure git
-  become: no
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/{{ item }}"

@@ -1,7 +1,6 @@
 ---
 - name: Install xbindkeys
   tags: xbindkeys
-  become: no
   aur:
     skip_installed: yes
     name: xbindkeys
@@ -20,12 +19,10 @@
 
 - name: Gather facts to refresh ansible_env
   tags: xbindkeys
-  become: no
   setup:
 
 - name: Configure xbindkeys
   tags: xbindkeys
-  become: no
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/{{ item }}"

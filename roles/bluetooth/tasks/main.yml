@@ -1,7 +1,6 @@
 ---
 - name: Install bluez and bluez-utils
   tags: bluez
-  become: no
   aur:
     skip_installed: yes
     name:

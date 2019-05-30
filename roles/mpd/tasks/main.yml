@@ -1,7 +1,6 @@
 ---
 - name: Install MPD and clients
   tags: mpd
-  become: no
   aur:
     skip_installed: yes
     name:
@@ -30,14 +29,12 @@
 
 - name: Create ncmpcpp dotdir
   tags: mpd
-  become: no
   file:
     state: directory
     dest: "{{ ansible_user_dir }}/.ncmpcpp/"
 
 - name: Configure ncmpcpp
   tags: mpd
-  become: no
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/.ncmpcpp/{{ item }}"

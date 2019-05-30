@@ -1,7 +1,6 @@
 ---
 - name: Install pkgfile
   tags: pkgfile
-  become: no
   aur:
     skip_installed: yes
     name: pkgfile

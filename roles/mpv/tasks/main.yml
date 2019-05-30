@@ -1,26 +1,22 @@
 ---
 - name: Install mpv
   tags: mpv
-  become: no
   aur:
     skip_installed: yes
     name: mpv
 
 - name: Gather facts to refresh ansible_env
   tags: mpv
-  become: no
   setup:
 
 - name: Create mpv config dir
   tags: mpv
-  become: no
   file:
     state: directory
     path: "{{ ansible_user_dir }}/.config/mpv/"
 
 - name: Configure mpv
   tags: mpv
-  become: no
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/.config/mpv/{{ item }}"

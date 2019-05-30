@@ -1,6 +1,5 @@
 - name: Install ddclient
   tags: ddclient
-  become: no
   aur:
     skip_installed: yes
     name: ddclient

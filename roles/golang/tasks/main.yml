@@ -1,7 +1,6 @@
 ---
 - name: Install go, go-tools
   tags: golang
-  become: no
   aur:
     skip_installed: yes
     name:
@@ -10,7 +9,6 @@
 
 - name: Install golang helpers
   tags: golang
-  become: no
   command:
     go get -u {{ item }}
   register: goget_result
@@ -29,7 +27,6 @@
 
 - name: Setup gometalinter
   tags: golang
-  become: no
   command:
     go/bin/gometalinter --install
   ignore_errors: yes

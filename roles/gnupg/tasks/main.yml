@@ -1,7 +1,6 @@
 ---
 - name: Install GnuPG
   tags: gnupg
-  become: no
   aur:
     skip_installed: yes
     name: gnupg

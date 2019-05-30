@@ -1,7 +1,6 @@
 ---
 - name: Install macfanctld fan control daemon for Mac
   tags: macfanctld
-  become: no
   aur:
     name: macfanctld
     skip_installed: yes

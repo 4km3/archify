@@ -1,7 +1,6 @@
 ---
 - name: Install intel-ucode and rasdaemon
   tags: intel
-  become: no
   aur:
     skip_installed: yes
     name:

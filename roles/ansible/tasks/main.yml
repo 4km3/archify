@@ -1,7 +1,6 @@
 ---
 - name: Install ansible, ansible-aur-git and friends
   tags: ansible
-  become: no
   aur:
     skip_installed: yes
     name:

@@ -1,7 +1,6 @@
 ---
 - name: Install unclutter
   tags: unclutter
-  become: no
   aur:
     skip_installed: yes
     name: unclutter

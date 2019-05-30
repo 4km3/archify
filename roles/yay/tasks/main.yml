@@ -1,21 +1,18 @@
 ---
 - name: Install yay-bin
   tags: yay
-  become: no
   aur:
     skip_installed: yes
     name: yay-bin
 
 - name: Create yay work directory
   tags: yay
-  become: no
   file:
     path: "{{ ansible_user_dir }}/.config/yay/"
     state: directory
 
 - name: Configure yay
   tags: yay
-  become: no
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/.config/yay/{{ item }}"

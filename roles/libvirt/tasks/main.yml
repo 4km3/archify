@@ -1,7 +1,6 @@
 ---
 - name: Install libvirt and friends
   tags: libvirt
-  become: no
   aur:
     skip_installed: yes
     name:

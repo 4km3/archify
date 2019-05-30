@@ -1,7 +1,6 @@
 ---
 # tasks file for partition
 - name: Clear SSD using blkdiscard
-  become: no
   tags: blkdiscard
   command:
     blkdiscard {{ main_block_device }}
@@ -9,13 +8,11 @@
 
 - name: Zap GPT and MBR
   tags: sgdisk
-  become: no
   command:
     sgdisk --zap-all {{ main_block_device }}
 
 - name: Partition drive for EFI
   tags: sgdisk
-  become: no
   command:
     sgdisk  --new=0:0:+200M  --typecode=0:ef00 --change-name=0:'EFI System'
             --new=0:0:+8G    --typecode=0:8200 --change-name=0:swap
@@ -24,7 +21,6 @@
 
 - name: Create ESP filesystem
   tags: filesystem
-  become: no
   filesystem:
     dev: "{{ main_block_device_base }}1"
     fstype: vfat
@@ -32,14 +28,12 @@
     force: yes
 
 - name: Create swap volume
-  become: no
   tags: mkswap
   command:
     mkswap -L swap {{ main_block_device_base }}2
 
 - name: Create BTRFS filesystem
   tags: mkbtrfs
-  become: no
   filesystem:
     dev: "{{ main_block_device_base }}3"
     fstype: btrfs

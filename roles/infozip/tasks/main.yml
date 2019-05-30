@@ -1,7 +1,6 @@
 ---
 - name: Install Info-ZIP
   tags: infozip
-  become: no
   aur:
     skip_installed: yes
     name:

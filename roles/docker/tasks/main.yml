@@ -1,7 +1,6 @@
 ---
 - name: Install docker and docker-compose
   tags: docker
-  become: no
   aur:
     skip_installed: yes
     name:

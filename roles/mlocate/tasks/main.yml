@@ -1,7 +1,6 @@
 ---
 - name: Install mlocate
   tags: mlocate
-  become: no
   aur:
     skip_installed: yes
     name: mlocate

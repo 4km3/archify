@@ -1,7 +1,6 @@
 ---
 - name: Install iwd
   tags: iwd
-  become: no
   aur:
     skip_installed: yes
     name: iwd

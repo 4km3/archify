@@ -1,7 +1,6 @@
 ---
 - name: Install OpenSSH
   tags: openssh
-  become: no
   aur:
     skip_installed: yes
     name: openssh

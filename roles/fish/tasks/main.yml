@@ -1,7 +1,6 @@
 ---
 - name: Install fish
   tags: fish
-  become: no
   aur:
     skip_installed: yes
     name: fish
@@ -18,19 +17,16 @@
 
 - name: Gather facts to refresh ansible_env
   tags: fish
-  become: no
   setup:
 
 - name: Create dir for fish config
   tags: fish
-  become: no
   file:
     path: "{{ ansible_user_dir }}/.config/fish/functions"
     state: directory
 
 - name: Configure fish
   tags: fish
-  become: no
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/.config/fish/{{ item }}"
@@ -39,7 +35,6 @@
 
 - name: Configure fish prompt
   tags: fish
-  become: no
   copy:
     remote_src: yes
     src: /usr/share/fish/tools/web_config/sample_prompts/terlar.fish
@@ -47,7 +42,6 @@
 
 - name: Use simple prompt if TERM=dumb for emacs' tramp to function ok
   tags: fish
-  become: no
   blockinfile:
     path: "{{ ansible_user_dir }}/.config/fish/functions/fish_prompt.fish"
     insertafter: set -l last_status \$status
@@ -59,7 +53,6 @@
 
 - name: Fix prompt character for clarity
   tags: fish
-  become: no
   lineinfile:
     path: "{{ ansible_user_dir }}/.config/fish/functions/fish_prompt.fish"
     regexp: echo -n '➤ '
@@ -68,7 +61,6 @@
 
 - name: Set fish as default shell for main user
   tags: fish
-  become: no
   user:
     name: "{{ ansible_user_id }}"
     shell: /usr/bin/fish
