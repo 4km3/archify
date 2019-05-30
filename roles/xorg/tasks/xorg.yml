@@ -2,7 +2,9 @@
 - name: Install xorg
   tags:
     - xorg
-  pacman:
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - ttf-dejavu
       - xf86-video-intel
