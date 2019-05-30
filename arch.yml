@@ -1,9 +1,6 @@
 ---
-- name: Gather facts
-  hosts: arch
-  gather_facts: true
-
 - name: Setup Arch Linux
   hosts: arch
+  gather_facts: yes
   roles:
     - base
