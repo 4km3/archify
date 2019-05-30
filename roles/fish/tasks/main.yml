@@ -15,10 +15,6 @@
     - homebin.fish
     - gobin.fish
 
-- name: Gather facts to refresh ansible_env
-  tags: fish
-  setup:
-
 - name: Create dir for fish config
   tags: fish
   file:

@@ -1,8 +1,4 @@
 ---
-- name: Gather facts to refresh ansible_env
-  tags: xdg
-  setup:
-
 - name: Create ~/.config/
   tags: xdg
   file:

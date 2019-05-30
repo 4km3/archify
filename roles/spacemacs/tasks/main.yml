@@ -28,10 +28,6 @@
       - pyls-mypy
       - flake8
 
-- name: Gather facts to refresh ansible_env
-  tags: spacemacs
-  setup:
-
 - name: Clone Spacemacs
   tags: spacemacs
   git:

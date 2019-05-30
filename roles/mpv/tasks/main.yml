@@ -5,10 +5,6 @@
     skip_installed: yes
     name: mpv
 
-- name: Gather facts to refresh ansible_env
-  tags: mpv
-  setup:
-
 - name: Create mpv config dir
   tags: mpv
   file:

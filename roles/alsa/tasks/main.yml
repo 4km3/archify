@@ -5,10 +5,6 @@
     skip_installed: yes
     name: alsa-utils
 
-- name: Gather facts to refresh ansible_env
-  tags: alsa
-  setup:
-
 - name: Add main user to the audio group
   tags: alsa
   become: yes

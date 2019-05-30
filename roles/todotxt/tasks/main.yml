@@ -5,10 +5,6 @@
     name: todotxt
     skip_installed: yes
 
-- name: Gather facts to refresh ansible_env
-  tags: todotxt
-  setup:
-
 - name: Install helper scripts
   tags: todotxt
   template:

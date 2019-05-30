@@ -12,11 +12,6 @@
       - gitflow-avh
       - gitflow-fishcompletion-avh
 
-- name: Gather facts to refresh ansible_env
-  setup:
-  tags:
-   - git
-
 - name: Configure git
   template:
     src: "{{ item }}.j2"

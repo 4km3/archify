@@ -17,10 +17,6 @@
   loop:
     - 80-xbindkeys.sh
 
-- name: Gather facts to refresh ansible_env
-  tags: xbindkeys
-  setup:
-
 - name: Configure xbindkeys
   tags: xbindkeys
   template:
