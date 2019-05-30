@@ -1,10 +1,16 @@
 ---
 - name: Install xorg-xinit
-  pacman:
+  tags: xinit
+  become: no
+  aur:
+    skip_installed: yes
     name: xorg-xinit
 
 - name: Install global .Xresources
-  tags: xresources
+  tags:
+    - xinit
+    - xresources
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: /etc/X11/xinit/{{ item }}

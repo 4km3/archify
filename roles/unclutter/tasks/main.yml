@@ -1,11 +1,14 @@
 ---
 - name: Install unclutter
-  pacman:
+  tags: unclutter
+  become: no
+  aur:
+    skip_installed: yes
     name: unclutter
-  tags:
-    - unclutter
 
 - name: Enable unclutter in xinitrc.d
+  tags: unclutter
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: /etc/X11/xinit/xinitrc.d/{{ item }}
@@ -14,5 +17,3 @@
     mode: 0755
   loop:
     - 90-unclutter.sh
-  tags:
-    - unclutter

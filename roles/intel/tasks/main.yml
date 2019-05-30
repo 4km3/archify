@@ -1,12 +1,9 @@
 ---
-- name: Install intel-ucode
-  tags: intel
-  pacman:
-    name: intel-ucode
-
-- name: Install rasdaemon
+- name: Install intel-ucode and rasdaemon
   tags: intel
   become: no
   aur:
-    name: rasdaemon
     skip_installed: yes
+    name:
+      - intel-ucode
+      - rasdaemon

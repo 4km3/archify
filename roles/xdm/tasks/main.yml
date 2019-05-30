@@ -1,15 +1,18 @@
 ---
-- name: Install XDM
-  pacman:
-    name: xorg-xdm
-
-- name: Install xdm-minimalist
+- name: Install XDM and xdm-minimalist
+  tags: xdm
   become: no
   aur:
-    name: xdm-minimalist
     skip_installed: yes
+    name:
+      - xorg-xdm
+      - xdm-minimalist
 
 - name: Copy Xresources to /etc/X11/xdm
+  tags:
+    - xdm
+    - xresources
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: /etc/X11/xdm/{{ item }}
@@ -21,6 +24,8 @@
     - Xresources
 
 - name: Secure Xservers
+  tags: xdm
+  become: yes
   lineinfile:
     dest: /etc/X11/xdm/Xservers
     backup: yes
@@ -29,6 +34,8 @@
     line: '\1 -nolisten tcp \2'
 
 - name: Enable XDM-minimalist
+  tags: xdm
+  become: yes
   service:
     name: xdm-minimalist
     enabled: yes

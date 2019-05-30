@@ -1,7 +1,9 @@
 ---
 - name: Install spectrwm, rofi, scrot and slock
   tags: spectrwm
-  pacman:
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - spectrwm
       - rofi
@@ -10,22 +12,24 @@
 
 - name: Configure spectrwm
   tags: spectrwm
+  become: yes
   template:
     src: spectrwm.conf.j2
     dest: /etc/spectrwm.conf
 
 - name: Enable screenshot.sh
   tags: spectrwm
+  become: yes
   file:
     src: /usr/share/spectrwm/{{ item }}
     path: /usr/local/bin/{{ item }}
     state: link
-    backup: yes
   loop:
     - screenshot.sh
 
 - name: Enable spectrwm
   tags: spectrwm
+  become: yes
   copy:
     content: "exec spectrwm\n"
     dest: /etc/X11/xinit/xinitrc.d/99-spectrwm.sh

@@ -1,11 +1,14 @@
 ---
 - name: Install xcape
   tags: xcape
-  pacman:
+  become: no
+  aur:
+    skip_installed: yes
     name: xcape
 
 - name: Enable xcape
   tags: xcape
+  become: yes
   copy:
     content: "xcape -e 'Control_L=Escape'\n"
     dest: /etc/X11/xinit/xinitrc.d/98-xcape.sh

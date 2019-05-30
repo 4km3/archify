@@ -1,9 +1,14 @@
 ---
 - name: Install termite terminal emulator
-  pacman:
+  tags: termite
+  become: no
+  aur:
+    skip_installed: yes
     name: termite
 
 - name: Configure termite
+  tags: termite
+  become: yes
   template:
     src: '{{ item }}.j2'
     dest: '/etc/xdg/termite/{{ item }}'

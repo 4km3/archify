@@ -1,8 +1,9 @@
 ---
 - name: Install emacs and dependencies
   tags: spacemacs
-  become: yes
-  pacman:
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - emacs
       - ctags
@@ -16,18 +17,6 @@
       - python-pytest
       - ripgrep
       - yapf
-
-- name: Gather facts to refresh ansible_env
-  tags: spacemacs
-  become: no
-  setup:
-
-- name: Install dependencies
-  tags: spacemacs
-  become: no
-  aur:
-    skip_installed: yes
-    name:
       - global
       - nodejs-tern
       - nodejs-vmd
@@ -39,6 +28,11 @@
       - python-pyls-isort-git
       - pyls-mypy
       - flake8
+
+- name: Gather facts to refresh ansible_env
+  tags: spacemacs
+  become: no
+  setup:
 
 - name: Clone Spacemacs
   tags: spacemacs

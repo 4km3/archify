@@ -1,20 +1,20 @@
 ---
 - name: Install go, go-tools
-  pacman:
+  tags: golang
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - go
       - go-tools
-  tags:
-    - golang
 
 - name: Install golang helpers
+  tags: golang
   become: no
   command:
     go get -u {{ item }}
   register: goget_result
   changed_when: goget_result.stderr != ""
-  tags:
-    - golang
   loop:
     - github.com/nsf/gocode
     - github.com/rogpeppe/godef
@@ -28,9 +28,8 @@
     - golang.org/x/tour/gotour
 
 - name: Setup gometalinter
+  tags: golang
   become: no
   command:
     go/bin/gometalinter --install
   ignore_errors: yes
-  tags:
-    - golang

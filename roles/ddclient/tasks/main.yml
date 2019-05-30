@@ -1,10 +1,13 @@
 - name: Install ddclient
-  pacman:
+  tags: ddclient
+  become: no
+  aur:
+    skip_installed: yes
     name: ddclient
-  tags:
-    - ddclient
 
 - name: Config ddclient
+  tags: ddclient
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: "/etc/ddclient/{{ item }}"
@@ -15,13 +18,11 @@
     - ddclient.conf
   notify:
     - Restart ddclient
-  tags:
-    - ddclient
 
 - name: Enable and start ddclient service
+  tags: ddclient
+  become: yes
   service:
     name: ddclient
     enabled: yes
     state: started
-  tags:
-    - ddclient

@@ -1,11 +1,16 @@
 ---
 - name: Install bluez and bluez-utils
-  pacman:
+  tags: bluez
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - bluez
       - bluez-utils
 
 - name: Enable bluetooth controller on startup
+  tags: bluez
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: "/etc/udev/rules.d/{{ item }}"

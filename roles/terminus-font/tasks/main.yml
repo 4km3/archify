@@ -1,4 +1,7 @@
 ---
 - name: Install Terminus font
-  pacman:
+  tags: terminus
+  become: no
+  aur:
+    skip_installed: yes
     name: terminus-font

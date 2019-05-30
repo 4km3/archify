@@ -1,18 +1,16 @@
 ---
-- name: Install docker
-  tags: docker
-  pacman:
-    name: docker
-
-- name: Install docker-compose
+- name: Install docker and docker-compose
   tags: docker
   become: no
   aur:
-    name: docker-compose
     skip_installed: yes
+    name:
+      - docker
+      - docker-compose
 
 - name: Enable docker service
   tags: docker
+  become: yes
   service:
     name: docker
     enabled: yes

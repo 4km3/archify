@@ -1,16 +1,20 @@
 ---
 - name: Install pkgfile
   tags: pkgfile
-  pacman:
+  become: no
+  aur:
+    skip_installed: yes
     name: pkgfile
 
 - name: Update pkgfile cache
   tags: pkgfile
+  become: yes
   command:
     pkgfile --update
 
 - name: Enable pkgfile-update.timer
   tags: pkgfile
+  become: yes
   service:
     name: pkgfile-update.timer
     enabled: yes

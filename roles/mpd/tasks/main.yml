@@ -1,7 +1,9 @@
 ---
 - name: Install MPD and clients
   tags: mpd
-  pacman:
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - mpd
       - mpc
@@ -10,12 +12,14 @@
 
 - name: Create override dir for mpd.socket
   tags: mpd
+  become: yes
   file:
     path: /etc/systemd/system/mpd.socket.d
     state: directory
 
 - name: Install config files
   tags: mpd
+  become: yes
   notify: Restart MPD
   template:
     src: "{{ item.name }}.j2"

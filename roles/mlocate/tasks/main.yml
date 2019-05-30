@@ -1,4 +1,7 @@
 ---
 - name: Install mlocate
-  pacman:
+  tags: mlocate
+  become: no
+  aur:
+    skip_installed: yes
     name: mlocate

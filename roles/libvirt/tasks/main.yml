@@ -1,7 +1,9 @@
 ---
 - name: Install libvirt and friends
   tags: libvirt
-  pacman:
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - libvirt
       - virt-manager
@@ -17,6 +19,7 @@
 
 - name: Config qemu - root user
   tags: libvirt
+  become: yes
   lineinfile:
     dest: /etc/libvirt/qemu.conf
     backup: yes
@@ -27,6 +30,7 @@
 
 - name: Config qemu - UEFI settings
   tags: libvirt
+  become: yes
   blockinfile:
     dest: /etc/libvirt/qemu.conf
     backup: yes
@@ -38,6 +42,7 @@
 
 - name: Install polkit rules file
   tags: libvirt
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: /etc/polkit-1/rules.d/{{ item }}
@@ -50,6 +55,7 @@
 
 - name: Enable libvirtd and libvirt-guests
   tags: libvirt
+  become: yes
   service:
     name: "{{ item }}"
     enabled: yes

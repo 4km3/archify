@@ -1,9 +1,14 @@
 ---
 - name: Install sudo
-  pacman:
+  tags: sudo
+  become: no
+  aur:
+    skip_installed: yes
     name: sudo
 
 - name: Enable password-less sudo for wheel
+  tags: sudo
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: /etc/sudoers.d/{{ item }}

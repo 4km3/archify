@@ -1,7 +1,9 @@
 ---
-- name: Install ansible and friends
+- name: Install ansible, ansible-aur-git and friends
   tags: ansible
-  pacman:
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - ansible
       - ansible-lint
@@ -15,9 +17,4 @@
       - python-boto3
       - python-jmespath
       - acme-tiny
-
-- name: Install ansible-aur-git
-  tags: ansible
-  become: no
-  aur:
-    name: ansible-aur-git
+      - ansible-aur-git

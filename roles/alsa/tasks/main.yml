@@ -1,7 +1,9 @@
 ---
 - name: Install alsa-utils
   tags: alsa
-  pacman:
+  become: no
+  aur:
+    skip_installed: yes
     name: alsa-utils
 
 - name: Gather facts to refresh ansible_env

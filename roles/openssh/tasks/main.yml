@@ -1,9 +1,14 @@
 ---
 - name: Install OpenSSH
-  pacman:
+  tags: openssh
+  become: no
+  aur:
+    skip_installed: yes
     name: openssh
 
 - name: Configure OpenSSH
+  tags: openssh
+  become: yes
   lineinfile:
     dest: /etc/ssh/sshd_config
     backup: yes
@@ -14,6 +19,8 @@
     - Restart OpenSSH
 
 - name: Restrict HostKeyAlgorithms to ed25519
+  tags: openssh
+  become: yes
   lineinfile:
     dest: /etc/ssh/sshd_config
     backup: yes
@@ -24,6 +31,8 @@
     - Restart OpenSSH
 
 # - name: Relax root access
+#   become: yes
+#   tags: openssh
 #   lineinfile:
 #     dest: /etc/ssh/sshd_config
 #     backup: yes
@@ -34,6 +43,8 @@
 #     - Restart OpenSSH
 
 - name: Start OpenSSH
+  tags: openssh
+  become: yes
   service:
     name: sshd
     state: started

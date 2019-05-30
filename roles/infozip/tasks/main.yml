@@ -1,6 +1,9 @@
 ---
 - name: Install Info-ZIP
-  pacman:
+  tags: infozip
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - zip
       - unzip

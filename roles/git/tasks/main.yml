@@ -1,26 +1,17 @@
 ---
-- name: Install git, tig and gitg
-  tags:
-    - git
-    - tig
-  pacman:
+- name: Install git, tig, gitg, gti, hub and gitflow
+  tags: git
+  become: no
+  aur:
+    skip_installed: yes
     name:
       - git
       - tig
       - gitg
+      - gti
       - hub
-
-- name: Install gitflow-avh
-  become: no
-  aur:
-    name:
       - gitflow-avh
       - gitflow-fishcompletion-avh
-    skip_installed: yes
-  tags:
-    - git
-    - gitflow
-    - gti
 
 - name: Gather facts to refresh ansible_env
   become: no

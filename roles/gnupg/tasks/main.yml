@@ -1,4 +1,7 @@
 ---
 - name: Install GnuPG
-  pacman:
+  tags: gnupg
+  become: no
+  aur:
+    skip_installed: yes
     name: gnupg
