@@ -1,6 +1,6 @@
 {{ ansible_managed | comment }}
 # PLEASE READ THE MAN PAGE BEFORE EDITING THIS FILE!
-# http://opensource.conformal.com/cgi-bin/man-cgi?spectrwm
+# https://htmlpreview.github.io/?https://github.com/conformal/spectrwm/blob/master/spectrwm.html
 # NOTE: all rgb color values in this file are in hex! see XQueryColor for examples
 
 # workspace_limit	= 22
@@ -28,7 +28,7 @@ color_unfocus		= rgb:07/36/42
 # Region containment
 # Distance window must be dragged/resized beyond the region edge before it is
 # allowed outside the region.
-# boundary_width 		= 50
+# boundary_width    = 50
 
 # Remove window border when bar is disabled and there is only one window in workspace
 # disable_border		= 1
@@ -43,15 +43,19 @@ bar_border_width	= 0
 # bar_border_unfocus[1]	= rgb:00/40/40
 # bar_color[1]		= black
 bar_color[1]		= rgb:00/2B/36
-# bar_font_color[1]	= rgb:a0/a0/a0
-bar_font_color[1]	= rgb:65/7B/83
+bar_color[1]		= rgb:5D/4D/7A
+# bar_font_color[1]	= rgb:A0/A0/A0
+###bar_font_color[1]	= rgb:65/7B/83
+bar_font_color[1]	= rgb:B2/B2/B2
+bar_color_selected[1]	= rgb:EE/AD/0E
 # bar_font		= -*-terminus-medium-*-*-*-*-*-*-*-*-*-*-*
 ##bar_font		= -*-terminus-medium-*-*-*-24-*-*-*-*-*-*-*
-bar_font		= Terminus:foundry=xos4:pixelsize=28
+bar_font		= Terminus:foundry=xos4:pixelsize=22:style=bold
 # bar_action		= baraction.sh
 ##bar_action		= baraction
 # bar_justify		= left
 # bar_format		= +N:+I +S <+D>+4<%a %b %d %R %Z %Y+8<+A+4<+V
+# workspace_indicator	= listcurrent,listactive,markcurrent,printnames
 # bar_at_bottom		= 1
 # stack_enabled		= 1
 # clock_enabled		= 1
@@ -62,8 +66,8 @@ bar_font		= Terminus:foundry=xos4:pixelsize=28
 # window_instance_enabled	= 0
 # window_name_enabled	= 0
 window_name_enabled	= 1
-# verbose_layout		= 1
-# urgent_enabled		= 1
+verbose_layout		= 1
+urgent_enabled		= 1
 
 # Dialog box size ratio when using TRANSSZ quirk; 0.3 < dialog_ratio <= 1.0
 # dialog_ratio		= 0.6
@@ -79,6 +83,7 @@ autorun			= ws[1]:urxvt
 # autorun		= ws[2]:xombrero http://www.openbsd.org
 
 # Customize workspace layout at start
+layout		= ws[1]:7:0:0:0:vertical
 # layout		= ws[1]:4:0:0:0:vertical
 # layout		= ws[2]:0:0:0:0:horizontal
 # layout		= ws[3]:0:0:0:0:fullscreen
@@ -108,7 +113,7 @@ program[term]		= urxvt
 #program[menu]		= rofi -sidebar-mode -modi "run,ssh" -show run -font 'xos4 Terminus' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#000000 -bc \#008080 -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
 ###program[menu]		= rofi -sidebar-mode -modi drun -show drun -font 'xos4 Terminus 18' -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
 ####program[menu]		= rofi -sidebar-mode -modi drun -show drun -bw 1 -location 2 -width 100 -de -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
-program[menu]		= rofi -sidebar-mode -auto-select -modi drun -show drun -show-icons -no-disable-history -no-levenshtein-sort
+program[menu]		= rofi -sidebar-mode -auto-select -modi drun,ssh -show drun -show-icons -no-disable-history -no-levenshtein-sort
 # -xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1
 
 # To disable validation of the above, free the respective binding(s):
@@ -123,9 +128,11 @@ program[menu]		= rofi -sidebar-mode -auto-select -modi drun -show drun -show-ico
 
 # EXAMPLE: Define 'firefox' action and bind to key.
 # program[firefox]	= firefox http://spectrwm.org/
-program[firefox]	= firefox
+# program[firefox]	= firefox
 # bind[firefox]		= MOD+Shift+b
-bind[firefox]		= MOD+Shift+b
+
+program[chromium]	= chromium
+bind[chromium]		= MOD+Shift+b
 
 # EXAMPLE: Define 'emacs' action and bind to key.
 program[emacs]		= emacs
@@ -144,6 +151,7 @@ quirk[mpv:vaapi]			= FLOAT + FULLSCREEN + FOCUSPREV
 ##quirk[Firefox:Navigator]		= TRANSSZ
 ##quirk[Firefox:Dialog]			= FLOAT
 quirk[Firefox:Browser]			= FLOAT
+###quirk[Emacs:emacs] = FLOAT + FULLSCREEN
 ##quirk[Firefox:Download]			= FLOAT
 ##quirk[chromium:chromium]			= FLOAT
 # quirk[Gimp:gimp]			= FLOAT + ANYWHERE
