@@ -13,7 +13,7 @@
     - name: Fix .ssh/known_hosts
       local_action:
         module: known_hosts
-        host: "{{ item }}"
+        name: "{{ item }}"
         state: absent
       loop:
         - "{{ ansible_host }}"
@@ -21,7 +21,7 @@
     - name: Add target host ssh pubkey fingerprint to our known_hosts
       local_action:
         module: known_hosts
-        host: "{{ ansible_host }}"
+        name: "{{ ansible_host }}"
         key: "{{ lookup('pipe', 'ssh-keyscan -t ed25519 ' + ansible_host) }}"
     - name: Identify main block device
       shell: >
