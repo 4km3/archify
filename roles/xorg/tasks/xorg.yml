@@ -1,7 +1,6 @@
 ---
 - name: Install xorg
-  tags:
-    - xorg
+  tags: xorg
   become: no
   aur:
     skip_installed: yes

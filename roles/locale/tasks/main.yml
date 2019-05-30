@@ -1,5 +1,7 @@
 ---
 - name: Enable en_US.UTF-8 locale
+  tags: locale
+  become: yes
   locale_gen:
     name: "{{ locale_lang }}"
     state: present

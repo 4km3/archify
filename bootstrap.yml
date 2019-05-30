@@ -188,7 +188,6 @@
   tags: bootstrap
   hosts: arch
   gather_facts: no
-  become: yes
   vars_prompt:
     - name: main_user_password
       prompt: Enter your password

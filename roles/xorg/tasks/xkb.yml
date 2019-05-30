@@ -1,6 +1,7 @@
 ---
 - name: Configure xorg xkb
   tags: xkb
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: /etc/X11/xorg.conf.d/{{ item }}

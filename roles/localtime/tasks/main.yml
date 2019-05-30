@@ -1,6 +1,7 @@
 ---
 - name: Symlink /etc/localtime to the actual timezone file
   tags: localtime
+  become: yes
   file:
     src: ../usr/share/zoneinfo/{{ timezone }}
     path: /etc/localtime

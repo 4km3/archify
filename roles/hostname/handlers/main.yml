@@ -1,4 +1,6 @@
 ---
 - name: Set hostname
+  tags: hostname
+  become: yes
   command:
     hostname -F /etc/hostname

@@ -4,8 +4,7 @@
   become: no
   aur:
     skip_installed: yes
-    name:
-      - fish
+    name: fish
 
 - name: Add ~/.local/bin, ~/go/bin to PATH
   tags: fish

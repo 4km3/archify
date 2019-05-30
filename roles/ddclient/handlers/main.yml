@@ -1,5 +1,7 @@
 ---
 - name: Restart ddclient
+  tags: ddclient
+  become: yes
   service:
     name: ddclient
     state: restarted

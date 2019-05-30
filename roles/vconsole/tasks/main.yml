@@ -1,7 +1,7 @@
 ---
 - name: Copy include keymap with CTRL and CAPS_LOCK swapped, configure vconsole font and keymap
-  tags:
-    - vconsole
+  tags: vconsole
+  become: yes
   template:
     src: "{{ item.name }}.j2"
     dest: "{{ item.dest }}/{{ item.name }}"

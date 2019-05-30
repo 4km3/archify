@@ -5,6 +5,5 @@
 
 - name: Setup Arch Linux
   hosts: arch
-  become: yes
   roles:
     - base

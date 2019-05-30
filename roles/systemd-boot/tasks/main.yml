@@ -1,6 +1,7 @@
 ---
 - name: Obtain ID of root part
   tags: systemd-boot
+  become: no
   shell:
     "sgdisk -i 3 {{ systemd_boot_main_block_device }} | grep unique | awk -F': *' '{ print $2 }'"
   register: root_guid
@@ -8,12 +9,14 @@
 
 - name: Create /boot/loader/entries directory
   tags: systemd-boot
+  become: no
   file:
     path: /mnt/boot/loader/entries
     state: directory
 
 - name: Create /boot/loader/loader.conf
   tags: systemd-boot
+  become: no
   copy:
     content: "# timeout 10\ndefault arch\n"
     dest: /mnt/boot/loader/loader.conf
@@ -21,6 +24,7 @@
 
 - name: Create /boot/loader/entries/*.conf
   tags: systemd-boot
+  become: no
   template:
     src: "{{ item }}.conf.j2"
     dest: /mnt/boot/loader/entries/{{ item }}.conf

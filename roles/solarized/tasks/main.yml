@@ -1,14 +1,15 @@
 ---
 - name: Install Solarized Xresources file
+  tags: solarized
+  become: yes
   git:
     repo: "{{ solarized_repo }}"
     dest: /opt/solarized/xresources
     force: yes
-  tags:
-    - solarized
 
 - name: Reduce fading
-  tags: fading
+  tags: solarized
+  become: yes
   lineinfile:
     dest: /opt/solarized/xresources/Xresources.dark
     state: present

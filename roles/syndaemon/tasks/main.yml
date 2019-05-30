@@ -1,5 +1,7 @@
 ---
 - name: Enable syndaemon in xinitrc.d
+  tags: syndaemon
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: /etc/X11/xinit/xinitrc.d/{{ item }}

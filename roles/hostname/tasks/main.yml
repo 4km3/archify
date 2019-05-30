@@ -1,5 +1,7 @@
 ---
 - name: Copy /etc/hostname
+  tags: hostname
+  become: yes
   copy:
     content: "{{ hostname }}\n"
     dest: /etc/hostname

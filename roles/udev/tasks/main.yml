@@ -1,6 +1,7 @@
 ---
 - name: Create symlink from /dev/null to /etc/udev/rules.d/80-net-setup-link.rules
   tags: udev
+  become: yes
   file:
     src: /dev/null
     path: /etc/udev/rules.d/80-net-setup-link.rules

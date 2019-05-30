@@ -1,7 +1,7 @@
 ---
 - name: Install prioritized mirrorlist
-  tags:
-    - pacman
+  tags: pacman
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: /etc/pacman.d/{{ item }}
@@ -12,8 +12,8 @@
     - mirrorlist
 
 - name: Configure pacman
-  tags:
-    - pacman
+  tags: pacman
+  become: yes
   ini_file:
     path: /etc/pacman.conf
     allow_no_value: yes

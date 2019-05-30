@@ -8,6 +8,7 @@
 
 - name: Start and enable macfanctld
   tags: macfanctld
+  become: yes
   service:
     name: macfanctld
     state: started

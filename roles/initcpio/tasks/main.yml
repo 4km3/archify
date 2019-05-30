@@ -1,5 +1,7 @@
 ---
 - name: Update /etc/mkinitcpio.conf
+  tags: initcpio
+  become: yes
   template:
     dest: "/etc/{{ item }}"
     src: "{{ item }}.j2"
@@ -8,5 +10,3 @@
     - mkinitcpio.conf
   notify:
     - Regenerate initcpio
-  tags:
-    - initcpio

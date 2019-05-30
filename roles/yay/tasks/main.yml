@@ -3,8 +3,8 @@
   tags: yay
   become: no
   aur:
-    name: yay-bin
     skip_installed: yes
+    name: yay-bin
 
 - name: Create yay work directory
   tags: yay

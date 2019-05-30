@@ -1,5 +1,7 @@
 ---
 - name: Enable bell-style visible in /etc/inputrc
+  tags: inputrc
+  become: yes
   lineinfile:
     dest: /etc/inputrc
     backup: yes

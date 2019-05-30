@@ -1,6 +1,6 @@
 ---
 - name: Install iw and get rid of deprecated and/or unneeded stuff
-  tags: systemdnetworkd
+  tags: systemd-networkd
   become: yes
   pacman:
     name: "{{ item.name }}"
@@ -13,7 +13,7 @@
     - { name: openresolv,     state: absent  }
 
 - name: Configure wl* and en*
-  tags: systemdnetworkd
+  tags: systemd-networkd
   become: yes
   template:
     src: "{{ item }}.j2"
@@ -25,7 +25,7 @@
     - Reload systemd-networkd
 
 - name: Enable and start systemd-networkd
-  tags: systemdnetworkd
+  tags: systemd-networkd
   become: yes
   service:
     name: systemd-networkd

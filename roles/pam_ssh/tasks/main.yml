@@ -12,11 +12,12 @@
   tags: pamssh
   become: no
   aur:
-    name: pam_ssh
     skip_installed: yes
+    name: pam_ssh
 
 - name: Enable pam_ssh for XDM
   tags: pamssh
+  become: yes
   template:
     src: "{{ item }}.j2"
     dest: /etc/pam.d/{{ item }}

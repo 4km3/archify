@@ -1,6 +1,7 @@
 ---
 - name: Add missing .sh suffix to 30-dbus
   tags: dbus
+  become: yes
   file:
     src: etc/X11/xinit/xinitrc.d/30-dbus
     path: etc/X11/xinit/xinitrc.d/30-dbus.sh

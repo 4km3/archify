@@ -1,5 +1,7 @@
 ---
 - name: Reload systemd-networkd
+  tags: systemd-networkd
+  become: yes
   service:
     name: systemd-networkd
     state: reloaded

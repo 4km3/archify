@@ -1,5 +1,7 @@
 ---
 - name: Regenerate initcpio
+  tags: initcpio
+  become: yes
   command:
     mkinitcpio -p linux
   ignore_errors: yes

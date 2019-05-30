@@ -1,5 +1,7 @@
 ---
 - name: Restart MPD
+  tags: mpd
+  become: yes
   systemd:
     state: restarted
     daemon_reload: yes
