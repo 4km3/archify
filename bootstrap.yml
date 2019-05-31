@@ -123,6 +123,8 @@
         - cp -a /mnt/etc/fstab /mnt/etc/fstab.orig
         - arch-chroot /mnt useradd -m -G wheel,log -s /usr/bin/fish {{ user }}
       ignore_errors: yes
+      args:
+        warn: no
 
     - name: Populate /mnt/etc/fstab
       shell: genfstab -t PARTUUID -p /mnt >> /mnt/etc/fstab
