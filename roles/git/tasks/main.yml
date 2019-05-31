@@ -13,10 +13,9 @@
       - gitflow-fishcompletion-avh
 
 - name: Configure git
+  tags: git
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_user_dir }}/{{ item }}"
   loop:
     - .gitconfig
-  tags:
-    - git
