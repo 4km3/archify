@@ -14,19 +14,18 @@
   register: goget_result
   changed_when: goget_result.stderr != ""
   loop:
-    - github.com/nsf/gocode
+    - github.com/mdempsky/gocode
     - github.com/rogpeppe/godef
     - golang.org/x/tools/cmd/guru
     - golang.org/x/tools/cmd/gorename
     - golang.org/x/tools/cmd/goimports
+    - golang.org/x/tools/cmd/godoc
     - github.com/zmb3/gogetdoc
+    - github.com/cweill/gotests/...
+    - github.com/haya14busa/gopkgs/cmd/gopkgs
+    - github.com/davidrjenni/reftools/cmd/fillstruct
+    - github.com/josharian/impl
+    - github.com/golangci/golangci-lint/cmd/golangci-lint
     - github.com/godoctor/godoctor
     - github.com/fatih/gomodifytags
-    - github.com/alecthomas/gometalinter
-    - golang.org/x/tour/gotour
-
-- name: Setup gometalinter
-  tags: golang
-  command:
-    go/bin/gometalinter --install
-  ignore_errors: yes
+    - golang.org/x/tour
