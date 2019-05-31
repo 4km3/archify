@@ -19,3 +19,11 @@
     dest: "{{ ansible_user_dir }}/{{ item }}"
   loop:
     - .gitconfig
+
+- name: Install helper scripts
+  tags: git
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_user_dir }}/.local/bin/"
+    mode: preserve
+  with_fileglob: "*"
