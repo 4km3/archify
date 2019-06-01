@@ -29,6 +29,7 @@
       - firefox
       - arch-firefox-search
       - chromium
+      - google-chrome
       - arandr
       - feh
       - meld
