@@ -22,3 +22,12 @@
   loop:
     - ILoveCandy
     - Color
+
+- name: Install pacman-contrib and asp
+  tags: pacman
+  become: yes
+  pacman:
+    update_cache: yes
+    name:
+      - pacman-contrib
+      - asp
