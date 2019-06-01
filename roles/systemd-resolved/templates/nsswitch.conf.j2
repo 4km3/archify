@@ -1,20 +1,19 @@
 {{ ansible_managed | comment }}
-# Begin /etc/nsswitch.conf
+# Name Service Switch configuration file.
+# See nsswitch.conf(5) for details.
 
-passwd:		files mymachines systemd
-group:		files mymachines systemd
-shadow:		files
+passwd: files mymachines systemd
+group: files mymachines systemd
+shadow: files
 
-publickey:	files
+publickey: files
 
-hosts:		files libvirt mymachines resolve myhostname dns
-networks:	files
+hosts: files mymachines libvirt resolve [!UNAVAIL=return] dns myhostname
+networks: files
 
-protocols:	files
-services:	files
-ethers:		files
-rpc:		files
+protocols: files
+services: files
+ethers: files
+rpc: files
 
-netgroup:	files
-
-# End /etc/nsswitch.conf
+netgroup: files
