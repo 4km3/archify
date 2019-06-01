@@ -1,9 +1,11 @@
 ---
-- name: Install fish
+- name: Install fish and time
   tags: fish
   aur:
     skip_installed: yes
-    name: fish
+    name:
+      - fish
+      - time
 
 - name: Add ~/.local/bin, ~/go/bin to PATH
   tags: fish
