@@ -13,6 +13,7 @@ dependencies:
     - { role: opensc, when: want_opensc is defined and want_opensc }
     - { role: bluetooth, when: has_bt is defined and has_bt }
     - { role: macfanctld, when: is_mac is defined and is_mac }
+    - { role: ddclient, when: want_ddclient is defined and want_ddclient }
     - initcpio
     - locale
     - localtime
