@@ -1,0 +1,15 @@
+{{ ansible_managed | comment }}
+
+# Create /media/<label> upon connection of USB drives
+ACTION=="add",            \
+  SUBSYSTEM=="block",				\
+  ENV{ID_USB_DRIVER}=="usb-storage",		\
+  KERNEL=="sd[a-z]",				\
+  RUN+="/bin/mkdir -p /media/%E{ID_FS_LABEL}"
+
+# Remove /media/<label> upon disconnection of USB drives
+ACTION=="remove",					\
+  SUBSYSTEM=="block",				\
+  ENV{ID_USB_DRIVER}=="usb-storage",		\
+  KERNEL=="sd[a-z]",				\
+  RUN+="/bin/rmdir --ignore-fail-on-non-empty /media/%E{ID_FS_LABEL}"

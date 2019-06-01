@@ -1,0 +1,4 @@
+{{ ansible_managed | comment }}
+
+# Ensure USB storage devices belong to 'storage' group
+KERNEL=="sd[a-z]*", SUBSYSTEM=="block", SUBSYSTEMS=="usb", GROUP="storage"

@@ -6,3 +6,13 @@
     src: /dev/null
     path: /etc/udev/rules.d/80-net-setup-link.rules
     state: link
+
+- name: Install udev rules
+  tags: udev
+  become: yes
+  template:
+    src: "{{ item }}.j2"
+    dest: /etc/udev/rules.d/{{ item }}
+  loop:
+    - zz-usb_storage.rules
+    - zz-usb_media.rules
