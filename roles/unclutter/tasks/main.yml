@@ -8,11 +8,9 @@
 - name: Enable unclutter in xinitrc.d
   tags: unclutter
   become: yes
-  template:
-    src: "{{ item }}.j2"
-    dest: /etc/X11/xinit/xinitrc.d/{{ item }}
+  copy:
+    content: "unclutter --timeout 1 --jitter 100 --ignore-scrolling --fork\n"
+    dest: /etc/X11/xinit/xinitrc.d/90-unclutter.sh
     owner: root
     group: root
     mode: 0755
-  loop:
-    - 90-unclutter.sh
