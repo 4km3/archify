@@ -1,0 +1,5 @@
+{{ ansible_managed | comment }}
+
+if status --is-login
+    set -Ux GIT_PAGER bat
+end

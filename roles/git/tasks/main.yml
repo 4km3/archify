@@ -5,6 +5,7 @@
     skip_installed: yes
     name:
       - git
+      - bat
       - tig
       - gitg
       - gti
@@ -27,3 +28,14 @@
     dest: "{{ ansible_user_dir }}/.local/bin/"
     mode: preserve
   with_fileglob: "*"
+
+- name: Set GIT_PAGER to bat
+  tags:
+    - git
+    - fish
+  become: yes
+  template:
+    src: "{{ item }}.j2"
+    dest: /etc/fish/conf.d/{{ item }}
+  loop:
+    - gitpager.fish
