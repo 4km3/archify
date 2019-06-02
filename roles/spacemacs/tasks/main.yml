@@ -27,6 +27,8 @@
       - python-pyls-isort-git
       - pyls-mypy
       - flake8
+      - shellcheck
+      - bashate
 
 - name: Clone Spacemacs
   tags: spacemacs
