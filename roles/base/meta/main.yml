@@ -4,6 +4,7 @@ dependencies:
     - aur
     - intel
     - { role: broadcom, when: has_broadcom is defined and has_broadcom }
+    - udev
     - hostname
     - sudo
     - systemd-networkd
