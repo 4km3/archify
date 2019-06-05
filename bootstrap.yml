@@ -188,7 +188,7 @@
 
 - name: Setup Arch Linux
   tags: bootstrap
-  hosts: arch
+  hosts: all:!bootstrap
   gather_facts: yes
   vars_prompt:
     - name: main_user_password
@@ -237,7 +237,7 @@
 
 - name: Wait for host to become reachable
   tags: bootstrap
-  hosts: arch
+  hosts: all:!bootstrap
   gather_facts: no
   tasks:
     - name: Wait for connection

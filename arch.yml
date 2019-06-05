@@ -1,6 +1,6 @@
 ---
 - name: Setup Arch Linux
-  hosts: arch
+  hosts: all:!bootstrap
   gather_facts: yes
   roles:
     - base
