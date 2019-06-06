@@ -13,3 +13,4 @@
     - { name: vconsole.conf,  dest: /etc }
   notify:
     - Restart systemd-vconsole-setup
+    - Regenerate initcpio
