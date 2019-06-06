@@ -2,6 +2,8 @@
 - name: Regenerate initcpio
   tags: initcpio
   become: yes
-  command:
-    mkinitcpio -p linux
+  command: "{{ item }}"
+  loop:
+    - mkinitcpio -p linux
+    - mkinitcpio -p linux-lts
   ignore_errors: yes
