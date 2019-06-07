@@ -43,6 +43,12 @@
         target_block_device: /dev/{{ lsblk_output.stdout }}
         target_block_device_base: /dev/{{ lsblk_output.stdout }}{{ target_block_device_part_prefix | default() }}
 
+    - name: Export volumes as a fact
+      set_fact:
+        esp_volume: "{{ target_block_device_base }}1"
+        swap_volume: "{{ target_block_device_base }}2"
+        root_volume: "{{ target_block_device_base }}3"
+
     - name: Clear stale EFI boot entries
       command:
         efibootmgr -B -b "{{ item }}"
@@ -59,12 +65,15 @@
     - role: partition
       main_block_device: "{{ target_block_device }}"
       main_block_device_base: "{{ target_block_device_base }}"
+    - role: encryption
+      when: want_fde is defined and want_fde
+      main_block_device_base: "{{ root_volume }}"
 
   tasks:
     - name: Mount main block device on /mnt
       mount:
         name: /mnt
-        src: "{{ target_block_device_base }}3"
+        src: "{{ root_volume }}"
         fstype: btrfs
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache
         opts: noatime,ssd,autodefrag,compress=lzo,space_cache
@@ -83,14 +92,14 @@
     - name: Umount /mnt
       mount:
         path: /mnt
-        src: "{{ target_block_device_base }}3"
+        src: "{{ root_volume }}"
         fstype: btrfs
         state: unmounted
 
     - name: Mount root subvolume on /mnt
       mount:
         path: /mnt
-        src: "{{ target_block_device_base }}3"
+        src: "{{ root_volume }}"
         fstype: btrfs
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@
         opts: noatime,ssd,nodiscard,autodefrag,compress=lzo,space_cache,subvol=@
@@ -99,7 +108,7 @@
     - name: Mount boot subvolume on /mnt/boot
       mount:
         path: /mnt/boot
-        src: "{{ target_block_device_base }}1"
+        src: "{{ esp_volume }}"
         fstype: vfat
         opts: rw,noatime,fmask=0133,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro
         state: mounted
@@ -107,7 +116,7 @@
     - name: Mount home subvolume on /mnt/home
       mount:
         path: /mnt/home
-        src: "{{ target_block_device_base }}3"
+        src: "{{ root_volume }}"
         fstype: btrfs
         #opts: noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=@home
         opts: noatime,ssd,nodiscard,autodefrag,compress=lzo,space_cache,subvol=@home

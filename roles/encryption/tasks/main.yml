@@ -1,0 +1,20 @@
+- name: Create crypto device
+  tags: luks
+  shell:
+    echo -n '0000' |
+    cryptsetup
+      --cipher    aes-xts-plain64
+      --key-size  512
+      --hash      sha512
+      --iter-time 5000
+      --type      luks2
+      --use-random
+      --batch-mode
+      --verbose
+      luksFormat
+      {{ root_volume }}
+
+- name: Export luks volume as a fact
+  tags: luks
+  set_fact:
+    root_volume: /dev/mapper/arch
