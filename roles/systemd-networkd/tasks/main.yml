@@ -6,11 +6,12 @@
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   loop:
-    - { name: iw,             state: present }
-    - { name: wireless_tools, state: absent  }
-    - { name: netctl,         state: absent  }
-    - { name: dhcpcd,         state: absent  }
-    - { name: openresolv,     state: absent  }
+    - { name: iw,                     state: present  }
+    - { name: wireless_tools,         state: absent   }
+    - { name: netctl,                 state: absent   }
+    - { name: dhcpcd,                 state: absent   }
+    - { name: openresolv,             state: absent   }
+    - { name: systemd-resolvconf,     state: present  }
 
 - name: Configure wl* and en*
   tags: systemd-networkd
