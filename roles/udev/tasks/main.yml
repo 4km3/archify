@@ -6,6 +6,7 @@
     src: /dev/null
     path: /etc/udev/rules.d/80-net-setup-link.rules
     state: link
+  when: want_unpredictable_kernel_names is defined and want_unpredictable_kernel_names
 
 - name: Install udev rules
   tags: udev
