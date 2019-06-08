@@ -14,7 +14,7 @@
 - name: Enable pcscd.service
   tags: opensc
   become: yes
-  service:
+  systemd:
     name: pcscd
     enabled: yes
     state: started

@@ -35,6 +35,6 @@
 - name: Enable XDM-minimalist
   tags: xdm
   become: yes
-  service:
+  systemd:
     name: xdm-minimalist
     enabled: yes

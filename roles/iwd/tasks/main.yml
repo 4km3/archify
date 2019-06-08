@@ -8,7 +8,7 @@
 - name: Enable iwd service
   tags: iwd
   become: yes
-  service:
+  systemd:
     name: iwd
     enabled: yes
     state: started

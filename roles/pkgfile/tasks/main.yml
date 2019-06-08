@@ -14,6 +14,6 @@
 - name: Enable pkgfile-update.timer
   tags: pkgfile
   become: yes
-  service:
+  systemd:
     name: pkgfile-update.timer
     enabled: yes

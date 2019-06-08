@@ -1,6 +1,6 @@
 - name: Restart systemd-resolved
   tags: systemd-resolved
   become: yes
-  service:
+  systemd:
     name: systemd-resolved
     state: restarted

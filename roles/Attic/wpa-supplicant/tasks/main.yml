@@ -32,7 +32,7 @@
     - wpa_supplicant
 
 - name: Enable wpa_supplicant@{{ wifi_device }}.service
-  service:
+  systemd:
     name: "{{ service_name }}"
     enabled: yes
     state: started

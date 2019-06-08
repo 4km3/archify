@@ -1,5 +1,5 @@
 ---
 - name: Restart dhcpcd
-  service:
+  systemd:
     name=dhcpcd
     state=restarted

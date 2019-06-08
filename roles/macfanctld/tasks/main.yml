@@ -8,7 +8,7 @@
 - name: Start and enable macfanctld
   tags: macfanctld
   become: yes
-  service:
+  systemd:
     name: macfanctld
     state: started
     enabled: yes

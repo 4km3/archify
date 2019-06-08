@@ -23,12 +23,12 @@
     - 10-wl.network
     - 10-en.network
   notify:
-    - Reload systemd-networkd
+    - Restart systemd-networkd
 
 - name: Enable and start systemd-networkd
   tags: systemd-networkd
   become: yes
-  service:
+  systemd:
     name: systemd-networkd
     enabled: yes
     state: started

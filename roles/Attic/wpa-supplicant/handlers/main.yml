@@ -1,6 +1,6 @@
 ---
 - name: Restart wpa_supplicant@wlan0.service
-  service:
+  systemd:
     name="{{ service_name }}"
     state=restarted
   ignore_errors: yes

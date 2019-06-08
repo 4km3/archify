@@ -13,7 +13,7 @@
 
 
 - name: Enable and start dhcpcd service
-  service:
+  systemd:
     name=dhcpcd
     enabled=yes
     state=started

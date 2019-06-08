@@ -2,6 +2,6 @@
 - name: Restart ddclient
   tags: ddclient
   become: yes
-  service:
+  systemd:
     name: ddclient
     state: restarted

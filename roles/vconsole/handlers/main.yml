@@ -2,6 +2,6 @@
 - name: Restart systemd-vconsole-setup
   tags: vconsole
   become: yes
-  service:
+  systemd:
     name: systemd-vconsole-setup
     state: restarted

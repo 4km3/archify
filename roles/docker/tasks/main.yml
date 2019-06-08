@@ -10,7 +10,7 @@
 - name: Enable docker service
   tags: docker
   become: yes
-  service:
+  systemd:
     name: docker
     enabled: yes
 

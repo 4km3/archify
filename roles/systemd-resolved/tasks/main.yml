@@ -12,7 +12,7 @@
 - name: Enable and start systemd-resolved
   tags: systemd-resolved
   become: yes
-  service:
+  systemd:
     name: systemd-resolved
     enabled: yes
     state: started

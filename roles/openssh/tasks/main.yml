@@ -47,7 +47,7 @@
 - name: Start OpenSSH
   tags: openssh
   become: yes
-  service:
+  systemd:
     name: sshd
     state: started
     enabled: yes

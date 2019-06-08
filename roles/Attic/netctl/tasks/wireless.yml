@@ -20,7 +20,7 @@
 
 
 - name: Start netctl-auto@wlan0 service
-  service:
+  systemd:
     name=netctl-auto@wlan0
     enabled=yes
     state=started

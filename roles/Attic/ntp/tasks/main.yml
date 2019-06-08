@@ -15,7 +15,7 @@
     - Restart ntpd
 
 - name: Stop ntpd
-  service:
+  systemd:
     name: ntpd
     state: stopped
 
@@ -24,6 +24,6 @@
     ntpdate {{ ntp_server }}
 
 - name: Start ntpd
-  service:
+  systemd:
     name: ntpd
     state: started

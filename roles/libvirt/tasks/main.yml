@@ -55,7 +55,7 @@
 - name: Enable libvirtd and libvirt-guests
   tags: libvirt
   become: yes
-  service:
+  systemd:
     name: "{{ item }}"
     enabled: yes
     state: started

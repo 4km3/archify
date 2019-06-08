@@ -180,7 +180,7 @@
         update_cache: yes
 
     - name: Disable sshd
-      service:
+      systemd:
         name: sshd
         state: stopped
 

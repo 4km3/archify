@@ -1,5 +1,5 @@
 ---
 - name: Restart ntpd
-  service:
+  systemd:
     name=ntpd
     state=restarted
