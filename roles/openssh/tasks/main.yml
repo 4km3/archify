@@ -14,6 +14,7 @@
     insertafter: '^#PasswordAuthentication yes'
     regexp: '^PasswordAuthentication'
     line: 'PasswordAuthentication no'
+    validate: /bin/sshd -t -f %s
   notify:
     - Restart OpenSSH
 
@@ -26,6 +27,7 @@
     insertbefore: '^#HostKey /'
     regexp: '^HostKeyAlgorithms'
     line: 'HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-ed25519'
+    validate: /bin/sshd -t -f %s
   notify:
     - Restart OpenSSH
 
@@ -38,6 +40,7 @@
 #     insertafter: '^#PermitRootLogin prohibit-password'
 #     regexp: '^PermitRootLogin'
 #     line: 'PermitRootLogin yes'
+#     validate: /bin/sshd -t -f %s
 #   notify:
 #     - Restart OpenSSH
 
