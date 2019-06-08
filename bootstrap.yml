@@ -52,7 +52,7 @@
     - name: Clear stale EFI boot entries
       command:
         efibootmgr -B -b "{{ item }}"
-      with_sequence: start=0 end=5
+      loop: "{{ range(0, 6)|list }}"
       ignore_errors: yes
 
     - name: Ensure no fs is mounted
