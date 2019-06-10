@@ -73,6 +73,10 @@
     - role: encryption
       when: want_fde is defined and want_fde
       main_block_device_base: "{{ root_volume }}"
+    - role: filesystems
+      esp: "{{ esp_volume }}"
+      swap: "{{ swap_volume }}"
+      root: "{{ root_volume }}"
 
   tasks:
     - name: Mount main block device on /mnt
