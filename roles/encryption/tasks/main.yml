@@ -14,6 +14,12 @@
       luksFormat
       {{ root_volume }}
 
+- name: Open crypto device
+  tags: luks
+  shell:
+    echo -n '0000' |
+    cryptsetup luksOpen {{ root_volume }} arch
+
 - name: Export luks volume as a fact
   tags: luks
   set_fact:

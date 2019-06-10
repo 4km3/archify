@@ -60,6 +60,11 @@
       command:
         umount -R /mnt
 
+    - name: Ensure no crypto device is open
+      ignore_errors: yes
+      command:
+        cryptsetup luksClose arch
+
   roles:
     - pacman
     - role: partition
