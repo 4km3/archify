@@ -6,6 +6,17 @@
   register: root_guid
   changed_when: false
 
+- name: Set kernel options
+  tags: systemd-boot
+  set_fact:
+    options: "options root=PARTUUID={{ root_guid.stdout|lower }} rootflags=subvol=@ rw add_efi_memmap elevator=noop quiet"
+
+- name: Set kernel options using FDE
+  tags: systemd-boot
+  set_fact:
+    options: "options root=/dev/mapper/arch cryptdevice=PARTUUID={{ root_guid.stdout|lower }} rootflags=subvol=@ rw add_efi_memmap elevator=noop quiet"
+  when: want_fde is defined and want_fde
+
 - name: Create /boot/loader/entries directory
   tags: systemd-boot
   file:
@@ -28,6 +39,7 @@
     title: "{{ item.title }}"
     linux: "{{ item.linux }}"
     initrd: "{{ item.initrd }}"
+    options: "{{ options }}"
   loop:
     - filename: arch.conf
       title: Arch Linux
