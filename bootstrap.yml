@@ -55,6 +55,13 @@
       loop: "{{ range(0, 6)|list }}"
       ignore_errors: yes
 
+    - name: Ensure no container ir running on /mnt
+      ignore_errors: yes
+      command:
+        machinectl poweroff target-on-mnt
+      args:
+        warn: false
+
     - name: Ensure no fs is mounted
       ignore_errors: yes
       command:
@@ -247,6 +254,17 @@
         machinectl poweroff target-on-mnt
       args:
         warn: false
+
+    - name: Ensure no fs is mounted
+      ignore_errors: yes
+      command:
+        umount -R /mnt
+
+    - name: Close crypto device
+      ignore_errors: yes
+      command:
+        cryptsetup luksClose arch
+      when: want_fde is defined and want_fde
 
     - name: Reboot server
       reboot:
