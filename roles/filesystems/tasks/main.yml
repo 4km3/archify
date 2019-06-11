@@ -1,7 +1,7 @@
 - name: Create ESP filesystem
   tags: filesystem
   filesystem:
-    dev: "{{ esp }}"
+    dev: "{{ filesystems_esp_volume }}"
     fstype: vfat
     opts: -F32 -nESP
     force: yes
@@ -9,12 +9,12 @@
 - name: Create swap volume
   tags: mkswap
   command:
-    mkswap -L swap "{{ swap }}"
+    mkswap -L swap "{{ filesystems_swap_volume }}"
 
 - name: Create BTRFS filesystem
   tags: mkbtrfs
   filesystem:
-    dev: "{{ root }}"
+    dev: "{{ filesystems_root_volume }}"
     fstype: btrfs
     force: yes
     opts: -L root

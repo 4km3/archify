@@ -81,9 +81,9 @@
       when: want_fde is defined and want_fde
       main_block_device_base: "{{ root_volume }}"
     - role: filesystems
-      esp: "{{ esp_volume }}"
-      swap: "{{ swap_volume }}"
-      root: "{{ root_volume }}"
+      filesystems_esp_volume: "{{ esp_volume }}"
+      filesystems_swap_volume: "{{ swap_volume }}"
+      filesystems_root_volume: "{{ root_volume }}"
 
   tasks:
     - name: Mount main block device on /mnt
