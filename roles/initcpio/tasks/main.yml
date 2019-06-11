@@ -1,4 +1,15 @@
 ---
+- name: Set hooks for initcpio
+  tags: initcpio
+  set_fact:
+    hooks: "base systemd autodetect modconf block keyboard sd-vconsole"
+
+- name: Set hooks for initcpio using FDE
+  tags: initcpio
+  set_fact:
+    hooks: "base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck"
+  when: want_fde is defined and want_fde
+
 - name: Update /etc/mkinitcpio.conf
   tags: initcpio
   become: yes
@@ -6,6 +17,8 @@
     dest: "/etc/{{ item }}"
     src: "{{ item }}.j2"
     backup: yes
+  vars:
+    hooks: "{{ hooks }}"
   loop:
     - mkinitcpio.conf
   notify:
