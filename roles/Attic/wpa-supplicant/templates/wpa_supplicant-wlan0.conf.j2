@@ -1,0 +1,26 @@
+{{ ansible_managed | comment }}
+# Giving configuration update rights to wpa_cli
+ctrl_interface=/run/wpa_supplicant
+ctrl_interface_group=wheel
+update_config=1
+
+# IEEE 802.1X/EAPOL version
+# set to 1 if AP misbehaves
+eapol_version=2
+
+# Disable P2P functionality
+p2p_disabled=1
+
+# ISO/IEC alpha2 country code in which the device is currently operating.
+country=ES
+
+network={
+    ssid="someone's Wi-Fi Network"
+    id_str="someones-wifi"
+    proto=RSN
+    psk="Sup3rS3kr3tP4ssW0rd"
+    priority=999
+
+}
+
+# N.B.: priority can be negative; the smaller the number, the lower the priority
