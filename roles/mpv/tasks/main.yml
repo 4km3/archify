@@ -1,9 +1,11 @@
 ---
-- name: Install mpv
+- name: Install mpv, youtube-dl
   tags: mpv
   aur:
     skip_installed: yes
-    name: mpv
+    name:
+      - mpv
+      - youtube-dl
 
 - name: Create mpv config dir
   tags: mpv
