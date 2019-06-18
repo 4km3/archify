@@ -6,6 +6,7 @@
     name:
       - git
       - bat
+      - bfg
       - tig
       - gitg
       - gti
