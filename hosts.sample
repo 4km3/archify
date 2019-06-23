@@ -1,0 +1,84 @@
+#
+# If you are managing your workstation locally, you can speed this up with
+# `ansible_connection=local`:
+#
+
+thishost        ansible_connection=local
+
+
+#
+# ‘archiso’ is the default hostname for the archlinux official installer image.
+# You can use it to try archify on a VM.
+
+archiso
+
+
+#
+# In case you don’t want FDE (Full Disk Encryption), set `want_fde` to `False`,
+# both here and on the `bootstrap-nuc` entry, towards the end of this file:
+#
+
+nuc     want_fde=False
+
+
+#
+# If you want to swap the roles of the Ctrl and Caps keys in the console, you
+# can do it easily:
+#
+
+[StandardKeyboard]
+desktop
+laptop
+xps13
+
+[StandardKeyboard:vars]
+vconsole_keymap_toggle=swap.ctrl-caps
+
+
+#
+# For devices with High DPI displays attached, you can choose a bigger console
+# font:
+#
+
+[HiDPI]
+desktopWith4KDisplay
+dellXPS13
+
+[HiDPI:vars]
+vconsole_font=ter-128n
+
+#
+# The bootstrap-* hosts are a wrapper around the actual hosts.
+# They are needed for the initial setup only (bootstrapping).
+#
+
+[bootstrap]
+bootstrap-archiso       ansible_host=archiso
+bootstrap-desktop       ansible_host=desktop
+bootstrap-laptop        ansible_host=laptop
+bootstrap-nuc           ansible_host=nuc        want_fde=False
+bootstrap-dellXPS13     ansible_host=dellXPS13
+
+[bootstrap:vars]
+ansible_user=root
+ansible_ssh_pass=SetecAstronomy
+
+
+#
+# Default values, tweak them to your heart’s content.
+#
+# The emacs role (Spacemacs, actually) is quite network and I/O intensive, so
+# we disable it here to reduce the setup time; set it to ‘True’ if you actually
+# want it.
+#
+
+[all:vars]
+want_ansible=True
+want_docker=True
+want_emacs=False
+want_fde=True
+want_golang=True
+want_libvirt=True
+want_mpd=True
+want_opensc=True
+want_todotxt=True
