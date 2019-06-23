@@ -6,3 +6,6 @@ An ansible tree for bootstrapping and maintaining in sync your fleet of archlinu
 #+BEGIN_SRC sh
 $ ansible-playbook --limit bootstrap-myhost,myhost bootstrap.yml
 #+END_SRC
+
+* LICENSE
+GPL3.0-or-later
