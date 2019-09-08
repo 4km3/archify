@@ -49,7 +49,6 @@ This function should only modify configuration layer settings."
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation t
 
-   ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
@@ -57,87 +56,94 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-   ;; ----------------------------------------------------------------
-   ;; Example of useful layers you may want to use right away.
-   ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-   ;; `M-m f e R' (Emacs style) to install them.
-   ;; ----------------------------------------------------------------
-   ansible
-   auto-completion
-   better-defaults
-   chrome
-   command-log
-   csv
-   dap
-   docker
-   emacs-lisp
-   ;; elixir
-   ;; erlang
-   ess
-   games
-   git
-   github
-   (go :variables
-     go-tab-width 4
-     go-format-before-save t
-     gofmt-command "goimports"
-     go-backend 'lsp
-     go-use-golangci-lint t
-     godoc-at-point-function 'godoc-gogetdoc)
-   graphviz
-   helm
-   html
-   ipython-notebook
-   javascript
-   latex
-   lua
-   lsp
-   ;; lua
-   major-modes
-   (markdown :variables
-         markdown-live-preview-engine 'vmd)
-   ;;neotree
-   multiple-cursors
-   (org :variables
-      ;; org-want-todo-bindings t
-      org-enable-bootstrap-support t
-      org-enable-github-support t
-      org-enable-reveal-js-support t
-      org-enable-org-journal-support t
-      org-enable-hugo-support t
-      org-enable-trello-support t)
-   pdf
-   perl5
-   ;; puppet
-   (python :variables
-           python-backend 'lsp
-           python-test-runner 'pytest
-           python-enable-yapf-format-on-save t)
-   (ranger :variables
-       ranger-enter-with-minus t
-       ranger-cleanup-eagerly t
-       ranger-show-literal nil)
-   restclient
-   ;; rust
-   selectric
-   (shell :variables
-      shell-default-shell 'ansi-term
-      shell-default-position 'right)
-   shell-scripts
-   slack
-   spell-checking
-   syntax-checking
-   systemd
-   (templates :variables
-        templates-private-directory "~/.spacemacs.d/templates")
-   (terraform :variables terraform-auto-format-on-save t)
-   treemacs
-   ;; unicode-fonts
-   version-control
-   web-beautify
-   xkcd
-   yaml
-   )
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
+     ;; `M-m f e R' (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     ansible
+     auto-completion
+     better-defaults
+     chrome
+     command-log
+     csv
+     dap
+     docker
+     emacs-lisp
+     ;; elixir
+     ;; erlang
+     ess
+     games
+     git
+     github
+     (go :variables
+         go-tab-width 4
+         go-format-before-save t
+         gofmt-command "goimports"
+         go-backend 'lsp
+         go-use-golangci-lint t
+         godoc-at-point-function 'godoc-gogetdoc)
+     graphviz
+     helm
+     html
+     ipython-notebook
+     javascript
+     latex
+     lua
+     (lsp :variables
+          lsp-ui-doc-enable t
+          lsp-ui-sideline-enable nil)
+     ;; lua
+     major-modes
+     (markdown :variables
+               markdown-live-preview-engine 'vmd)
+     ;;neotree
+     multiple-cursors
+     (org :variables
+          ;; org-want-todo-bindings t
+          org-enable-bootstrap-support t
+          org-enable-github-support t
+          org-enable-reveal-js-support t
+          org-enable-org-journal-support t
+          org-enable-hugo-support t
+          org-enable-trello-support t)
+     pdf
+     perl5
+     ;; puppet
+     (python :variables
+             python-backend 'lsp
+             python-enable-yapf-format-on-save t
+             ;; python-formatter 'lsp
+             python-pipenv-activate t
+             python-test-runner 'pytest)
+     (ranger :variables
+             ranger-enter-with-minus t
+             ranger-cleanup-eagerly t
+             ranger-show-literal nil)
+     restclient
+     restructuredtext
+     ;; rust
+     selectric
+     (shell :variables
+            shell-default-shell 'ansi-term
+            shell-default-position 'right)
+     shell-scripts
+     slack
+     spell-checking
+     sphinx
+     syntax-checking
+     systemd
+     (templates :variables
+                templates-private-directory "~/.spacemacs.d/templates")
+     (terraform :variables
+                terraform-auto-format-on-save t)
+     treemacs
+     ;; unicode-fonts
+     version-control
+     web-beautify
+     xkcd
+     yaml
+     )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -177,10 +183,10 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-enable-emacs-pdumper nil
 
-   ;; File path pointing to emacs 27.1 executable compiled with support
-   ;; for the portable dumper (this is currently the branch pdumper).
-   ;; (default "emacs-27.0.50")
-   dotspacemacs-emacs-pdumper-executable-file "emacs-27.0.50"
+   ;; Name of executable file pointing to emacs 27+. This executable must be
+   ;; in your PATH.
+   ;; (default "emacs")
+   dotspacemacs-emacs-pdumper-executable-file "emacs"
 
    ;; Name of the Spacemacs dump file. This is the file will be created by the
    ;; portable dumper in the cache directory under dumps sub-directory.
@@ -214,8 +220,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
-   ;; (default nil)
-   dotspacemacs-verify-spacelpa-archives nil
+   ;; (default t)
+   dotspacemacs-verify-spacelpa-archives t
 
    ;; If non-nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
@@ -236,9 +242,6 @@ It should only modify the values of Spacemacs settings."
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
 
-   ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
-   dotspacemacs-verbose-loading nil
-
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
    ;; banner, `random' chooses a random text banner in `core/banners'
@@ -258,6 +261,11 @@ It should only modify the values of Spacemacs settings."
 
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
+
+   ;; Default major mode for a new empty buffer. Possible values are mode
+   ;; names such as `text-mode'; and `nil' to use Fundamental mode.
+   ;; (default `text-mode')
+   dotspacemacs-new-empty-buffer-major-mode 'text-mode
 
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
@@ -285,8 +293,7 @@ It should only modify the values of Spacemacs settings."
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
 
-   ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
-   ;; quickly tweak the mode-line size to make separators look not too crappy.
+   ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '(("xos4 Terminus"
                                 :size 18
                                 :weight normal
@@ -300,7 +307,7 @@ It should only modify the values of Spacemacs settings."
                                 :weight light
                                 :width normal)
                                ("Source Code Pro"
-                                :size 22
+                                :size 10.0
                                 :weight light
                                 :width normal)
                                ("Go Mono"
@@ -443,10 +450,14 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-smooth-scrolling t
 
    ;; Control line numbers activation.
-   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
-   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
+   ;; `prog-mode' and `text-mode' derivatives. If set to `relative', line
+   ;; numbers are relative. If set to `visual', line numbers are also relative,
+   ;; but lines are only visual lines are counted. For example, folded lines
+   ;; will not be counted and wrapped lines are counted as multiple lines.
    ;; This variable can also be set to a property list for finer control:
    ;; '(:relative nil
+   ;;   :visual nil
    ;;   :disabled-for-modes dired-mode
    ;;                       doc-view-mode
    ;;                       markdown-mode
@@ -454,8 +465,9 @@ It should only modify the values of Spacemacs settings."
    ;;                       pdf-view-mode
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
+   ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers nil
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -466,9 +478,9 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-smartparens-strict-mode nil
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
-   ;; over any automatically added closing parenthesis, bracket, quote, etc…
+   ;; over any automatically added closing parenthesis, bracket, quote, etc...
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis nil
+   dotspacemacs-smart-closing-parenthesis t
 
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
@@ -563,6 +575,9 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; Tweak two spaces after period
+  (setq colon-double-space t)
+
   ;; Tweak scrolling (Thanks to @iknite)
   (setq-default scroll-margin 7)
 
@@ -592,12 +607,13 @@ before packages are loaded."
           ("~/sandbox/" . 1)))
 
   (with-eval-after-load 'gif-screencast
-  (define-key gif-screencast-mode-map (kbd "<f7>") 'gif-screencast)
-  (define-key gif-screencast-mode-map (kbd "<f8>") 'gif-screencast-toggle-pause)
-  (define-key gif-screencast-mode-map (kbd "<f9>") 'gif-screencast-stop)
-  )
+    (define-key gif-screencast-mode-map (kbd "<f7>") 'gif-screencast)
+    (define-key gif-screencast-mode-map (kbd "<f8>") 'gif-screencast-toggle-pause)
+    (define-key gif-screencast-mode-map (kbd "<f9>") 'gif-screencast-stop)
+    )
 
 
+  ;; Just uncommented these two, as suggested in http://web-mode.org/
   ;; (setq-default indent-tabs-mode t)
   ;; (setq-default tab-width 4)
 
