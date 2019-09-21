@@ -22,4 +22,6 @@
   tags: terminus
   aur:
     skip_installed: yes
-    name: terminus-font
+    name:
+      - terminus-font
+      - terminus-font-otb
