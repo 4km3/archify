@@ -90,6 +90,7 @@
       ignore_errors: yes
       command:
         cryptsetup luksClose arch
+      when: want_fde is defined and want_fde
 
   roles:
     - pacman
