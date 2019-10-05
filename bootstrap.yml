@@ -74,7 +74,7 @@
       loop: "{{ range(0, 6)|list }}"
       ignore_errors: yes
 
-    - name: Ensure no container ir running on /mnt
+    - name: Ensure no container is running on /mnt
       ignore_errors: yes
       command:
         machinectl poweroff target-on-mnt
