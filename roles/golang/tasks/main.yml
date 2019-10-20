@@ -33,14 +33,14 @@
   register: goget_result
   changed_when: goget_result.stderr != ""
   loop:
+    - github.com/cweill/gotests/...
+    - github.com/davidrjenni/reftools/cmd/fillstruct
+    - github.com/fatih/gomodifytags
+    - github.com/godoctor/godoctor
+    - github.com/golangci/golangci-lint/cmd/golangci-lint
+    - github.com/haya14busa/gopkgs/cmd/gopkgs
+    - github.com/josharian/impl
     - github.com/mdempsky/gocode
     - github.com/rogpeppe/godef
     - github.com/zmb3/gogetdoc
-    - github.com/cweill/gotests/...
-    - github.com/haya14busa/gopkgs/cmd/gopkgs
-    - github.com/davidrjenni/reftools/cmd/fillstruct
-    - github.com/josharian/impl
-    - github.com/golangci/golangci-lint/cmd/golangci-lint
-    - github.com/godoctor/godoctor
-    - github.com/fatih/gomodifytags
     - golang.org/x/tour
