@@ -161,7 +161,7 @@
     - name: pacstrap, create main user
       command: "{{ item }}"
       loop:
-        - pacstrap /mnt base base-devel intel-ucode linux-lts python openssh btrfs-progs fish
+        - pacstrap /mnt base base-devel intel-ucode linux linux-lts linux-firmware python openssh btrfs-progs fish vi
         - rm -f /mnt/etc/localtime /mnt/etc/locale.conf
         - systemd-firstboot --root=/mnt --locale=en_US.UTF-8 --timezone=Europe/Madrid --hostname={{ hostvars[inventory_hostname]['ansible_host'] }} --setup-machine-id
         - bootctl --path /mnt/boot install
