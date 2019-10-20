@@ -18,7 +18,17 @@
 
 # SPDX-License-Identifier: GPL-3.0-or-later
 ---
-dependencies:
-    - { role: detect_wifi_device }
-    - { role: iwd, when: wifi_device is defined }
-    - { role: crda, when: wifi_device is defined }
+- name: Install crda
+  tags: crda
+  aur:
+    skip_installed: yes
+    name: crda
+
+- name: Set country for regulatory domain setup
+  tags: crda
+  become: yes
+  template:
+    src: "{{ item }}.j2"
+    dest: /etc/conf.d/{{ item }}
+  loop:
+    - wireless-regdom
