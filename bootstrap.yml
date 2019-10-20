@@ -254,10 +254,6 @@
     - name: Gather facts
       setup:
 
-    - name: Export wireless interface as a fact
-      set_fact:
-        wifi_device: "{{ ansible_interfaces | select('match', '^wl') | first | default(omit) }}"
-
   roles:
     - role: credentials
       user_password: "{{ main_user_password }}"

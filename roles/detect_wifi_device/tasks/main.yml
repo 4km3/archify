@@ -18,6 +18,7 @@
 
 # SPDX-License-Identifier: GPL-3.0-or-later
 ---
-dependencies:
-    - { role: detect_wifi_device }
-    - { role: iwd, when: wifi_device is defined }
+- name: Export wireless interface as a fact
+  tags: wifi
+  set_fact:
+    wifi_device: "{{ ansible_interfaces | select('match', '^wl') | first | default(omit) }}"
