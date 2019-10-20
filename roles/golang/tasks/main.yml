@@ -44,3 +44,14 @@
     - github.com/rogpeppe/godef
     - github.com/zmb3/gogetdoc
     - golang.org/x/tour
+
+- name: Install gopls
+  tags: golang
+  command:
+    go get {{ item }}
+  register: goget_result
+  changed_when: goget_result.stderr != ""
+  environment:
+    GO111MODULE: "on"
+  loop:
+    - golang.org/x/tools/gopls@latest
