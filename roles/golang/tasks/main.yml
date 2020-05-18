@@ -37,7 +37,6 @@
     - github.com/davidrjenni/reftools/cmd/fillstruct
     - github.com/fatih/gomodifytags
     - github.com/godoctor/godoctor
-    - github.com/golangci/golangci-lint/cmd/golangci-lint
     - github.com/haya14busa/gopkgs/cmd/gopkgs
     - github.com/josharian/impl
     - github.com/mdempsky/gocode
@@ -55,3 +54,4 @@
     GO111MODULE: "on"
   loop:
     - golang.org/x/tools/gopls@latest
+    - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
