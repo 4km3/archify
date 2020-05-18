@@ -35,12 +35,10 @@
   loop:
     - github.com/cweill/gotests/...
     - github.com/davidrjenni/reftools/cmd/fillstruct
-    - github.com/fatih/gomodifytags
     - github.com/godoctor/godoctor
     - github.com/haya14busa/gopkgs/cmd/gopkgs
     - github.com/josharian/impl
     - github.com/mdempsky/gocode
-    - github.com/rogpeppe/godef
     - github.com/zmb3/gogetdoc
     - golang.org/x/tour
 
@@ -54,4 +52,6 @@
     GO111MODULE: "on"
   loop:
     - golang.org/x/tools/gopls@latest
+    - github.com/fatih/gomodifytags@latest
     - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+    - github.com/rogpeppe/godef@latest
