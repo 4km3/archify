@@ -24,7 +24,6 @@
   become: no
   aur:
     name: vimperator
-    skip_installed: yes
 
 - name: Install vimperator configuration files
   tags:

@@ -25,7 +25,6 @@
   become: no
   aur:
     name: firefox-pentadactyl-signed
-    skip_installed: yes
 
 - name: Gather facts to refresh ansible_env
   tags:

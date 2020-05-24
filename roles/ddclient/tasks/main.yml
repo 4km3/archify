@@ -21,7 +21,6 @@
 - name: Install ddclient
   tags: ddclient
   aur:
-    skip_installed: yes
     name: ddclient
 
 - name: Config ddclient

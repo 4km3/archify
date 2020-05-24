@@ -21,7 +21,6 @@
 - name: Install alsa-utils
   tags: alsa
   aur:
-    skip_installed: yes
     name: alsa-utils
 
 - name: Add main user to the audio group

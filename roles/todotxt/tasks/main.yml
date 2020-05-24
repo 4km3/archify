@@ -22,7 +22,6 @@
   tags: todotxt
   aur:
     name: todotxt
-    skip_installed: yes
 
 - name: Install helper scripts
   tags: todotxt

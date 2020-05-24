@@ -21,7 +21,6 @@
 - name: Install yay-bin
   tags: yay
   aur:
-    skip_installed: yes
     name: yay-bin
 
 - name: Create yay work directory

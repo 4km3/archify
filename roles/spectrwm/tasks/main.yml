@@ -21,7 +21,6 @@
 - name: Install spectrwm, rofi, scrot and slock
   tags: spectrwm
   aur:
-    skip_installed: yes
     name:
       - spectrwm
       - rofi

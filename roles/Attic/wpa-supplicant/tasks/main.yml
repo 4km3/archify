@@ -33,7 +33,6 @@
   become: no
   aur:
     name: wpa_supplicant_gui
-    skip_installed: yes
 
 - name: Install wpa_supplicant-{{ wifi_device }}.conf
   template:

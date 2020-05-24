@@ -21,7 +21,6 @@
 - name: Install docker and docker-compose
   tags: docker
   aur:
-    skip_installed: yes
     name:
       - docker
       - docker-compose

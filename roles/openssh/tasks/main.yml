@@ -21,7 +21,6 @@
 - name: Install OpenSSH
   tags: openssh
   aur:
-    skip_installed: yes
     name: openssh
 
 - name: Configure OpenSSH

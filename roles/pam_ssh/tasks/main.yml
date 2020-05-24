@@ -29,7 +29,6 @@
 - name: Install pam_ssh
   tags: pamssh
   aur:
-    skip_installed: yes
     name: pam_ssh
 
 - name: Enable pam_ssh for XDM

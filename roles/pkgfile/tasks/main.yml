@@ -21,7 +21,6 @@
 - name: Install pkgfile
   tags: pkgfile
   aur:
-    skip_installed: yes
     name: pkgfile
 
 - name: Update pkgfile cache

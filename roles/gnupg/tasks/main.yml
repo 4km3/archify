@@ -21,5 +21,4 @@
 - name: Install GnuPG
   tags: gnupg
   aur:
-    skip_installed: yes
     name: gnupg

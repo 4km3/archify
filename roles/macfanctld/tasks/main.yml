@@ -22,7 +22,6 @@
   tags: macfanctld
   aur:
     name: macfanctld
-    skip_installed: yes
 
 - name: Start and enable macfanctld
   tags: macfanctld

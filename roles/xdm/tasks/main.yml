@@ -21,7 +21,6 @@
 - name: Install XDM and xdm-minimalist
   tags: xdm
   aur:
-    skip_installed: yes
     name:
       - xorg-xdm
       - xdm-minimalist

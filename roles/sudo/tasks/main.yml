@@ -21,7 +21,6 @@
 - name: Install sudo
   tags: sudo
   aur:
-    skip_installed: yes
     name: sudo
 
 - name: Enable password-less sudo for wheel

@@ -21,7 +21,6 @@
 - name: Install git, tig, gitg, gti, hub and gitflow
   tags: git
   aur:
-    skip_installed: yes
     name:
       - git
       - bat

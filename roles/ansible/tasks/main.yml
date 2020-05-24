@@ -21,7 +21,6 @@
 - name: Install ansible, ansible-aur-git and friends
   tags: ansible
   aur:
-    skip_installed: yes
     name:
       - ansible
       - ansible-lint

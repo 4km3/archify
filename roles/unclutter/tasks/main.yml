@@ -21,7 +21,6 @@
 - name: Install unclutter
   tags: unclutter
   aur:
-    skip_installed: yes
     name: unclutter
 
 - name: Enable unclutter in xinitrc.d

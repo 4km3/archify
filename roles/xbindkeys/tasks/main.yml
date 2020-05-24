@@ -21,7 +21,6 @@
 - name: Install xbindkeys
   tags: xbindkeys
   aur:
-    skip_installed: yes
     name: xbindkeys
 
 - name: Enable xbindkeys in xinitrc.d

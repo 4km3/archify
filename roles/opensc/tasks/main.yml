@@ -21,7 +21,6 @@
 - name: Install OpenSC, ca-certificates-{fnmt,dnie} and friends
   tags: opensc
   aur:
-    skip_installed: yes
     name:
       - opensc
       - ccid

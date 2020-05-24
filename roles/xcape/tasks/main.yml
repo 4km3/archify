@@ -21,7 +21,6 @@
 - name: Install xcape
   tags: xcape
   aur:
-    skip_installed: yes
     name: xcape
 
 - name: Enable xcape

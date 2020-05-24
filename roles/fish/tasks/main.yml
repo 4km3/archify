@@ -21,7 +21,6 @@
 - name: Install fish and time
   tags: fish
   aur:
-    skip_installed: yes
     name:
       - fish
       - time

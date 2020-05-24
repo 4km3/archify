@@ -21,7 +21,6 @@
 - name: Install emacs and dependencies
   tags: spacemacs
   aur:
-    skip_installed: yes
     name:
       - emacs
       - ctags

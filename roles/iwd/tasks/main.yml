@@ -21,7 +21,6 @@
 - name: Install iwd
   tags: iwd
   aur:
-    skip_installed: yes
     name: iwd
 
 - name: Enable iwd service

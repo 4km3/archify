@@ -21,7 +21,6 @@
 - name: Install libvirt and friends
   tags: libvirt
   aur:
-    skip_installed: yes
     name:
       - libvirt
       - virt-manager
